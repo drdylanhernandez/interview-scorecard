@@ -181,10 +181,12 @@
     <div class="info-card">
       <div class="card-label">Candidate Information</div>
       <div class="info-grid">
-        <div class="info-field full"><label>Select Candidate <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0">(Links to Candidates Pipeline)</span></label>
-          <select id="candidate-select" style="color:#767b7f;">
-            <option value="">Loading candidates...</option>
-          </select>
+        <div class="info-field full"><label>Select Candidate <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0">(Must be added to Candidates Pipeline in Airtable)</span></label>
+          <input type="text" id="candidate-search" placeholder="Search candidates..." autocomplete="off"
+            style="margin-bottom:6px;" oninput="filterCandidates()" onfocus="showDropdown()" />
+          <div id="candidate-dropdown" style="display:none;border:1.5px solid var(--light-grey);border-radius:3px;max-height:200px;overflow-y:auto;background:var(--white);position:relative;z-index:50;">
+          </div>
+          <input type="hidden" id="candidate-select" />
           <div id="candidate-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;font-family:'Montserrat',sans-serif;font-weight:400;"></div>
         </div>
         <div class="info-field"><label>Date</label><input type="date" id="intdate"></div>
@@ -195,6 +197,7 @@
             <option>Tempe</option>
             <option>Gilbert</option>
             <option>Phoenix</option>
+            <option>Queen Creek</option>
           </select>
         </div>
         <div class="info-field"><label>Position Applied For</label>
@@ -521,8 +524,8 @@ async function submitToAirtable() {
     });
   });
 
-  const candidateSel = document.getElementById('candidate-select');
-  const candidateName = candidateSel.options[candidateSel.selectedIndex]?.text?.split(' — ')[0] || '';
+  const candidateId = document.getElementById('candidate-select').value;
+  const candidateName = document.getElementById('candidate-search').value.split(' — ')[0] || '';
 
   const fields = {
     'fldgb9SAVdugVTr8e': candidateName,
