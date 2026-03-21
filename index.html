@@ -181,7 +181,12 @@
     <div class="info-card">
       <div class="card-label">Candidate Information</div>
       <div class="info-grid">
-        <div class="info-field"><label>Candidate Name</label><input type="text" id="cname" placeholder="Full name"></div>
+        <div class="info-field full"><label>Select Candidate <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0">(Links to Candidates Pipeline)</span></label>
+          <select id="candidate-select" style="color:#767b7f;">
+            <option value="">Loading candidates...</option>
+          </select>
+          <div id="candidate-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;font-family:'Montserrat',sans-serif;font-weight:400;"></div>
+        </div>
         <div class="info-field"><label>Date</label><input type="date" id="intdate"></div>
         <div class="info-field"><label>Interviewer</label><input type="text" id="interviewer" placeholder="Your name"></div>
         <div class="info-field"><label>Clinic Location</label>
@@ -192,7 +197,7 @@
             <option>Phoenix</option>
           </select>
         </div>
-        <div class="info-field full"><label>Position Applied For</label>
+        <div class="info-field"><label>Position Applied For</label>
           <select id="position" onchange="onPositionChange()">
             <option value="">Select a position to load scorecard...</option>
             <option value="frontdesk">Front Desk</option>
@@ -201,12 +206,6 @@
             <option value="manager">General Manager</option>
             <option value="chiro">Chiropractor</option>
           </select>
-        </div>
-        <div class="info-field full"><label>Link to Candidate <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0">(Select from Candidates Pipeline)</span></label>
-          <select id="candidate-select" style="color:#767b7f;">
-            <option value="">Loading candidates...</option>
-          </select>
-          <div id="candidate-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;font-family:'Montserrat',sans-serif;font-weight:400;"></div>
         </div>
       </div>
     </div>
@@ -458,6 +457,9 @@ function resetAll() {
 document.getElementById('intdate').valueAsDate = new Date();
 loadCandidates();
 
+const AT_TOKEN = 'patgPvROHCBbeyim7.92fc0b01be3b35fea2d18d5164e51f06c2666ad0526157eef9b6e6984708c21e';
+const AT_BASE  = 'appbrqCxWYmOjiWDk';
+const AT_TABLE = 'tblJg8Jr9HpIaQgIC';
 const AT_PIPELINE_TABLE = 'tblUb2mxslAR9HhGI';
 
 async function loadCandidates() {
@@ -520,8 +522,11 @@ async function submitToAirtable() {
     });
   });
 
+  const candidateSel = document.getElementById('candidate-select');
+  const candidateName = candidateSel.options[candidateSel.selectedIndex]?.text?.split(' — ')[0] || '';
+
   const fields = {
-    'fldgb9SAVdugVTr8e': document.getElementById('cname').value.trim(),
+    'fldgb9SAVdugVTr8e': candidateName,
     'fld2lyB8FKV4YsVVZ': ROLE_LABELS[currentRole] || '',
     'fldERB8IHrUogEmt3': document.getElementById('interviewer').value.trim(),
     'fldlYwbOLHhWkuJGk': document.getElementById('intdate').value || new Date().toISOString().split('T')[0],
