@@ -14,7 +14,7 @@
     --black: #000000;
     --white: #ffffff;
     --bg: #f2f4f5;
-    --navy: #1a1a1a; 
+    --navy: #1a1a1a;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--black); }
@@ -467,7 +467,7 @@ async function loadCandidates() {
   const status = document.getElementById('candidate-load-status');
   try {
     const res = await fetch(
-      `https://api.airtable.com/v0/${AT_BASE}/${AT_PIPELINE_TABLE}?fields%5B%5D=fldUqQPp5XvVunRwH&fields%5B%5D=fldRmj2wByABOsu3y&fields%5B%5D=fld8r56UwOseaB2bx&fields%5B%5D=fldRFAG02JoL2tIk7&sort%5B0%5D%5Bfield%5D=fldUqQPp5XvVunRwH`,
+      `https://api.airtable.com/v0/${AT_BASE}/${AT_PIPELINE_TABLE}?fields%5B%5D=fldUqQPp5XvVunRwH&fields%5B%5D=fld8r56UwOseaB2bx&fields%5B%5D=fldRFAG02JoL2tIk7&sort%5B0%5D%5Bfield%5D=fldUqQPp5XvVunRwH`,
       { headers: { 'Authorization': 'Bearer ' + AT_TOKEN } }
     );
     const data = await res.json();
@@ -475,14 +475,13 @@ async function loadCandidates() {
     if (data.records && data.records.length > 0) {
       data.records.forEach(r => {
         const f = r.fields;
-        const first = f['fldUqQPp5XvVunRwH'] || '';
-        const last  = f['fldRmj2wByABOsu3y'] || '';
-        const pos   = f['fld8r56UwOseaB2bx'] || '';
-        const loc   = Array.isArray(f['fldRFAG02JoL2tIk7']) ? f['fldRFAG02JoL2tIk7'].join(', ') : (f['fldRFAG02JoL2tIk7'] || '');
-        const label = [first + ' ' + last, pos, loc].filter(Boolean).join(' — ');
+        const name = f['fldUqQPp5XvVunRwH'] || 'Unnamed';
+        const pos  = f['fld8r56UwOseaB2bx'] || '';
+        const loc  = Array.isArray(f['fldRFAG02JoL2tIk7']) ? f['fldRFAG02JoL2tIk7'].join(', ') : (f['fldRFAG02JoL2tIk7'] || '');
+        const label = [name, pos, loc].filter(Boolean).join(' — ');
         const opt = document.createElement('option');
         opt.value = r.id;
-        opt.textContent = label.trim();
+        opt.textContent = label;
         sel.appendChild(opt);
       });
       status.textContent = data.records.length + ' candidates loaded';
