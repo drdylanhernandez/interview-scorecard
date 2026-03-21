@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Axis Spine and Sport – Master Interview Scorecard</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #e5be5e;
+    --gold-dark: #c9a440;
+    --dark-grey: #767b7f;
+    --light-grey: #c3cace;
+    --black: #000000;
+    --white: #ffffff;
+    --bg: #f2f4f5;
+    --navy: #1a1a1a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--black); }
+
+  /* HEADER */
+  .header { background: var(--black); padding: 0; }
+  .header-inner { display: flex; align-items: stretch; }
+  .header-gold-bar { width: 8px; background: var(--gold); flex-shrink: 0; }
+  .header-content { padding: 24px 32px; flex: 1; }
+  .header-top { display: flex; align-items: center; gap: 16px; }
+  .logo-mark { width: 48px; height: 60px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .header-text h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; color: var(--white); letter-spacing: 0.5px; text-transform: uppercase; }
+  .header-text p { font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 12px; color: var(--light-grey); margin-top: 2px; letter-spacing: 0.3px; }
+  .header-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 16px 0 0; }
+
+  /* CONTENT */
+  .content { max-width: 860px; margin: 0 auto; padding: 32px 20px 100px; }
+
+  /* INFO CARD */
+  .info-card { background: var(--white); border-radius: 4px; padding: 28px; margin-bottom: 24px; border-top: 4px solid var(--gold); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .card-label { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--gold-dark); margin-bottom: 18px; }
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .info-field label { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 10px; color: var(--dark-grey); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .info-field input, .info-field select {
+    width: 100%; border: 1.5px solid var(--light-grey); border-radius: 3px;
+    padding: 10px 12px; font-family: 'Montserrat', sans-serif; font-size: 13px;
+    font-weight: 400; color: var(--black); background: var(--white); transition: border-color 0.2s;
+  }
+  .info-field input:focus, .info-field select:focus { outline: none; border-color: var(--gold); }
+  .info-field.full { grid-column: 1 / -1; }
+
+  /* START PROMPT */
+  .start-prompt { background: var(--white); border-radius: 4px; padding: 48px 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 24px; border: 1.5px dashed var(--light-grey); }
+  .start-prompt h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 17px; color: var(--black); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .start-prompt p { font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 13px; color: var(--dark-grey); }
+  .start-gold-line { width: 40px; height: 3px; background: var(--gold); margin: 0 auto 16px; border-radius: 2px; }
+
+  /* LEGEND */
+  .legend { background: var(--white); border-radius: 4px; padding: 12px 18px; margin-bottom: 24px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+  .legend-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-right: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--dark-grey); margin-left: 8px; }
+  .legend-pip { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 11px; color: var(--white); }
+  .p1{background:#767b7f}.p2{background:#c3cace;color:#1a1a1a}.p3{background:#c9a440}.p4{background:#e5be5e;color:#1a1a1a}.p5{background:#000000}
+
+  /* CATEGORY BLOCK */
+  .category-block { background: var(--white); border-radius: 4px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .category-title { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 2px solid var(--bg); }
+  .category-title-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; color: var(--black); text-transform: uppercase; letter-spacing: 0.5px; }
+  .cat-badge { background: var(--black); color: var(--gold); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  .role-badge { background: var(--gold); color: var(--black); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+
+  /* QUESTIONS */
+  .q-row { padding: 16px 0; border-bottom: 1px solid var(--bg); }
+  .q-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .q-text { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 400; color: var(--black); line-height: 1.6; margin-bottom: 12px; }
+  .q-num { display: inline-block; background: var(--gold); color: var(--black); font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10px; padding: 3px 8px; border-radius: 2px; margin-right: 8px; letter-spacing: 0.3px; }
+  .star-row { display: flex; align-items: center; gap: 10px; }
+  .stars { display: flex; gap: 5px; }
+  .star {
+    width: 32px; height: 32px; border-radius: 3px; border: 2px solid var(--light-grey);
+    background: var(--white); cursor: pointer; font-size: 16px; display: flex;
+    align-items: center; justify-content: center; transition: all 0.15s; color: var(--light-grey);
+  }
+  .star:hover { border-color: var(--gold); color: var(--gold); background: #fffbf0; }
+  .star.active { background: var(--gold); color: var(--black); border-color: var(--gold); }
+  .score-label { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--dark-grey); min-width: 120px; }
+  .notes-field { margin-top: 10px; }
+  .notes-field textarea {
+    width: 100%; border: 1.5px solid var(--light-grey); border-radius: 3px;
+    padding: 9px 12px; font-family: 'Montserrat', sans-serif; font-size: 12px;
+    font-weight: 400; color: var(--black); resize: vertical; min-height: 54px;
+    transition: border-color 0.2s; background: #fafafa;
+  }
+  .notes-field textarea:focus { outline: none; border-color: var(--gold); background: var(--white); }
+  .notes-field textarea::placeholder { color: var(--light-grey); }
+
+  /* SUMMARY */
+  .summary-card { background: var(--white); border-radius: 4px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); border-top: 4px solid var(--black); }
+  .summary-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px; color: var(--black); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid var(--bg); }
+  .score-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--bg); }
+  .score-row:last-child { border-bottom: none; }
+  .score-row .label { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: var(--black); min-width: 180px; }
+  .score-row .label small { font-weight: 400; color: var(--dark-grey); }
+  .score-row .bar { flex: 1; margin: 0 16px; height: 6px; background: var(--bg); border-radius: 2px; overflow: hidden; }
+  .score-row .bar-fill { height: 100%; background: linear-gradient(90deg, var(--black), var(--gold)); border-radius: 2px; transition: width 0.4s; }
+  .score-row .value { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 800; color: var(--black); min-width: 70px; text-align: right; }
+  .total-row { background: var(--black); border-radius: 3px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
+  .total-row .label { font-family: 'Montserrat', sans-serif; color: var(--light-grey); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .total-row .value { font-family: 'Montserrat', sans-serif; color: var(--gold); font-size: 24px; font-weight: 900; }
+
+  /* RECOMMENDATION */
+  .rec-title { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-bottom: 14px; }
+  .rec-options { display: flex; gap: 10px; flex-wrap: wrap; }
+  .rec-btn {
+    padding: 11px 22px; border-radius: 3px; border: 2px solid var(--light-grey);
+    background: var(--white); cursor: pointer; font-family: 'Montserrat', sans-serif;
+    font-size: 12px; font-weight: 800; color: var(--dark-grey); transition: all 0.2s;
+    text-transform: uppercase; letter-spacing: 0.3px;
+  }
+  .rec-btn:hover { border-color: var(--black); color: var(--black); }
+  .rec-btn.selected.strong { background: var(--black); border-color: var(--black); color: var(--gold); }
+  .rec-btn.selected.hire { background: var(--gold); border-color: var(--gold); color: var(--black); }
+  .rec-btn.selected.hold { background: var(--dark-grey); border-color: var(--dark-grey); color: var(--white); }
+  .rec-btn.selected.no { background: #767b7f; border-color: #767b7f; color: var(--white); }
+
+  /* BOTTOM BAR */
+  .print-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 3px solid var(--gold); padding: 14px 28px; display: flex; justify-content: flex-end; gap: 10px; box-shadow: 0 -4px 20px rgba(0,0,0,0.1); z-index: 100; }
+  .btn-primary { background: var(--black); color: var(--gold); border: none; padding: 12px 30px; border-radius: 3px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.2s; }
+  .btn-primary:hover { background: #2a2a2a; }
+  .btn-primary:disabled { background: var(--dark-grey); color: var(--light-grey); cursor: not-allowed; }
+  .btn-secondary { background: var(--white); color: var(--dark-grey); border: 2px solid var(--light-grey); padding: 12px 24px; border-radius: 3px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
+  .btn-secondary:hover { border-color: var(--black); color: var(--black); }
+  .submit-status { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; padding: 12px 16px; border-radius: 3px; display: none; align-items: center; gap: 8px; }
+  .submit-status.success { display: flex; background: #e6f4ea; color: #1a7a3a; border: 1.5px solid #a8d5b5; }
+  .submit-status.error { display: flex; background: #fdecea; color: #a32d2d; border: 1.5px solid #f0a0a0; }
+
+  #scorecard-body { display: none; }
+
+  @media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } }
+  @media print {
+    body { background: white; }
+    .print-bar { display: none; }
+    .content { padding: 0; max-width: 100%; }
+    .category-block, .summary-card, .info-card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-gold-bar"></div>
+    <div class="header-content">
+      <div class="header-top">
+        <div class="logo-mark">
+          <svg width="48" height="62" viewBox="0 0 48 62" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#f5e090"/>
+                <stop offset="50%" style="stop-color:#e5be5e"/>
+                <stop offset="100%" style="stop-color:#c9a440"/>
+              </linearGradient>
+            </defs>
+            <!-- Triangle 1: top — points DOWN -->
+            <polygon points="0,0 48,0 24,18" fill="url(#tg)"/>
+            <!-- Triangle 2: middle — points DOWN -->
+            <polygon points="0,22 48,22 24,40" fill="url(#tg)"/>
+            <!-- Triangle 3: bottom — points DOWN -->
+            <polygon points="0,44 48,44 24,62" fill="url(#tg)"/>
+          </svg>
+        </div>
+        <div class="header-text">
+          <h1>Axis Spine and Sport</h1>
+          <p>Master Interview Scorecard</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div id="info-step">
+    <div class="info-card">
+      <div class="card-label">Candidate Information</div>
+      <div class="info-grid">
+        <div class="info-field"><label>Candidate Name</label><input type="text" id="cname" placeholder="Full name"></div>
+        <div class="info-field"><label>Date</label><input type="date" id="intdate"></div>
+        <div class="info-field"><label>Interviewer</label><input type="text" id="interviewer" placeholder="Your name"></div>
+        <div class="info-field"><label>Clinic Location</label>
+          <select id="location">
+            <option value="">Select location...</option>
+            <option>Tempe</option>
+            <option>Gilbert</option>
+            <option>Phoenix</option>
+          </select>
+        </div>
+        <div class="info-field full"><label>Position Applied For</label>
+          <select id="position" onchange="onPositionChange()">
+            <option value="">Select a position to load scorecard...</option>
+            <option value="frontdesk">Front Desk</option>
+            <option value="ca">Chiropractic Assistant</option>
+            <option value="massage">Massage Therapist</option>
+            <option value="manager">General Manager</option>
+            <option value="chiro">Chiropractor</option>
+          </select>
+        </div>
+        <div class="info-field full"><label>Link to Candidate <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0">(Select from Candidates Pipeline)</span></label>
+          <select id="candidate-select" style="color:#767b7f;">
+            <option value="">Loading candidates...</option>
+          </select>
+          <div id="candidate-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;font-family:'Montserrat',sans-serif;font-weight:400;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="start-prompt" id="start-prompt">
+      <div class="start-gold-line"></div>
+      <h2>Select a Position to Begin</h2>
+      <p>Choose the role above and the scorecard will load automatically with the correct questions.</p>
+    </div>
+  </div>
+
+  <div id="scorecard-body">
+    <div class="legend">
+      <span class="legend-title">Scoring Scale</span>
+      <div class="legend-item"><div class="legend-pip p1">1</div> Poor</div>
+      <div class="legend-item"><div class="legend-pip p2">2</div> Below</div>
+      <div class="legend-item"><div class="legend-pip p3">3</div> Meets</div>
+      <div class="legend-item"><div class="legend-pip p4">4</div> Strong</div>
+      <div class="legend-item"><div class="legend-pip p5">5</div> Exceptional</div>
+    </div>
+
+    <div class="category-block">
+      <div class="category-title"><span class="cat-badge">Core 1 of 3</span><span class="category-title-text">Healthcare Competency</span></div>
+      <div id="q-healthcare"></div>
+    </div>
+    <div class="category-block">
+      <div class="category-title"><span class="cat-badge">Core 2 of 3</span><span class="category-title-text">Personality & Culture Fit</span></div>
+      <div id="q-culture"></div>
+    </div>
+    <div class="category-block">
+      <div class="category-title"><span class="cat-badge">Core 3 of 3</span><span class="category-title-text">Problem-Solving & Judgment</span></div>
+      <div id="q-problem"></div>
+    </div>
+    <div class="category-block" id="role-block">
+      <div class="category-title"><span class="role-badge" id="role-badge">Role-Specific</span><span class="category-title-text" id="role-title">Questions</span></div>
+      <div id="q-role"></div>
+    </div>
+
+    <div class="summary-card">
+      <h3>Scoring Summary</h3>
+      <div class="score-row">
+        <span class="label">Healthcare Competency <small>(/ 15)</small></span>
+        <div class="bar"><div class="bar-fill" id="bar-hc" style="width:0%"></div></div>
+        <span class="value" id="val-hc">0 / 15</span>
+      </div>
+      <div class="score-row">
+        <span class="label">Culture Fit <small>(/ 15)</small></span>
+        <div class="bar"><div class="bar-fill" id="bar-cf" style="width:0%"></div></div>
+        <span class="value" id="val-cf">0 / 15</span>
+      </div>
+      <div class="score-row">
+        <span class="label">Problem-Solving <small>(/ 15)</small></span>
+        <div class="bar"><div class="bar-fill" id="bar-ps" style="width:0%"></div></div>
+        <span class="value" id="val-ps">0 / 15</span>
+      </div>
+      <div class="score-row">
+        <span class="label" id="role-score-label">Role-Specific</span>
+        <div class="bar"><div class="bar-fill" id="bar-role" style="width:0%"></div></div>
+        <span class="value" id="val-role">0 / —</span>
+      </div>
+      <div class="total-row">
+        <span class="label" id="total-label">Total Score</span>
+        <span class="value" id="val-total">0 / —</span>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <h3>Hiring Recommendation</h3>
+      <div class="rec-title">Select recommendation</div>
+      <div class="rec-options">
+        <button class="rec-btn strong" onclick="selectRec(this,'strong')">★ Strong Hire</button>
+        <button class="rec-btn hire" onclick="selectRec(this,'hire')">✓ Hire / Trainable</button>
+        <button class="rec-btn hold" onclick="selectRec(this,'hold')">— Hold</button>
+        <button class="rec-btn no" onclick="selectRec(this,'no')">✕ Do Not Hire</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="print-bar">
+  <div class="submit-status" id="submit-status"></div>
+  <button class="btn-secondary" onclick="resetAll()">↺ Reset</button>
+  <button class="btn-primary" onclick="window.print()">Print / Save PDF</button>
+  <button class="btn-primary" id="submit-btn" onclick="submitToAirtable()">Submit to Airtable</button>
+</div>
+
+<script>
+const QUESTIONS = {
+  healthcare: [
+    "In your opinion, what makes a patient feel genuinely well cared for when they walk into a healthcare office?",
+    "Can you tell me about a time you helped someone who was stressed, uncomfortable, or dealing with a health-related issue?",
+    "What is an EHR (or EMR) system, what are the core functions it serves, and what privacy law must you follow to protect patient records?"
+  ],
+  culture: [
+    "Tell me about a time you received feedback that was difficult to hear. How did you respond?",
+    "How do you stay positive, focused, or productive on days that are busy or stressful?",
+    "What does doing a great job mean to you when no one is watching?"
+  ],
+  problem: [
+    "If you came into work and realized something important was missed the day before, what would you do?",
+    "If two people give you conflicting instructions at work, how do you decide what to do?",
+    "When you don't know the answer to something at work, what steps do you take?"
+  ],
+  frontdesk: [
+    "How would you explain the difference between a copay, a deductible, and coinsurance to a patient in simple terms?",
+    "If a patient came in after a car accident and said they had an attorney but only remembered the attorney's name, how would you find accurate contact information?",
+    "If the schedule was full but a patient needed to be seen urgently, how would you think through your options?",
+    "Imagine a patient arrives late, the schedule is full, and the front desk is busy. How would you think through that situation?",
+    "Walk me through how you would schedule a new patient from the moment they call to the moment they're confirmed.",
+    "If a patient's card declines and they don't have another form of payment, how do you handle that conversation?"
+  ],
+  ca: [
+    "Can you explain the difference between the cervical, thoracic, and lumbar regions of the spine?",
+    "Why is posture important when assisting patients with exercise?",
+    "What signs or symptoms would you watch for if a patient became uncomfortable, dizzy, or unwell during treatment?",
+    "How would you assist a patient who is nervous or experiencing pain during a rehab or therapy exercise?",
+    "Can you name three muscles in the back or neck and tell me what each one does?",
+    "When the clinic is slow and there are no patients to assist, how do you stay productive? What kinds of tasks would you take initiative on without being asked?"
+  ],
+  massage: [
+    "Which muscles most commonly contribute to neck and shoulder tension, and how do you typically address them?",
+    "How do you differentiate between muscular tightness and nerve-related symptoms during a session?",
+    "What role do the glutes and hip flexors play in low back pain?",
+    "How do you adjust pressure or technique based on patient feedback and tissue response?",
+    "If a patient feels sore after a massage, how do you explain why that may happen?",
+    "If during a session you notice something unusual — like an area of unexpected swelling, unusual skin discoloration, or a lump — what do you do?"
+  ],
+  manager: [
+    "Chiropractor close rate (percent of care plans purchased upfront) is a key KPI. How would you set expectations with a new doctor and hold them accountable while maintaining a positive culture?",
+    "In a busy clinic environment, how do you prioritize your own tasks while still being available to support staff and operations?",
+    "Two primary General Manager KPIs are total new patients and total revenue. Describe one creative strategy to increase each and how you would track success.",
+    "How do you ensure systems, SOPs, and standards are followed consistently across the team, even when you are not physically present?",
+    "If you noticed morale on the team was low but no one was saying anything directly, how would you identify the root cause and address it?"
+  ],
+  chiro: [
+    "If a patient is very focused on pain relief and just wants the pain to go away, how would you guide the conversation toward long-term health and wellness without dismissing their pain?",
+    "What objections do patients commonly raise when a care plan is presented, and how do you handle those objections?",
+    "How would you describe your core chiropractic philosophy and how it guides your clinical decisions?",
+    "What is an epidural steroid injection, and in what situations might it be appropriate for a patient?",
+    "What is the purpose of the dead bug exercise, and what does it help address?",
+    "If a patient has poor hip mobility, what stretches or mobility exercises would you typically prescribe, and why?",
+    "Clinical Scenario: A patient has T/L junction pain, is a golfer, pain is always worse after golf, and they've dealt with this for over a decade. Describe the treatment plan you'd create, milestones, and long-term outcome expectations.",
+    "When you take a new patient through the x-ray process, how do you explain the value of that imaging to them and how it shapes their treatment plan?",
+    "A patient presents with radiating pain down the left leg, numbness in the foot, and reports it's worse when sitting. Walk me through your clinical reasoning and how you would build their treatment plan.",
+    "A patient is fully on board with their diagnosis but hesitates to commit to the full care plan because of the cost. How do you handle that conversation?",
+    "If a patient is not responding to care after four to six visits, what do you do?"
+  ]
+};
+
+const ROLE_LABELS = { frontdesk:'Front Desk', ca:'Chiropractic Assistant', massage:'Massage Therapist', manager:'General Manager', chiro:'Chiropractor' };
+const ROLE_MAX = { frontdesk:30, ca:30, massage:30, manager:25, chiro:55 };
+const SCORE_LABELS = ['','Poor','Below Expectations','Meets Expectations','Strong','Exceptional'];
+const scores = {};
+let currentRole = null;
+
+function onPositionChange() {
+  const role = document.getElementById('position').value;
+  if (!role) {
+    document.getElementById('scorecard-body').style.display = 'none';
+    document.getElementById('start-prompt').style.display = 'block';
+    return;
+  }
+  currentRole = role;
+  document.getElementById('start-prompt').style.display = 'none';
+  document.getElementById('scorecard-body').style.display = 'block';
+  document.getElementById('role-badge').textContent = ROLE_LABELS[role];
+  document.getElementById('role-title').textContent = ROLE_LABELS[role] + ' Questions';
+  document.getElementById('role-score-label').textContent = ROLE_LABELS[role] + ' Score';
+  buildQuestions('q-healthcare', 'healthcare', 1);
+  buildQuestions('q-culture', 'culture', 4);
+  buildQuestions('q-problem', 'problem', 7);
+  buildQuestions('q-role', role, 10);
+  updateSummary();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function buildQuestions(containerId, key, startNum) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  QUESTIONS[key].forEach((q, i) => {
+    const qid = key + '_' + i;
+    scores[qid] = 0;
+    const row = document.createElement('div');
+    row.className = 'q-row';
+    row.innerHTML =
+      '<div class="q-text"><span class="q-num">Q' + (startNum + i) + '</span>' + q + '</div>' +
+      '<div class="star-row"><div class="stars" id="stars-' + qid + '">' +
+      [1,2,3,4,5].map(n => '<div class="star" data-val="' + n + '" onclick="setScore(\'' + qid + '\',' + n + ')">★</div>').join('') +
+      '</div><span class="score-label" id="lbl-' + qid + '">Not scored</span></div>' +
+      '<div class="notes-field"><textarea placeholder="Notes (optional)…" rows="2"></textarea></div>';
+    el.appendChild(row);
+  });
+}
+
+function setScore(qid, val) {
+  scores[qid] = val;
+  document.querySelectorAll('#stars-' + qid + ' .star').forEach(s => {
+    s.classList.toggle('active', parseInt(s.dataset.val) <= val);
+  });
+  document.getElementById('lbl-' + qid).textContent = val + ' — ' + SCORE_LABELS[val];
+  updateSummary();
+}
+
+function calcGroup(key) {
+  return QUESTIONS[key].reduce((sum, _, i) => sum + (scores[key + '_' + i] || 0), 0);
+}
+
+function setBar(id, val, max) {
+  document.getElementById('val-' + id).textContent = val + ' / ' + max;
+  document.getElementById('bar-' + id).style.width = (val / max * 100) + '%';
+}
+
+function updateSummary() {
+  const hc = calcGroup('healthcare');
+  const cf = calcGroup('culture');
+  const ps = calcGroup('problem');
+  const role = currentRole ? calcGroup(currentRole) : 0;
+  const roleMax = currentRole ? ROLE_MAX[currentRole] : 0;
+  setBar('hc', hc, 15);
+  setBar('cf', cf, 15);
+  setBar('ps', ps, 15);
+  document.getElementById('val-role').textContent = role + ' / ' + (roleMax || '—');
+  document.getElementById('bar-role').style.width = roleMax ? (role / roleMax * 100) + '%' : '0%';
+  document.getElementById('total-label').textContent = 'Total Score — ' + (currentRole ? ROLE_LABELS[currentRole] : '');
+  document.getElementById('val-total').textContent = (hc + cf + ps + role) + ' / ' + (45 + roleMax);
+}
+
+function selectRec(btn, cls) {
+  document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('selected','strong','hire','hold','no'));
+  btn.classList.add('selected', cls);
+}
+
+function resetAll() {
+  if (!confirm('Reset the entire scorecard?')) return;
+  Object.keys(scores).forEach(k => scores[k] = 0);
+  document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.score-label').forEach(l => l.textContent = 'Not scored');
+  document.querySelectorAll('textarea').forEach(t => t.value = '');
+  document.querySelectorAll('input[type=text]').forEach(i => i.value = '');
+  document.getElementById('position').value = '';
+  document.getElementById('location').value = '';
+  document.getElementById('scorecard-body').style.display = 'none';
+  document.getElementById('start-prompt').style.display = 'block';
+  document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('selected','strong','hire','hold','no'));
+  currentRole = null;
+}
+
+document.getElementById('intdate').valueAsDate = new Date();
+loadCandidates();
+
+const AT_PIPELINE_TABLE = 'tblUb2mxslAR9HhGI';
+
+async function loadCandidates() {
+  const sel = document.getElementById('candidate-select');
+  const status = document.getElementById('candidate-load-status');
+  try {
+    const res = await fetch(
+      `https://api.airtable.com/v0/${AT_BASE}/${AT_PIPELINE_TABLE}?fields%5B%5D=fldUqQPp5XvVunRwH&fields%5B%5D=fldRmj2wByABOsu3y&fields%5B%5D=fld8r56UwOseaB2bx&fields%5B%5D=fldRFAG02JoL2tIk7&sort%5B0%5D%5Bfield%5D=fldUqQPp5XvVunRwH`,
+      { headers: { 'Authorization': 'Bearer ' + AT_TOKEN } }
+    );
+    const data = await res.json();
+    sel.innerHTML = '<option value="">— Select candidate —</option>';
+    if (data.records && data.records.length > 0) {
+      data.records.forEach(r => {
+        const f = r.fields;
+        const first = f['fldUqQPp5XvVunRwH'] || '';
+        const last  = f['fldRmj2wByABOsu3y'] || '';
+        const pos   = f['fld8r56UwOseaB2bx'] || '';
+        const loc   = Array.isArray(f['fldRFAG02JoL2tIk7']) ? f['fldRFAG02JoL2tIk7'].join(', ') : (f['fldRFAG02JoL2tIk7'] || '');
+        const label = [first + ' ' + last, pos, loc].filter(Boolean).join(' — ');
+        const opt = document.createElement('option');
+        opt.value = r.id;
+        opt.textContent = label.trim();
+        sel.appendChild(opt);
+      });
+      status.textContent = data.records.length + ' candidates loaded';
+    } else {
+      sel.innerHTML = '<option value="">No candidates found in pipeline</option>';
+      status.textContent = 'Add candidates to the Candidates Pipeline in Airtable first.';
+    }
+  } catch(e) {
+    sel.innerHTML = '<option value="">Failed to load candidates</option>';
+    status.textContent = 'Could not connect to Airtable: ' + e.message;
+  }
+}
+
+'patgPvROHCBbeyim7.92fc0b01be3b35fea2d18d5164e51f06c2666ad0526157eef9b6e6984708c21e';
+const AT_BASE  = 'appbrqCxWYmOjiWDk';
+const AT_TABLE = 'tblJg8Jr9HpIaQgIC';
+
+async function submitToAirtable() {
+  const rec = document.querySelector('.rec-btn.selected');
+  if (!rec) { alert('Please select a hiring recommendation before submitting.'); return; }
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('submit-status');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+  status.className = 'submit-status';
+
+  const hc = calcGroup('healthcare');
+  const cf = calcGroup('culture');
+  const ps = calcGroup('problem');
+  const role = currentRole ? calcGroup(currentRole) : 0;
+  const recLabel = rec.textContent.replace(/[★✓✕⏸—]/g,'').trim();
+
+  const noteLines = [];
+  ['healthcare','culture','problem',...(currentRole?[currentRole]:[])].forEach(key => {
+    QUESTIONS[key].forEach((q,i) => {
+      noteLines.push('Q: ' + q + '\nScore: ' + (scores[key+'_'+i]||0) + '/5');
+    });
+  });
+
+  const fields = {
+    'fldgb9SAVdugVTr8e': document.getElementById('cname').value.trim(),
+    'fld2lyB8FKV4YsVVZ': ROLE_LABELS[currentRole] || '',
+    'fldERB8IHrUogEmt3': document.getElementById('interviewer').value.trim(),
+    'fldlYwbOLHhWkuJGk': document.getElementById('intdate').value || new Date().toISOString().split('T')[0],
+    'fldy3bhltMDygqrDr': hc,
+    'fldofAoeRk9dWgCaT': cf,
+    'fldgjTXyEqABlWpxo': ps,
+    'fldcFcnnPSVPLyOpP': role,
+    'fld3wRBfOibYJRX8M': hc + cf + ps + role,
+    'fldhelFqQJKJtbWNI': recLabel,
+    'fldacUrKfLdit3bnk': noteLines.join('\n\n')
+  };
+
+  const candidateId = document.getElementById('candidate-select').value;
+  if (candidateId) fields['fld3a0Q2lkMG4QtvS'] = [{ id: candidateId }];
+
+  try {
+    const res = await fetch('https://api.airtable.com/v0/' + AT_BASE + '/' + AT_TABLE, {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + AT_TOKEN, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ records: [{ fields }] })
+    });
+    const data = await res.json();
+    if (res.ok) {
+      status.className = 'submit-status success';
+      status.textContent = '✓ Saved to Airtable';
+      btn.textContent = '✓ Submitted';
+    } else {
+      throw new Error(data.error?.message || 'Submission failed');
+    }
+  } catch(e) {
+    status.className = 'submit-status error';
+    status.textContent = '✕ ' + e.message;
+    btn.disabled = false;
+    btn.textContent = 'Submit to Airtable';
+  }
+}
+</script>
+</body>
+</html>
