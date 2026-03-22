@@ -144,17 +144,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   <button class="success-btn" onclick="resetAll()">← Start New Interview</button>
 </div>
 
-<!-- Incomplete answers dialog -->
-<div class="dialog-overlay" id="incomplete-dialog">
-  <div class="dialog-box">
-    <h4>⚠ Incomplete Scorecard</h4>
-    <p>Not all questions have been answered. Are you sure you want to submit without completing the scorecard?</p>
-    <div class="dialog-btns">
-      <button class="btn-secondary" onclick="closeDialog()">← Go Back</button>
-      <button class="btn-primary" onclick="confirmSubmit()">Submit Anyway</button>
-    </div>
-  </div>
-</div>
+
 
 <div class="header">
   <div class="header-inner">
@@ -478,10 +468,10 @@ function handleSubmitClick() {
     return;
   }
   if (!allQuestionsAnswered()) {
-    document.getElementById('incomplete-dialog').classList.add('active');
-  } else {
-    doSubmit();
+    highlightUnanswered();
+    return;
   }
+  doSubmit();
 }
 
 function closeDialog() {
