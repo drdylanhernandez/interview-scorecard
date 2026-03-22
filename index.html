@@ -303,6 +303,10 @@ async function loadCandidates() {
   try {
     const res = await fetch(WORKER_URL);
     const data = await res.json();
+
+    // Debug: log the raw response to console so we can inspect structure
+    console.log('Worker response:', JSON.stringify(data).slice(0, 500));
+
     if (data.records && data.records.length > 0) {
       allCandidates = data.records
         .filter(r => {
@@ -311,18 +315,27 @@ async function loadCandidates() {
         })
         .map(r => {
           const f = r.fields;
-          const name = f['Candidate Name'] || f['fldUqQPp5XvVunRwH'] || 'Unnamed';
+          // Ensure ID is always extracted as a plain string
+          const id = typeof r.id === 'string' ? r.id : (r.id && r.id.toString ? r.id.toString() : String(r.id));
+          const name = f['fldUqQPp5XvVunRwH'] || 'Unnamed';
           const pos  = typeof f['fld8r56UwOseaB2bx'] === 'object' ? f['fld8r56UwOseaB2bx'].name : (f['fld8r56UwOseaB2bx'] || '');
           const loc  = Array.isArray(f['fldRFAG02JoL2tIk7'])
             ? f['fldRFAG02JoL2tIk7'].map(l => typeof l === 'object' ? l.name : l).join(', ')
             : (f['fldRFAG02JoL2tIk7'] || '');
-          return { id: r.id, label: [name, pos, loc].filter(Boolean).join(' — ') };
+          return { id, label: [name, pos, loc].filter(Boolean).join(' — ') };
         });
+
+      // Debug: log the first parsed candidate
+      if (allCandidates.length > 0) {
+        console.log('First candidate parsed:', allCandidates[0]);
+      }
+
       status.textContent = allCandidates.length + ' candidates loaded';
     } else {
       status.textContent = 'No candidates found. Add candidates in Airtable first.';
     }
   } catch(e) {
+    console.error('loadCandidates error:', e);
     status.textContent = 'Could not load candidates: ' + e.message;
   }
 }
@@ -367,7 +380,8 @@ function selectCandidate(id, label) {
   document.getElementById('candidate-id').value = id;
   document.getElementById('candidate-search').value = label;
   document.getElementById('candidate-dropdown').style.display = 'none';
-  document.getElementById('candidate-load-status').textContent = '✓ Candidate selected';
+  document.getElementById('candidate-load-status').textContent = '✓ Candidate selected (ID: ' + id + ')';
+  console.log('Selected candidate ID:', id, '| type:', typeof id);
 }
 
 document.addEventListener('click', e => {
@@ -458,19 +472,27 @@ function selectRec(btn, cls) {
 async function submitToAirtable() {
   const rec = document.querySelector('.rec-btn.selected');
   if (!rec) { alert('Please select a hiring recommendation before submitting.'); return; }
+
   const btn = document.getElementById('submit-btn');
   const status = document.getElementById('submit-status');
   btn.disabled = true;
   btn.textContent = 'Submitting…';
   status.className = 'submit-status';
+  status.style.display = 'none';
 
   const hc = calcGroup('healthcare');
   const cf = calcGroup('culture');
   const ps = calcGroup('problem');
   const role = currentRole ? calcGroup(currentRole) : 0;
   const recLabel = rec.textContent.replace(/[★✓✕⏸—]/g,'').trim();
-  const candidateId = document.getElementById('candidate-id').value;
-  const candidateName = document.getElementById('candidate-search').value.split(' — ')[0] || '';
+
+  // Get candidate ID — ensure it is a clean string
+  const rawId = document.getElementById('candidate-id').value;
+  const candidateId = (rawId && typeof rawId === 'string') ? rawId.trim() : '';
+  const candidateName = document.getElementById('candidate-search').value.split(' — ')[0].trim() || '';
+
+  // Debug log before submit
+  console.log('Submitting — candidateId:', candidateId, '| type:', typeof candidateId);
 
   const noteLines = [];
   ['healthcare','culture','problem',...(currentRole?[currentRole]:[])].forEach(key => {
@@ -493,25 +515,41 @@ async function submitToAirtable() {
     'fldacUrKfLdit3bnk': noteLines.join('\n\n')
   };
 
-  const cid2 = typeof candidateId === 'string' ? candidateId : (candidateId?.id || ''); if (cid2 && cid2.startsWith('rec')) fields['fld3a0Q2lkMG4QtvS'] = [{ id: cid2 }];
+  // Only add the linked record field if we have a valid-looking Airtable record ID
+  // Airtable record IDs always start with "rec" and are 17 chars total
+  if (candidateId && candidateId.startsWith('rec') && candidateId.length >= 14) {
+    fields['fld3a0Q2lkMG4QtvS'] = [candidateId];
+    console.log('Linking candidate record:', candidateId);
+  } else if (candidateId) {
+    console.warn('Candidate ID does not look like a valid Airtable record ID — skipping link. Value was:', candidateId);
+  }
 
   try {
     const res = await fetch('https://api.airtable.com/v0/' + AT_BASE + '/' + AT_TABLE, {
       method: 'POST',
-      headers: { 'Authorization': 'Bearer ' + AT_TOKEN, 'Content-Type': 'application/json' },
+      headers: {
+        'Authorization': 'Bearer ' + AT_TOKEN,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ records: [{ fields }] })
     });
     const data = await res.json();
+    console.log('Airtable response:', data);
+
     if (res.ok) {
       status.className = 'submit-status success';
       status.textContent = '✓ Saved to Airtable successfully';
+      status.style.display = 'flex';
       btn.textContent = '✓ Submitted';
     } else {
-      throw new Error(data.error?.message || 'Submission failed');
+      const errMsg = data.error?.message || JSON.stringify(data.error) || 'Submission failed';
+      throw new Error(errMsg);
     }
   } catch(e) {
+    console.error('Submit error:', e);
     status.className = 'submit-status error';
     status.textContent = '✕ ' + e.message;
+    status.style.display = 'flex';
     btn.disabled = false;
     btn.textContent = 'Submit to Airtable';
   }
