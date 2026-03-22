@@ -324,21 +324,12 @@ async function loadCandidates() {
 
     if (data.records && data.records.length > 0) {
       allCandidates = data.records
-        .filter(r => {
-          const s = r.fields['flddwYzASFewHHq5h'];
-          if (!s) return false; // hide candidates with no status set
-          const statusName = typeof s === 'object' ? s.name : s;
-          return statusName === 'New Candidate' || statusName === 'Scheduled Interview';
-        })
         .map(r => {
           const f = r.fields;
-          // Ensure ID is always extracted as a plain string
-          const id = typeof r.id === 'string' ? r.id : (r.id && r.id.toString ? r.id.toString() : String(r.id));
-          const name = f['fldUqQPp5XvVunRwH'] || 'Unnamed';
-          const pos  = typeof f['fld8r56UwOseaB2bx'] === 'object' ? f['fld8r56UwOseaB2bx'].name : (f['fld8r56UwOseaB2bx'] || '');
-          const loc  = Array.isArray(f['fldRFAG02JoL2tIk7'])
-            ? f['fldRFAG02JoL2tIk7'].map(l => typeof l === 'object' ? l.name : l).join(', ')
-            : (f['fldRFAG02JoL2tIk7'] || '');
+          const id = typeof r.id === 'string' ? r.id : String(r.id);
+          const name = f['Candidate Name'] || 'Unnamed';
+          const pos  = f['Position Applied For'] || '';
+          const loc  = Array.isArray(f['Clinic Location']) ? f['Clinic Location'].join(', ') : (f['Clinic Location'] || '');
           return { id, label: [name, pos, loc].filter(Boolean).join(' — ') };
         });
 
@@ -413,16 +404,13 @@ document.addEventListener('click', e => {
 /* ── Interviewer Dropdown ── */
 async function loadInterviewers() {
   const status = document.getElementById('interviewer-load-status');
-  const filter = encodeURIComponent(`AND({fldaitfj1bsHXIlwY}="Active",OR({fldq7Mf1HqWhhZCYS}="General Manager",{fldq7Mf1HqWhhZCYS}="Owner"))`);
   try {
-    const res = await fetch(
-      `https://api.airtable.com/v0/${AT_BASE}/tblUnF5Y2bjKnLy1D?fields[]=fldK4JCgsQbsfuUtU&filterByFormula=${filter}`,
-      { headers: { 'Authorization': 'Bearer ' + AT_TOKEN } }
-    );
+    const res = await fetch(WORKER_URL + '/interviewers');
     const data = await res.json();
+    console.log('Interviewers response:', data);
     if (data.records && data.records.length > 0) {
       allInterviewers = data.records.map(r => {
-        const name = r.fields['fldK4JCgsQbsfuUtU'] || 'Unnamed';
+        const name = r.fields['Employee Full Name'] || 'Unnamed';
         return { id: r.id, label: typeof name === 'string' ? name : String(name) };
       }).sort((a, b) => a.label.localeCompare(b.label));
       status.textContent = '';
