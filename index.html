@@ -892,11 +892,8 @@ function resetAll() {
 }
 
 document.getElementById('intdate').valueAsDate = new Date();
-loadCandidates().then(() => {
-  loadInterviewers().then(() => {
-    autoLoadFromUrl();
-  });
-});
+loadCandidates();
+loadInterviewers();
 </script>
 </body>
 </html>
