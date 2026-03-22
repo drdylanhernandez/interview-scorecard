@@ -74,7 +74,15 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 .rec-btn.selected.strong { background: var(--black); border-color: var(--black); color: var(--gold); }
 .rec-btn.selected.hire { background: var(--gold); border-color: var(--gold); color: var(--black); }
 .rec-btn.selected.hold { background: var(--dark-grey); border-color: var(--dark-grey); color: var(--white); }
-.rec-btn.selected.no { background: #767b7f; border-color: #767b7f; color: var(--white); }
+.rec-btn.selected.no { background: #a32d2d; border-color: #a32d2d; color: var(--white); }
+.grade-strong { background: var(--black) !important; border-top-color: var(--black) !important; }
+.grade-strong #grade-card-title, .grade-strong #grade-letter, .grade-strong #grade-pct, .grade-strong #grade-desc { color: var(--gold) !important; }
+.grade-hire { background: var(--gold) !important; border-top-color: var(--gold) !important; }
+.grade-hire #grade-card-title, .grade-hire #grade-letter, .grade-hire #grade-pct, .grade-hire #grade-desc { color: var(--black) !important; }
+.grade-hold { background: var(--dark-grey) !important; border-top-color: var(--dark-grey) !important; }
+.grade-hold #grade-card-title, .grade-hold #grade-letter, .grade-hold #grade-pct, .grade-hold #grade-desc { color: var(--white) !important; }
+.grade-no { background: #a32d2d !important; border-top-color: #a32d2d !important; }
+.grade-no #grade-card-title, .grade-no #grade-letter, .grade-no #grade-pct, .grade-no #grade-desc { color: var(--white) !important; }
 .print-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 3px solid var(--gold); padding: 14px 28px; display: flex; justify-content: flex-end; gap: 10px; box-shadow: 0 -4px 20px rgba(0,0,0,0.1); z-index: 100; }
 .btn-primary { background: var(--black); color: var(--gold); border: none; padding: 12px 30px; border-radius: 3px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.2s; }
 .btn-primary:hover { background: #2a2a2a; }
@@ -216,9 +224,19 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
       <div class="score-row"><span class="label" id="role-score-label">Role-Specific</span><div class="bar"><div class="bar-fill" id="bar-role" style="width:0%"></div></div><span class="value" id="val-role">0 / —</span></div>
       <div class="total-row"><span class="label" id="total-label">Total Score</span><span class="value" id="val-total">0 / —</span></div>
     </div>
+    <div class="summary-card" id="grade-card">
+      <h3 id="grade-card-title">Candidate Grade</h3>
+      <div id="grade-display" style="display:flex;align-items:center;gap:20px;margin-top:4px;">
+        <div id="grade-letter" style="font-family:'Montserrat',sans-serif;font-size:64px;font-weight:900;line-height:1;min-width:60px;">—</div>
+        <div>
+          <div id="grade-pct" style="font-family:'Montserrat',sans-serif;font-size:20px;font-weight:800;">— %</div>
+          <div id="grade-desc" style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:400;margin-top:4px;">Score a position to see grade</div>
+        </div>
+      </div>
+    </div>
     <div class="summary-card">
       <h3>Hiring Recommendation</h3>
-      <div class="rec-title">Select recommendation</div>
+      <div class="rec-title" id="rec-title">Auto-selected based on candidate grade</div>
       <div class="rec-options">
         <button class="rec-btn strong" onclick="selectRec(this,'strong')">★ Strong Hire</button>
         <button class="rec-btn hire" onclick="selectRec(this,'hire')">✓ Hire / Trainable</button>
@@ -538,9 +556,54 @@ function updateSummary() {
   document.getElementById('bar-role').style.width = roleMax ? (role / roleMax * 100) + '%' : '0%';
   document.getElementById('total-label').textContent = 'Total Score — ' + (currentRole ? ROLE_LABELS[currentRole] : '');
   document.getElementById('val-total').textContent = (hc + cf + ps + role) + ' / ' + (45 + roleMax);
+  updateGrade(hc + cf + ps + role, 45 + roleMax);
 }
 
-function selectRec(btn, cls) {
+function getGrade(pct) {
+  if (pct >= 97) return { letter: 'A+', desc: 'Exceptional Candidate',    color: '#1a7a3a', rec: 'strong' };
+  if (pct >= 93) return { letter: 'A',  desc: 'Exceptional Candidate',    color: '#1a7a3a', rec: 'strong' };
+  if (pct >= 90) return { letter: 'A−', desc: 'Exceptional Candidate',    color: '#1a7a3a', rec: 'strong' };
+  if (pct >= 87) return { letter: 'B+', desc: 'Strong Candidate',         color: '#c9a440', rec: 'hire'   };
+  if (pct >= 83) return { letter: 'B',  desc: 'Strong Candidate',         color: '#c9a440', rec: 'hire'   };
+  if (pct >= 80) return { letter: 'B−', desc: 'Strong Candidate',         color: '#c9a440', rec: 'hire'   };
+  if (pct >= 77) return { letter: 'C+', desc: 'Average — Consider Carefully', color: '#767b7f', rec: 'hold' };
+  if (pct >= 73) return { letter: 'C',  desc: 'Average — Consider Carefully', color: '#767b7f', rec: 'hold' };
+  if (pct >= 70) return { letter: 'C−', desc: 'Average — Consider Carefully', color: '#767b7f', rec: 'hold' };
+  if (pct >= 67) return { letter: 'D+', desc: 'Below Expectations',       color: '#a32d2d', rec: 'no'    };
+  if (pct >= 63) return { letter: 'D',  desc: 'Below Expectations',       color: '#a32d2d', rec: 'no'    };
+  if (pct >= 60) return { letter: 'D−', desc: 'Below Expectations',       color: '#a32d2d', rec: 'no'    };
+  return           { letter: 'F',  desc: 'Does Not Meet Standards',    color: '#a32d2d', rec: 'no'    };
+}
+
+function updateGrade(totalScore, totalMax) {
+  const gradeEl   = document.getElementById('grade-letter');
+  const pctEl     = document.getElementById('grade-pct');
+  const descEl    = document.getElementById('grade-desc');
+
+  const card = document.getElementById('grade-card');
+  card.classList.remove('grade-strong','grade-hire','grade-hold','grade-no');
+
+  if (!totalMax) {
+    gradeEl.textContent = '—';
+    pctEl.textContent   = '— %';
+    descEl.textContent  = 'Score a position to see grade';
+    return;
+  }
+
+  const pct = Math.round((totalScore / totalMax) * 100);
+  const g   = getGrade(pct);
+
+  gradeEl.textContent = g.letter;
+  pctEl.textContent   = pct + '%';
+  descEl.textContent  = g.desc;
+  card.classList.add('grade-' + g.rec);
+
+  // Auto-select hiring recommendation
+  const btns = document.querySelectorAll('.rec-btn');
+  btns.forEach(b => b.classList.remove('selected','strong','hire','hold','no'));
+  const target = document.querySelector('.rec-btn.' + g.rec);
+  if (target) target.classList.add('selected', g.rec);
+}
   document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('selected','strong','hire','hold','no'));
   btn.classList.add('selected', cls);
 }
