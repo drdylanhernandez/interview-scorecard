@@ -88,8 +88,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 
 .rec-title { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-bottom: 14px; }
 .rec-options { display: flex; gap: 10px; flex-wrap: wrap; }
-.rec-btn { padding: 11px 22px; border-radius: 3px; border: 2px solid var(--light-grey); background: var(--white); cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; color: var(--dark-grey); transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.3px; }
-.rec-btn:hover { border-color: var(--black); color: var(--black); }
+.rec-btn { padding: 11px 22px; border-radius: 3px; border: 2px solid var(--light-grey); background: var(--white); cursor: default; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; color: var(--dark-grey); text-transform: uppercase; letter-spacing: 0.3px; }
 .rec-btn.selected.strong { background: var(--black); border-color: var(--black); color: var(--gold); }
 .rec-btn.selected.hire { background: var(--gold); border-color: var(--gold); color: var(--black); }
 .rec-btn.selected.hold { background: var(--dark-grey); border-color: var(--dark-grey); color: var(--white); }
@@ -171,7 +170,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
             <option>Tempe</option><option>Gilbert</option><option>Phoenix</option><option>Queen Creek</option>
           </select>
         </div>
-        <div class="info-field full"><label>Position Applied For</label>
+        <div class="info-field"><label>Position Applied For</label>
           <select id="position" onchange="onPositionChange()">
             <option value="">Select a position to load scorecard...</option>
             <option value="frontdesk">Front Desk</option>
@@ -227,11 +226,11 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
     <!-- Candidate Grade Card -->
     <div class="summary-card" id="grade-card">
       <h3>Candidate Grade</h3>
-      <div style="display:flex;align-items:center;gap:20px;margin-top:4px;">
-        <div class="grade-letter" style="font-family:'Montserrat',sans-serif;font-size:64px;font-weight:900;line-height:1;min-width:60px;transition:color 0.3s;">—</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:24px;margin-top:8px;text-align:center;">
+        <div class="grade-letter" style="font-family:'Montserrat',sans-serif;font-size:80px;font-weight:900;line-height:1;transition:color 0.3s;">—</div>
         <div>
-          <div class="grade-pct" style="font-family:'Montserrat',sans-serif;font-size:20px;font-weight:800;transition:color 0.3s;">— %</div>
-          <div class="grade-desc" style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:400;margin-top:4px;transition:color 0.3s;">Score a position to see grade</div>
+          <div class="grade-pct" style="font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;transition:color 0.3s;">— %</div>
+          <div class="grade-desc" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;transition:color 0.3s;">Score a position to see grade</div>
         </div>
       </div>
     </div>
@@ -239,12 +238,12 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
     <!-- Hiring Recommendation -->
     <div class="summary-card">
       <h3>Hiring Recommendation</h3>
-      <div class="rec-title">Auto-selected based on candidate grade — override if needed</div>
+      <div class="rec-title" id="rec-title">Auto-selected based on candidate grade</div>
       <div class="rec-options">
-        <button class="rec-btn strong" onclick="selectRec(this,'strong')">★ Strong Hire</button>
-        <button class="rec-btn hire" onclick="selectRec(this,'hire')">✓ Hire / Trainable</button>
-        <button class="rec-btn hold" onclick="selectRec(this,'hold')">— Hold</button>
-        <button class="rec-btn no" onclick="selectRec(this,'no')">✕ Do Not Hire</button>
+        <button class="rec-btn strong" disabled>★ Strong Hire</button>
+        <button class="rec-btn hire" disabled>✓ Hire / Trainable</button>
+        <button class="rec-btn hold" disabled>— Hold</button>
+        <button class="rec-btn no" disabled>✕ Do Not Hire</button>
       </div>
     </div>
   </div>
@@ -335,19 +334,19 @@ let allInterviewers = [];
 
 /* ── Grade Logic ── */
 function getGrade(pct) {
-  if (pct >= 97) return { letter:'A+', desc:'Exceptional Candidate',        rec:'strong' };
-  if (pct >= 93) return { letter:'A',  desc:'Exceptional Candidate',        rec:'strong' };
-  if (pct >= 90) return { letter:'A−', desc:'Exceptional Candidate',        rec:'strong' };
-  if (pct >= 87) return { letter:'B+', desc:'Strong Candidate',             rec:'hire'   };
-  if (pct >= 83) return { letter:'B',  desc:'Strong Candidate',             rec:'hire'   };
-  if (pct >= 80) return { letter:'B−', desc:'Strong Candidate',             rec:'hire'   };
-  if (pct >= 77) return { letter:'C+', desc:'Average — Consider Carefully', rec:'hold'   };
-  if (pct >= 73) return { letter:'C',  desc:'Average — Consider Carefully', rec:'hold'   };
-  if (pct >= 70) return { letter:'C−', desc:'Average — Consider Carefully', rec:'hold'   };
-  if (pct >= 67) return { letter:'D+', desc:'Below Expectations',           rec:'no'     };
-  if (pct >= 63) return { letter:'D',  desc:'Below Expectations',           rec:'no'     };
-  if (pct >= 60) return { letter:'D−', desc:'Below Expectations',           rec:'no'     };
-  return           { letter:'F',  desc:'Does Not Meet Standards',       rec:'no'     };
+  if (pct >= 97) return { letter:'A+', desc:'Strong Hire',      rec:'strong' };
+  if (pct >= 93) return { letter:'A',  desc:'Strong Hire',      rec:'strong' };
+  if (pct >= 90) return { letter:'A−', desc:'Strong Hire',      rec:'strong' };
+  if (pct >= 87) return { letter:'B+', desc:'Hire / Trainable', rec:'hire'   };
+  if (pct >= 83) return { letter:'B',  desc:'Hire / Trainable', rec:'hire'   };
+  if (pct >= 80) return { letter:'B−', desc:'Hire / Trainable', rec:'hire'   };
+  if (pct >= 77) return { letter:'C+', desc:'Hold',             rec:'hold'   };
+  if (pct >= 73) return { letter:'C',  desc:'Hold',             rec:'hold'   };
+  if (pct >= 70) return { letter:'C−', desc:'Hold',             rec:'hold'   };
+  if (pct >= 67) return { letter:'D+', desc:'Do Not Hire',      rec:'no'     };
+  if (pct >= 63) return { letter:'D',  desc:'Do Not Hire',      rec:'no'     };
+  if (pct >= 60) return { letter:'D−', desc:'Do Not Hire',      rec:'no'     };
+  return           { letter:'F',  desc:'Do Not Hire',      rec:'no'     };
 }
 
 function updateGrade(totalScore, totalMax) {
