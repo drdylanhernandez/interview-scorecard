@@ -493,7 +493,7 @@ async function submitToAirtable() {
     'fldacUrKfLdit3bnk': noteLines.join('\n\n')
   };
 
-  if (candidateId) fields['fld3a0Q2lkMG4QtvS'] = [{ id: candidateId }];
+  const cid2 = typeof candidateId === 'string' ? candidateId : (candidateId?.id || ''); if (cid2 && cid2.startsWith('rec')) fields['fld3a0Q2lkMG4QtvS'] = [{ id: cid2 }];
 
   try {
     const res = await fetch('https://api.airtable.com/v0/' + AT_BASE + '/' + AT_TABLE, {
