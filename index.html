@@ -12,133 +12,125 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--black); }
-.header { background: var(--black); padding: 0; }
+.header { background: var(--black); }
 .header-inner { display: flex; align-items: stretch; }
 .header-gold-bar { width: 8px; background: var(--gold); flex-shrink: 0; }
 .header-content { padding: 24px 32px; flex: 1; }
 .header-top { display: flex; align-items: center; gap: 16px; }
-.logo-mark { width: 48px; height: 60px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.header-text h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; color: var(--white); letter-spacing: 0.5px; text-transform: uppercase; }
-.header-text p { font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 12px; color: var(--light-grey); margin-top: 2px; }
+.header-text h1 { font-weight: 800; font-size: 20px; color: var(--white); letter-spacing: 0.5px; text-transform: uppercase; }
+.header-text p { font-weight: 400; font-size: 12px; color: var(--light-grey); margin-top: 2px; }
 .content { max-width: 860px; margin: 0 auto; padding: 32px 20px 100px; }
 .info-card { background: var(--white); border-radius: 4px; padding: 28px; margin-bottom: 24px; border-top: 4px solid var(--gold); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
-.card-label { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--gold-dark); margin-bottom: 18px; }
+.card-label { font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--gold-dark); margin-bottom: 18px; }
 .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.info-field label { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 10px; color: var(--dark-grey); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+.info-field label { display: block; font-weight: 700; font-size: 10px; color: var(--dark-grey); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
 .info-field input, .info-field select { width: 100%; border: 1.5px solid var(--light-grey); border-radius: 3px; padding: 10px 12px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 400; color: var(--black); background: var(--white); transition: border-color 0.2s; }
 .info-field input:focus, .info-field select:focus { outline: none; border-color: var(--gold); }
 .info-field.full { grid-column: 1 / -1; }
 .start-prompt { background: var(--white); border-radius: 4px; padding: 48px 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 24px; border: 1.5px dashed var(--light-grey); }
-.start-prompt h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 17px; color: var(--black); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-.start-prompt p { font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 13px; color: var(--dark-grey); }
+.start-prompt h2 { font-weight: 800; font-size: 17px; color: var(--black); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.start-prompt p { font-weight: 400; font-size: 13px; color: var(--dark-grey); }
 .start-gold-line { width: 40px; height: 3px; background: var(--gold); margin: 0 auto 16px; border-radius: 2px; }
 .legend { background: var(--white); border-radius: 4px; padding: 12px 18px; margin-bottom: 24px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
-.legend-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-right: 8px; }
-.legend-item { display: flex; align-items: center; gap: 5px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--dark-grey); margin-left: 8px; }
+.legend-title { font-weight: 800; font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-right: 8px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: var(--dark-grey); margin-left: 8px; }
 .legend-pip { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 11px; color: var(--white); }
-.p1{background:#767b7f}.p2{background:#c3cace;color:#1a1a1a}.p3{background:#c9a440}.p4{background:#e5be5e;color:#1a1a1a}.p5{background:#000000}
+.p1{background:#767b7f}.p2{background:#c3cace;color:#1a1a1a}.p3{background:#c9a440}.p4{background:#e5be5e;color:#1a1a1a}.p5{background:#000}
 .category-block { background: var(--white); border-radius: 4px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
 .category-title { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 2px solid var(--bg); }
-.category-title-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; color: var(--black); text-transform: uppercase; letter-spacing: 0.5px; }
-.cat-badge { background: var(--black); color: var(--gold); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
-.role-badge { background: var(--gold); color: var(--black); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+.category-title-text { font-weight: 800; font-size: 14px; color: var(--black); text-transform: uppercase; letter-spacing: 0.5px; }
+.cat-badge { background: var(--black); color: var(--gold); font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+.role-badge { background: var(--gold); color: var(--black); font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
 .q-row { padding: 16px 0; border-bottom: 1px solid var(--bg); }
 .q-row:last-child { border-bottom: none; padding-bottom: 0; }
-.q-text { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 400; color: var(--black); line-height: 1.6; margin-bottom: 12px; }
-.q-num { display: inline-block; background: var(--gold); color: var(--black); font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10px; padding: 3px 8px; border-radius: 2px; margin-right: 8px; }
+.q-text { font-size: 13px; font-weight: 400; line-height: 1.6; margin-bottom: 12px; }
+.q-num { display: inline-block; background: var(--gold); color: var(--black); font-weight: 800; font-size: 10px; padding: 3px 8px; border-radius: 2px; margin-right: 8px; }
 .star-row { display: flex; align-items: center; gap: 10px; }
 .stars { display: flex; gap: 5px; }
 .star { width: 32px; height: 32px; border-radius: 3px; border: 2px solid var(--light-grey); background: var(--white); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; color: var(--light-grey); }
 .star:hover { border-color: var(--gold); color: var(--gold); background: #fffbf0; }
 .star.active { background: var(--gold); color: var(--black); border-color: var(--gold); }
-.score-label { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--dark-grey); min-width: 120px; }
+.score-label { font-size: 11px; font-weight: 700; color: var(--dark-grey); min-width: 120px; }
 .notes-field { margin-top: 10px; }
-.notes-field textarea { width: 100%; border: 1.5px solid var(--light-grey); border-radius: 3px; padding: 9px 12px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 400; color: var(--black); resize: vertical; min-height: 54px; transition: border-color 0.2s; background: #fafafa; }
+.notes-field textarea { width: 100%; border: 1.5px solid var(--light-grey); border-radius: 3px; padding: 9px 12px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 400; resize: vertical; min-height: 54px; transition: border-color 0.2s; background: #fafafa; }
 .notes-field textarea:focus { outline: none; border-color: var(--gold); background: var(--white); }
 .summary-card { background: var(--white); border-radius: 4px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); border-top: 4px solid var(--black); transition: background 0.3s, border-top-color 0.3s; }
-.summary-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px; color: var(--black); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid var(--bg); transition: color 0.3s; }
+.summary-card h3 { font-weight: 800; font-size: 13px; color: var(--black); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid var(--bg); transition: color 0.3s; }
 .score-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--bg); }
 .score-row:last-child { border-bottom: none; }
-.score-row .label { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: var(--black); min-width: 180px; }
+.score-row .label { font-size: 12px; font-weight: 700; min-width: 180px; }
 .score-row .label small { font-weight: 400; color: var(--dark-grey); }
 .score-row .bar { flex: 1; margin: 0 16px; height: 6px; background: var(--bg); border-radius: 2px; overflow: hidden; }
 .score-row .bar-fill { height: 100%; background: linear-gradient(90deg, var(--black), var(--gold)); border-radius: 2px; transition: width 0.4s; }
-.score-row .value { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 800; color: var(--black); min-width: 70px; text-align: right; }
+.score-row .value { font-size: 16px; font-weight: 800; min-width: 70px; text-align: right; }
 .total-row { background: var(--black); border-radius: 3px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
-.total-row .label { font-family: 'Montserrat', sans-serif; color: var(--light-grey); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-.total-row .value { font-family: 'Montserrat', sans-serif; color: var(--gold); font-size: 24px; font-weight: 900; }
-
-/* Grade card color themes */
+.total-row .label { color: var(--light-grey); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.total-row .value { color: var(--gold); font-size: 24px; font-weight: 900; }
+/* Grade card themes */
 .grade-card-strong { background: var(--black) !important; border-top-color: var(--gold) !important; }
 .grade-card-strong h3 { color: var(--gold) !important; border-bottom-color: #333 !important; }
-.grade-card-strong .grade-letter { color: var(--gold) !important; }
-.grade-card-strong .grade-pct, .grade-card-strong .grade-desc { color: var(--light-grey) !important; }
-
+.grade-card-strong .grade-letter, .grade-card-strong .grade-pct, .grade-card-strong .grade-desc { color: var(--gold) !important; }
 .grade-card-hire { background: var(--gold) !important; border-top-color: var(--gold-dark) !important; }
 .grade-card-hire h3 { color: var(--black) !important; border-bottom-color: var(--gold-dark) !important; }
 .grade-card-hire .grade-letter, .grade-card-hire .grade-pct, .grade-card-hire .grade-desc { color: var(--black) !important; }
-
 .grade-card-hold { background: var(--dark-grey) !important; border-top-color: #555 !important; }
 .grade-card-hold h3 { color: var(--white) !important; border-bottom-color: #888 !important; }
 .grade-card-hold .grade-letter, .grade-card-hold .grade-pct, .grade-card-hold .grade-desc { color: var(--white) !important; }
-
 .grade-card-no { background: #a32d2d !important; border-top-color: #7a1f1f !important; }
 .grade-card-no h3 { color: var(--white) !important; border-bottom-color: #7a1f1f !important; }
 .grade-card-no .grade-letter, .grade-card-no .grade-pct, .grade-card-no .grade-desc { color: var(--white) !important; }
-
-.loc-option { padding: 11px 16px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 400; cursor: pointer; border-bottom: 1px solid var(--bg); color: var(--black); display: flex; align-items: center; gap: 10px; }
-.loc-option:last-child { border-bottom: none; }
-.loc-option:hover { background: #fffbf0; }
-.loc-option.selected { background: #fffbf0; }
-.loc-option .loc-check { width: 16px; height: 16px; border: 2px solid var(--light-grey); border-radius: 2px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; }
-.loc-option.selected .loc-check { background: var(--gold); border-color: var(--gold); color: var(--black); }
-.loc-tag { background: var(--black); color: var(--gold); font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 2px; white-space: nowrap; } font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-bottom: 14px; }
+/* Dropdown shared styles */
+.dropdown-box { display:none; position:absolute; top:100%; left:0; right:0; background:#fff; border:2px solid var(--gold); border-top:none; border-radius:0 0 3px 3px; max-height:240px; overflow-y:auto; z-index:9999; box-shadow:0 8px 24px rgba(0,0,0,0.15); }
+.dropdown-item { padding:12px 16px; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:400; cursor:pointer; border-bottom:1px solid var(--bg); color:var(--black); background:#fff; }
+.dropdown-item:last-child { border-bottom:none; }
+.dropdown-item:hover { background:#fffbf0; }
+/* Location multi-select */
+.loc-option { padding:11px 16px; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:400; cursor:pointer; border-bottom:1px solid var(--bg); color:var(--black); display:flex; align-items:center; gap:10px; }
+.loc-option:last-child { border-bottom:none; }
+.loc-option:hover { background:#fffbf0; }
+.loc-check { width:16px; height:16px; border:2px solid var(--light-grey); border-radius:2px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; }
+.loc-option.selected .loc-check { background:var(--gold); border-color:var(--gold); color:var(--black); }
+.loc-tag { background:var(--black); color:var(--gold); font-family:'Montserrat',sans-serif; font-size:11px; font-weight:800; padding:3px 10px; border-radius:2px; white-space:nowrap; }
+/* Rec buttons */
+.rec-title { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-bottom: 14px; }
 .rec-options { display: flex; gap: 10px; flex-wrap: wrap; }
-.rec-btn { padding: 11px 22px; border-radius: 3px; border: 2px solid var(--light-grey); background: var(--white); cursor: default; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; color: var(--dark-grey); text-transform: uppercase; letter-spacing: 0.3px; }
-.rec-btn.selected.strong { background: var(--black); border-color: var(--black); color: var(--gold); }
-.rec-btn.selected.hire { background: var(--gold); border-color: var(--gold); color: var(--black); }
-.rec-btn.selected.hold { background: var(--dark-grey); border-color: var(--dark-grey); color: var(--white); }
-.rec-btn.selected.no { background: #a32d2d; border-color: #a32d2d; color: var(--white); }
-
-.print-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 3px solid var(--gold); padding: 14px 28px; display: flex; justify-content: flex-end; gap: 10px; box-shadow: 0 -4px 20px rgba(0,0,0,0.1); z-index: 100; }
-.btn-primary { background: var(--black); color: var(--gold); border: none; padding: 12px 30px; border-radius: 3px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.2s; }
-.btn-primary:hover { background: #2a2a2a; }
-.btn-primary:disabled { background: var(--dark-grey); color: var(--light-grey); cursor: not-allowed; }
-.btn-secondary { background: var(--white); color: var(--dark-grey); border: 2px solid var(--light-grey); padding: 12px 24px; border-radius: 3px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
-.btn-secondary:hover { border-color: var(--black); color: var(--black); }
-.submit-status { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; padding: 12px 16px; border-radius: 3px; display: none; align-items: center; gap: 8px; }
-.submit-status.success { display: flex; background: #e6f4ea; color: #1a7a3a; border: 1.5px solid #a8d5b5; }
-.submit-status.error { display: flex; background: #fdecea; color: #a32d2d; border: 1.5px solid #f0a0a0; }
-#scorecard-body { display: none; }
-@media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } }
+.rec-btn { padding:11px 22px; border-radius:3px; border:2px solid var(--light-grey); background:var(--white); cursor:default; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:800; color:var(--dark-grey); text-transform:uppercase; letter-spacing:0.3px; }
+.rec-btn.selected.strong { background:var(--black); border-color:var(--black); color:var(--gold); }
+.rec-btn.selected.hire { background:var(--gold); border-color:var(--gold); color:var(--black); }
+.rec-btn.selected.hold { background:var(--dark-grey); border-color:var(--dark-grey); color:var(--white); }
+.rec-btn.selected.no { background:#a32d2d; border-color:#a32d2d; color:var(--white); }
+/* Print bar */
+.print-bar { position:fixed; bottom:0; left:0; right:0; background:var(--white); border-top:3px solid var(--gold); padding:14px 28px; display:flex; justify-content:flex-end; gap:10px; box-shadow:0 -4px 20px rgba(0,0,0,0.1); z-index:100; }
+.btn-primary { background:var(--black); color:var(--gold); border:none; padding:12px 30px; border-radius:3px; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:800; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; }
+.btn-primary:hover { background:#2a2a2a; }
+.btn-primary:disabled { background:var(--dark-grey); color:var(--light-grey); cursor:not-allowed; }
+.btn-secondary { background:var(--white); color:var(--dark-grey); border:2px solid var(--light-grey); padding:12px 24px; border-radius:3px; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:800; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; }
+.btn-secondary:hover { border-color:var(--black); color:var(--black); }
+.submit-status { font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; padding:12px 16px; border-radius:3px; display:none; align-items:center; gap:8px; }
+.submit-status.success { display:flex; background:#e6f4ea; color:#1a7a3a; border:1.5px solid #a8d5b5; }
+.submit-status.error { display:flex; background:#fdecea; color:#a32d2d; border:1.5px solid #f0a0a0; }
+#scorecard-body { display:none; }
+@media (max-width:600px) { .info-grid { grid-template-columns:1fr; } }
 @media print { body{background:white} .print-bar{display:none} .content{padding:0;max-width:100%} .category-block,.summary-card,.info-card{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid} }
 </style>
 </head>
 <body>
-
 <div class="header">
   <div class="header-inner">
     <div class="header-gold-bar"></div>
     <div class="header-content">
       <div class="header-top">
-        <div class="logo-mark">
+        <div style="width:48px;height:60px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
           <svg width="48" height="58" viewBox="0 0 48 62" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#f5e090"/>
-                <stop offset="50%" style="stop-color:#e5be5e"/>
-                <stop offset="100%" style="stop-color:#c9a440"/>
-              </linearGradient>
-            </defs>
+            <defs><linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#f5e090"/><stop offset="50%" style="stop-color:#e5be5e"/><stop offset="100%" style="stop-color:#c9a440"/>
+            </linearGradient></defs>
             <polygon points="0,0 48,0 24,18" fill="url(#tg)"/>
             <polygon points="0,22 48,22 24,40" fill="url(#tg)"/>
             <polygon points="0,44 48,44 24,62" fill="url(#tg)"/>
           </svg>
         </div>
-        <div class="header-text">
-          <h1>Axis Spine and Sport</h1>
-          <p>Master Interview Scorecard</p>
-        </div>
+        <div class="header-text"><h1>Axis Spine and Sport</h1><p>Master Interview Scorecard</p></div>
       </div>
     </div>
   </div>
@@ -149,40 +141,44 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
     <div class="info-card">
       <div class="card-label">Candidate Information</div>
       <div class="info-grid">
+
+        <!-- Candidate -->
         <div class="info-field full" id="candidate-wrapper" style="position:relative;">
           <label>Select Candidate <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0;">(Must be added to Candidates Pipeline in Airtable)</span></label>
-          <input type="text" id="candidate-search" placeholder="Click or type to search candidates..."
-            autocomplete="off" style="width:100%;"
-            oninput="filterCandidates()"
-            onclick="showCandidateDropdown()" />
-          <div id="candidate-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border:2px solid #e5be5e;border-top:none;border-radius:0 0 3px 3px;max-height:240px;overflow-y:auto;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,0.15);"></div>
-          <input type="hidden" id="candidate-id" />
-          <div id="candidate-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;font-family:'Montserrat',sans-serif;font-weight:400;"></div>
+          <input type="text" id="candidate-search" placeholder="Click or type to search candidates..." autocomplete="off" style="width:100%;" oninput="filterCandidates()" onclick="showDropdown('candidate')"/>
+          <div id="candidate-dropdown" class="dropdown-box"></div>
+          <input type="hidden" id="candidate-id"/>
+          <div id="candidate-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;"></div>
         </div>
+
+        <!-- Date -->
         <div class="info-field"><label>Date</label><input type="date" id="intdate"></div>
+
+        <!-- Interviewer -->
         <div class="info-field" id="interviewer-wrapper" style="position:relative;">
           <label>Interviewer</label>
-          <input type="text" id="interviewer-search" placeholder="Click or type to search interviewers..."
-            autocomplete="off" style="width:100%;"
-            oninput="filterInterviewers()"
-            onclick="showInterviewerDropdown()" />
-          <div id="interviewer-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border:2px solid #e5be5e;border-top:none;border-radius:0 0 3px 3px;max-height:200px;overflow-y:auto;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,0.15);"></div>
-          <input type="hidden" id="interviewer-value" />
-          <div id="interviewer-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;font-family:'Montserrat',sans-serif;font-weight:400;"></div>
+          <input type="text" id="interviewer-search" placeholder="Click or type to search interviewers..." autocomplete="off" style="width:100%;" oninput="filterInterviewers()" onclick="showDropdown('interviewer')"/>
+          <div id="interviewer-dropdown" class="dropdown-box"></div>
+          <input type="hidden" id="interviewer-value"/>
+          <div id="interviewer-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;"></div>
         </div>
+
+        <!-- Clinic Location -->
         <div class="info-field" id="location-wrapper" style="position:relative;">
           <label>Clinic Location <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0;">(Select all that apply)</span></label>
           <div id="location-display" onclick="toggleLocationDropdown()" style="width:100%;border:1.5px solid var(--light-grey);border-radius:3px;padding:10px 12px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:400;color:var(--dark-grey);background:var(--white);cursor:pointer;min-height:42px;display:flex;align-items:center;flex-wrap:wrap;gap:6px;transition:border-color 0.2s;">
             <span id="location-placeholder">Select location(s)...</span>
           </div>
-          <div id="location-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border:2px solid var(--gold);border-top:none;border-radius:0 0 3px 3px;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,0.15);">
-            <div id="loc-select-all" style="padding:11px 16px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;cursor:pointer;border-bottom:2px solid var(--bg);color:var(--gold-dark);display:flex;align-items:center;gap:10px;" onmousedown="toggleSelectAll(event)">
-              <div id="loc-all-check" class="loc-check"></div>
-              Select All
+          <div id="location-dropdown" class="dropdown-box" style="max-height:200px;">
+            <div id="loc-select-all" style="padding:11px 16px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;cursor:pointer;border-bottom:2px solid var(--bg);color:var(--gold-dark);display:flex;align-items:center;gap:10px;">
+              <div id="loc-all-check" class="loc-check"></div>Select All
             </div>
           </div>
         </div>
-        <div class="info-field"><label>Position Applied For</label>
+
+        <!-- Position -->
+        <div class="info-field" style="position:relative;">
+          <label>Position Applied For</label>
           <select id="position" onchange="onPositionChange()">
             <option value="">Select a position to load scorecard...</option>
             <option value="frontdesk">Front Desk</option>
@@ -192,6 +188,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
             <option value="chiro">Chiropractor</option>
           </select>
         </div>
+
       </div>
     </div>
     <div class="start-prompt" id="start-prompt">
@@ -222,7 +219,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
       <div class="category-title"><span class="cat-badge">Core 3 of 3</span><span class="category-title-text">Problem-Solving & Judgment</span></div>
       <div id="q-problem"></div>
     </div>
-    <div class="category-block" id="role-block">
+    <div class="category-block">
       <div class="category-title"><span class="role-badge" id="role-badge">Role-Specific</span><span class="category-title-text" id="role-title">Questions</span></div>
       <div id="q-role"></div>
     </div>
@@ -234,23 +231,19 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
       <div class="score-row"><span class="label" id="role-score-label">Role-Specific</span><div class="bar"><div class="bar-fill" id="bar-role" style="width:0%"></div></div><span class="value" id="val-role">0 / —</span></div>
       <div class="total-row"><span class="label" id="total-label">Total Score</span><span class="value" id="val-total">0 / —</span></div>
     </div>
-
-    <!-- Candidate Grade Card -->
     <div class="summary-card" id="grade-card">
       <h3>Candidate Grade</h3>
       <div style="display:flex;align-items:center;justify-content:center;gap:24px;margin-top:8px;text-align:center;">
-        <div class="grade-letter" style="font-family:'Montserrat',sans-serif;font-size:80px;font-weight:900;line-height:1;transition:color 0.3s;">—</div>
+        <div class="grade-letter" style="font-size:80px;font-weight:900;line-height:1;transition:color 0.3s;">—</div>
         <div>
-          <div class="grade-pct" style="font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;transition:color 0.3s;">— %</div>
-          <div class="grade-desc" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;transition:color 0.3s;">Score a position to see grade</div>
+          <div class="grade-pct" style="font-size:28px;font-weight:900;transition:color 0.3s;">— %</div>
+          <div class="grade-desc" style="font-size:13px;font-weight:700;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;transition:color 0.3s;">Score a position to see grade</div>
         </div>
       </div>
     </div>
-
-    <!-- Hiring Recommendation -->
     <div class="summary-card">
       <h3>Hiring Recommendation</h3>
-      <div class="rec-title" id="rec-title">Auto-selected based on candidate grade</div>
+      <div class="rec-title">Auto-selected based on candidate grade</div>
       <div class="rec-options">
         <button class="rec-btn strong" disabled>★ Strong Hire</button>
         <button class="rec-btn hire" disabled>✓ Hire / Trainable</button>
@@ -269,9 +262,9 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 </div>
 
 <script>
-const AT_TOKEN  = 'patgPvROHCBbeyim7.92fc0b01be3b35fea2d18d5164e51f06c2666ad0526157eef9b6e6984708c21e';
-const AT_BASE   = 'appbrqCxWYmOjiWDk';
-const AT_TABLE  = 'tblJg8Jr9HpIaQgIC';
+const AT_TOKEN   = 'patgPvROHCBbeyim7.92fc0b01be3b35fea2d18d5164e51f06c2666ad0526157eef9b6e6984708c21e';
+const AT_BASE    = 'appbrqCxWYmOjiWDk';
+const AT_TABLE   = 'tblJg8Jr9HpIaQgIC';
 const WORKER_URL = 'https://airtable-candidates.drdylan.workers.dev';
 
 const QUESTIONS = {
@@ -336,72 +329,19 @@ const QUESTIONS = {
   ]
 };
 
-const ROLE_LABELS = { frontdesk:'Front Desk', ca:'Chiropractic Assistant', massage:'Massage Therapist', manager:'General Manager', chiro:'Chiropractor' };
-const ROLE_MAX    = { frontdesk:30, ca:30, massage:30, manager:25, chiro:55 };
+const ROLE_LABELS  = { frontdesk:'Front Desk', ca:'Chiropractic Assistant', massage:'Massage Therapist', manager:'General Manager', chiro:'Chiropractor' };
+const ROLE_MAX     = { frontdesk:30, ca:30, massage:30, manager:25, chiro:55 };
 const SCORE_LABELS = ['','Poor','Below Expectations','Meets Expectations','Strong','Exceptional'];
 const scores = {};
-let currentRole = null;
-let allCandidates = [];
+let currentRole     = null;
+let allCandidates   = [];
 let allInterviewers = [];
+let allClinics      = [];
+let selectedLocations = [];
 
-const POSITION_MAP = {
-  'Chiropractor': 'chiro',
-  'Chiropractic Assistant': 'ca',
-  'Front Desk': 'frontdesk',
-  'Massage Therapist': 'massage',
-  'General Manager': 'manager'
-};
-
-/* ── Auto-load from URL ?id= ── */
-async function autoLoadFromUrl() {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
-  if (!id) return;
-
-  document.getElementById('candidate-load-status').textContent = 'Loading candidate from Airtable...';
-
-  try {
-    const res  = await fetch(WORKER_URL + '?id=' + id);
-    const data = await res.json();
-    console.log('Auto-load response:', data);
-
-    if (!data.fields) throw new Error('Candidate not found');
-
-    const f    = data.fields;
-    const name = f['Candidate Name'] || '';
-    const pos  = f['Position Applied For'] || '';
-    const locs = Array.isArray(f['Clinic Location']) ? f['Clinic Location'] : (f['Clinic Location'] ? [f['Clinic Location']] : []);
-
-    // Set candidate
-    document.getElementById('candidate-id').value = id;
-    document.getElementById('candidate-search').value = name;
-    document.getElementById('candidate-load-status').textContent = '✓ Candidate auto-loaded';
-
-    // Set locations
-    if (locs.length > 0) {
-      selectedLocations = [...locs];
-      document.querySelectorAll('.loc-option').forEach(o => {
-        if (locs.includes(o.dataset.val)) {
-          o.classList.add('selected');
-          o.querySelector('.loc-check').textContent = '✓';
-        }
-      });
-      renderLocationTags();
-      updateSelectAllState();
-    }
-
-    // Set position and trigger scorecard load
-    if (pos && POSITION_MAP[pos]) {
-      const posSelect = document.getElementById('position');
-      posSelect.value = POSITION_MAP[pos];
-      onPositionChange();
-    }
-
-  } catch(e) {
-    console.error('Auto-load error:', e);
-    document.getElementById('candidate-load-status').textContent = 'Could not auto-load candidate: ' + e.message;
-  }
-}
+/* ══════════════════════════════
+   GRADE LOGIC
+══════════════════════════════ */
 function getGrade(pct) {
   if (pct >= 97) return { letter:'A+', desc:'Strong Hire',      rec:'strong' };
   if (pct >= 93) return { letter:'A',  desc:'Strong Hire',      rec:'strong' };
@@ -419,132 +359,179 @@ function getGrade(pct) {
 }
 
 function updateGrade(totalScore, totalMax) {
-  const card    = document.getElementById('grade-card');
+  const card     = document.getElementById('grade-card');
   const letterEl = card.querySelector('.grade-letter');
   const pctEl    = card.querySelector('.grade-pct');
   const descEl   = card.querySelector('.grade-desc');
-
   card.classList.remove('grade-card-strong','grade-card-hire','grade-card-hold','grade-card-no');
-
   if (!totalMax) {
-    letterEl.textContent = '—';
-    pctEl.textContent    = '— %';
-    descEl.textContent   = 'Score a position to see grade';
+    letterEl.textContent = '—'; pctEl.textContent = '— %'; descEl.textContent = 'Score a position to see grade';
     return;
   }
-
   const pct = Math.round((totalScore / totalMax) * 100);
   const g   = getGrade(pct);
-
   letterEl.textContent = g.letter;
   pctEl.textContent    = pct + '%';
   descEl.textContent   = g.desc;
   card.classList.add('grade-card-' + g.rec);
-
-  // Auto-select recommendation
   document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('selected','strong','hire','hold','no'));
   const target = document.querySelector('.rec-btn.' + g.rec);
   if (target) target.classList.add('selected', g.rec);
 }
 
-/* ── Location Multi-Select ── */
-let selectedLocations = [];
+/* ══════════════════════════════
+   GENERIC DROPDOWN HELPERS
+══════════════════════════════ */
+function buildDropdownItems(ddId, items, onSelect) {
+  const dd = document.getElementById(ddId);
+  dd.innerHTML = '';
+  if (items.length === 0) {
+    dd.innerHTML = '<div class="dropdown-item" style="color:#767b7f;">No results found</div>';
+  } else {
+    items.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'dropdown-item';
+      div.textContent = item.label;
+      div.onmousedown = e => { e.preventDefault(); onSelect(item); };
+      dd.appendChild(div);
+    });
+  }
+  dd.style.display = 'block';
+}
 
-// Add checkboxes to options on init
-document.querySelectorAll('.loc-option').forEach(opt => {
-  const check = document.createElement('div');
-  check.className = 'loc-check';
-  opt.insertBefore(check, opt.firstChild);
-  opt.addEventListener('mousedown', e => {
+function showDropdown(type) {
+  if (type === 'candidate') {
+    if (allCandidates.length > 0) buildDropdownItems('candidate-dropdown', allCandidates, selectCandidate);
+    else { document.getElementById('candidate-dropdown').innerHTML = '<div class="dropdown-item" style="color:#767b7f;">Loading...</div>'; document.getElementById('candidate-dropdown').style.display = 'block'; }
+  } else {
+    if (allInterviewers.length > 0) buildDropdownItems('interviewer-dropdown', allInterviewers, selectInterviewer);
+    else { document.getElementById('interviewer-dropdown').innerHTML = '<div class="dropdown-item" style="color:#767b7f;">Loading...</div>'; document.getElementById('interviewer-dropdown').style.display = 'block'; }
+  }
+}
+
+function filterCandidates() {
+  document.getElementById('candidate-id').value = '';
+  const q = document.getElementById('candidate-search').value.toLowerCase();
+  const filtered = q ? allCandidates.filter(c => c.label.toLowerCase().includes(q)) : allCandidates;
+  buildDropdownItems('candidate-dropdown', filtered, selectCandidate);
+}
+
+function filterInterviewers() {
+  document.getElementById('interviewer-value').value = '';
+  const q = document.getElementById('interviewer-search').value.toLowerCase();
+  const filtered = q ? allInterviewers.filter(p => p.label.toLowerCase().includes(q)) : allInterviewers;
+  buildDropdownItems('interviewer-dropdown', filtered, selectInterviewer);
+}
+
+function selectCandidate(item) {
+  document.getElementById('candidate-id').value = item.id;
+  document.getElementById('candidate-search').value = item.label;
+  document.getElementById('candidate-dropdown').style.display = 'none';
+  document.getElementById('candidate-load-status').textContent = '✓ Candidate selected';
+}
+
+function selectInterviewer(item) {
+  document.getElementById('interviewer-value').value = item.label;
+  document.getElementById('interviewer-search').value = item.label;
+  document.getElementById('interviewer-dropdown').style.display = 'none';
+}
+
+document.addEventListener('click', e => {
+  ['candidate','interviewer'].forEach(type => {
+    const wrapper = document.getElementById(type + '-wrapper');
+    const dd      = document.getElementById(type + '-dropdown');
+    if (wrapper && dd && !wrapper.contains(e.target)) dd.style.display = 'none';
+  });
+  const locWrapper = document.getElementById('location-wrapper');
+  const locDd      = document.getElementById('location-dropdown');
+  if (locWrapper && locDd && !locWrapper.contains(e.target)) locDd.style.display = 'none';
+});
+
+/* ══════════════════════════════
+   LOCATION MULTI-SELECT
+══════════════════════════════ */
+function toggleLocationDropdown() {
+  const dd = document.getElementById('location-dropdown');
+  dd.style.display = dd.style.display === 'none' ? 'block' : 'none';
+}
+
+function buildLocationOptions() {
+  const dd          = document.getElementById('location-dropdown');
+  const selectAllRow = document.getElementById('loc-select-all');
+  // Remove any existing options (keep Select All row)
+  dd.querySelectorAll('.loc-option').forEach(o => o.remove());
+
+  allClinics.forEach(clinic => {
+    const opt   = document.createElement('div');
+    opt.className   = 'loc-option';
+    opt.dataset.val = clinic;
+    const check = document.createElement('div');
+    check.className = 'loc-check';
+    opt.appendChild(check);
+    opt.appendChild(document.createTextNode(clinic));
+    opt.addEventListener('mousedown', e => {
+      e.preventDefault();
+      if (selectedLocations.includes(clinic)) {
+        selectedLocations = selectedLocations.filter(l => l !== clinic);
+        opt.classList.remove('selected');
+        check.textContent = '';
+      } else {
+        selectedLocations.push(clinic);
+        opt.classList.add('selected');
+        check.textContent = '✓';
+      }
+      renderLocationTags();
+      updateSelectAllState();
+    });
+    dd.appendChild(opt);
+  });
+
+  // Wire up Select All
+  selectAllRow.onmousedown = e => {
     e.preventDefault();
-    const val = opt.dataset.val;
-    if (selectedLocations.includes(val)) {
-      selectedLocations = selectedLocations.filter(l => l !== val);
-      opt.classList.remove('selected');
-      opt.querySelector('.loc-check').textContent = '';
+    const allSel = allClinics.every(v => selectedLocations.includes(v));
+    if (allSel) {
+      selectedLocations = [];
+      dd.querySelectorAll('.loc-option').forEach(o => { o.classList.remove('selected'); o.querySelector('.loc-check').textContent = ''; });
     } else {
-      selectedLocations.push(val);
-      opt.classList.add('selected');
-      opt.querySelector('.loc-check').textContent = '✓';
+      selectedLocations = [...allClinics];
+      dd.querySelectorAll('.loc-option').forEach(o => { o.classList.add('selected'); o.querySelector('.loc-check').textContent = '✓'; });
     }
     renderLocationTags();
     updateSelectAllState();
-
-function toggleSelectAll(e) {
-  e.preventDefault();
-  const allVals = ['Tempe','Gilbert','Phoenix','Queen Creek'];
-  const allSelected = allVals.every(v => selectedLocations.includes(v));
-  if (allSelected) {
-    // Deselect all
-    selectedLocations = [];
-    document.querySelectorAll('.loc-option').forEach(o => {
-      o.classList.remove('selected');
-      o.querySelector('.loc-check').textContent = '';
-    });
-    document.getElementById('loc-all-check').textContent = '';
-    document.getElementById('loc-select-all').style.color = 'var(--gold-dark)';
-  } else {
-    // Select all
-    selectedLocations = [...allVals];
-    document.querySelectorAll('.loc-option').forEach(o => {
-      o.classList.add('selected');
-      o.querySelector('.loc-check').textContent = '✓';
-    });
-    document.getElementById('loc-all-check').textContent = '✓';
-    document.getElementById('loc-all-check').style.background = 'var(--gold)';
-    document.getElementById('loc-all-check').style.borderColor = 'var(--gold)';
-    document.getElementById('loc-select-all').style.color = 'var(--black)';
-  }
-  renderLocationTags();
+  };
 }
 
-function updateSelectAllState() {
-  const allVals = ['Tempe','Gilbert','Phoenix','Queen Creek'];
-  const allSelected = allVals.every(v => selectedLocations.includes(v));
-  const allCheck = document.getElementById('loc-all-check');
-  if (allSelected) {
-    allCheck.textContent = '✓';
-    allCheck.style.background = 'var(--gold)';
-    allCheck.style.borderColor = 'var(--gold)';
-  } else {
-    allCheck.textContent = '';
-    allCheck.style.background = '';
-    allCheck.style.borderColor = '';
-  }
-}
-  const display = document.getElementById('location-display');
+function renderLocationTags() {
+  const display     = document.getElementById('location-display');
   const placeholder = document.getElementById('location-placeholder');
   display.querySelectorAll('.loc-tag').forEach(t => t.remove());
   if (selectedLocations.length === 0) {
     placeholder.style.display = '';
+    display.style.borderColor = 'var(--light-grey)';
   } else {
     placeholder.style.display = 'none';
     selectedLocations.forEach(loc => {
       const tag = document.createElement('span');
-      tag.className = 'loc-tag';
+      tag.className   = 'loc-tag';
       tag.textContent = loc;
       display.appendChild(tag);
     });
-  }
-  const border = selectedLocations.length > 0 ? 'var(--gold)' : 'var(--light-grey)';
-  document.getElementById('location-display').style.borderColor = border;
-}
-
-function toggleLocationDropdown() {
-  const dd = document.getElementById('location-dropdown');
-  dd.style.display = dd.style.display === 'none' ? 'block' : 'none';
-  if (dd.style.display === 'block') {
-    document.getElementById('location-display').style.borderColor = 'var(--gold)';
+    display.style.borderColor = 'var(--gold)';
   }
 }
 
-document.addEventListener('click', e => {
-  const wrapper = document.getElementById('location-wrapper');
-  if (wrapper && !wrapper.contains(e.target)) {
-    document.getElementById('location-dropdown').style.display = 'none';
-    renderLocationTags();
-  }
-});
+function updateSelectAllState() {
+  const allCheck  = document.getElementById('loc-all-check');
+  const allSel    = allClinics.length > 0 && allClinics.every(v => selectedLocations.includes(v));
+  allCheck.textContent        = allSel ? '✓' : '';
+  allCheck.style.background   = allSel ? 'var(--gold)' : '';
+  allCheck.style.borderColor  = allSel ? 'var(--gold)' : '';
+}
+
+/* ══════════════════════════════
+   DATA LOADERS
+══════════════════════════════ */
 async function loadCandidates() {
   const status = document.getElementById('candidate-load-status');
   try {
@@ -553,7 +540,7 @@ async function loadCandidates() {
     if (data.records && data.records.length > 0) {
       allCandidates = data.records.map(r => {
         const f   = r.fields;
-        const id  = typeof r.id === 'string' ? r.id : String(r.id);
+        const id  = String(r.id);
         const name = f['Candidate Name'] || 'Unnamed';
         const pos  = f['Position Applied For'] || '';
         const loc  = Array.isArray(f['Clinic Location']) ? f['Clinic Location'].join(', ') : (f['Clinic Location'] || '');
@@ -564,159 +551,61 @@ async function loadCandidates() {
       status.textContent = 'No candidates found.';
     }
   } catch(e) {
-    console.error('loadCandidates error:', e);
     status.textContent = 'Could not load candidates: ' + e.message;
   }
 }
 
 async function loadInterviewers() {
-  const status = document.getElementById('interviewer-load-status');
   try {
     const res  = await fetch(WORKER_URL + '/interviewers');
     const data = await res.json();
     if (data.records && data.records.length > 0) {
-      allInterviewers = data.records.map(r => {
-        const name = r.fields['Employee Full Name'] || 'Unnamed';
-        return { id: r.id, label: typeof name === 'string' ? name : String(name) };
-      }).sort((a, b) => a.label.localeCompare(b.label));
-    } else {
-      status.textContent = 'No eligible interviewers found.';
+      allInterviewers = data.records.map(r => ({
+        id: r.id,
+        label: r.fields['Employee Full Name'] || 'Unnamed'
+      })).sort((a, b) => a.label.localeCompare(b.label));
     }
   } catch(e) {
-    console.error('loadInterviewers error:', e);
-    status.textContent = 'Could not load interviewers.';
+    document.getElementById('interviewer-load-status').textContent = 'Could not load interviewers.';
   }
 }
 
-function renderDropdown(candidates) {
-  const dd = document.getElementById('candidate-dropdown');
-  dd.innerHTML = '';
-  if (candidates.length === 0) {
-    dd.innerHTML = '<div style="padding:12px 16px;font-size:13px;color:#767b7f;font-family:Montserrat,sans-serif;">No candidates found</div>';
-  } else {
-    candidates.forEach(c => {
-      const item = document.createElement('div');
-      item.textContent = c.label;
-      item.style.cssText = 'padding:12px 16px;font-size:13px;font-family:Montserrat,sans-serif;font-weight:400;cursor:pointer;border-bottom:1px solid #f2f4f5;color:#000;background:#fff;';
-      item.onmouseenter = () => item.style.background = '#fffbf0';
-      item.onmouseleave = () => item.style.background = '#fff';
-      item.onmousedown  = e => { e.preventDefault(); selectCandidate(c.id, c.label); };
-      dd.appendChild(item);
-    });
-  }
-  dd.style.display = 'block';
-}
-
-function showCandidateDropdown() {
-  if (allCandidates.length > 0) renderDropdown(allCandidates);
-  else {
-    const dd = document.getElementById('candidate-dropdown');
-    dd.innerHTML = '<div style="padding:12px 16px;font-size:13px;color:#767b7f;font-family:Montserrat,sans-serif;">Loading candidates...</div>';
-    dd.style.display = 'block';
-  }
-}
-
-function filterCandidates() {
-  document.getElementById('candidate-id').value = '';
-  const q = document.getElementById('candidate-search').value.toLowerCase();
-  renderDropdown(q ? allCandidates.filter(c => c.label.toLowerCase().includes(q)) : allCandidates);
-}
-
-function selectCandidate(id, label) {
-  document.getElementById('candidate-id').value = id;
-  document.getElementById('candidate-search').value = label;
-  document.getElementById('candidate-dropdown').style.display = 'none';
-  document.getElementById('candidate-load-status').textContent = '✓ Candidate selected (ID: ' + id + ')';
-  console.log('Selected candidate ID:', id, '| type:', typeof id);
-}
-
-/* ── Interviewer Dropdown ── */
-async function loadInterviewers() {
-  const status = document.getElementById('interviewer-load-status');
+async function loadClinics() {
   try {
-    const res  = await fetch(WORKER_URL + '/interviewers');
+    const res  = await fetch(WORKER_URL + '/clinics');
     const data = await res.json();
-    console.log('Interviewers response:', data);
     if (data.records && data.records.length > 0) {
-      allInterviewers = data.records.map(r => {
-        const name = r.fields['Employee Full Name'] || 'Unnamed';
-        return { id: r.id, label: typeof name === 'string' ? name : String(name) };
-      }).sort((a, b) => a.label.localeCompare(b.label));
-      status.textContent = '';
-    } else {
-      status.textContent = 'No eligible interviewers found.';
+      allClinics = data.records
+        .map(r => r.fields['Clinic'] || '')
+        .filter(Boolean)
+        .sort();
+      buildLocationOptions();
     }
   } catch(e) {
-    console.error('loadInterviewers error:', e);
-    status.textContent = 'Could not load interviewers.';
+    console.error('loadClinics error:', e);
   }
 }
 
-function renderInterviewerDropdown(list) {
-  const dd = document.getElementById('interviewer-dropdown');
-  dd.innerHTML = '';
-  if (list.length === 0) {
-    dd.innerHTML = '<div style="padding:12px 16px;font-size:13px;color:#767b7f;font-family:Montserrat,sans-serif;">No matches found</div>';
-  } else {
-    list.forEach(p => {
-      const item = document.createElement('div');
-      item.textContent = p.label;
-      item.style.cssText = 'padding:12px 16px;font-size:13px;font-family:Montserrat,sans-serif;font-weight:400;cursor:pointer;border-bottom:1px solid #f2f4f5;color:#000;background:#fff;';
-      item.onmouseenter = () => item.style.background = '#fffbf0';
-      item.onmouseleave = () => item.style.background = '#fff';
-      item.onmousedown  = e => { e.preventDefault(); selectInterviewer(p.label); };
-      dd.appendChild(item);
-    });
-  }
-  dd.style.display = 'block';
-}
-
-function showInterviewerDropdown() {
-  if (allInterviewers.length > 0) renderInterviewerDropdown(allInterviewers);
-  else {
-    const dd = document.getElementById('interviewer-dropdown');
-    dd.innerHTML = '<div style="padding:12px 16px;font-size:13px;color:#767b7f;font-family:Montserrat,sans-serif;">Loading...</div>';
-    dd.style.display = 'block';
-  }
-}
-
-function filterInterviewers() {
-  document.getElementById('interviewer-value').value = '';
-  const q = document.getElementById('interviewer-search').value.toLowerCase();
-  renderInterviewerDropdown(q ? allInterviewers.filter(p => p.label.toLowerCase().includes(q)) : allInterviewers);
-}
-
-function selectInterviewer(label) {
-  document.getElementById('interviewer-value').value = label;
-  document.getElementById('interviewer-search').value = label;
-  document.getElementById('interviewer-dropdown').style.display = 'none';
-}
-
-document.addEventListener('click', e => {
-  if (!document.getElementById('candidate-wrapper').contains(e.target))
-    document.getElementById('candidate-dropdown').style.display = 'none';
-  if (!document.getElementById('interviewer-wrapper').contains(e.target))
-    document.getElementById('interviewer-dropdown').style.display = 'none';
-});
-
-/* ── Scorecard ── */
+/* ══════════════════════════════
+   SCORECARD
+══════════════════════════════ */
 function onPositionChange() {
   const role = document.getElementById('position').value;
   if (!role) {
     document.getElementById('scorecard-body').style.display = 'none';
-    document.getElementById('start-prompt').style.display = 'block';
+    document.getElementById('start-prompt').style.display  = 'block';
     return;
   }
   currentRole = role;
-  document.getElementById('start-prompt').style.display = 'none';
+  document.getElementById('start-prompt').style.display  = 'none';
   document.getElementById('scorecard-body').style.display = 'block';
-  document.getElementById('role-badge').textContent = ROLE_LABELS[role];
-  document.getElementById('role-title').textContent = ROLE_LABELS[role] + ' Questions';
+  document.getElementById('role-badge').textContent       = ROLE_LABELS[role];
+  document.getElementById('role-title').textContent       = ROLE_LABELS[role] + ' Questions';
   document.getElementById('role-score-label').textContent = ROLE_LABELS[role] + ' Score';
   buildQuestions('q-healthcare', 'healthcare', 1);
-  buildQuestions('q-culture', 'culture', 4);
-  buildQuestions('q-problem', 'problem', 7);
-  buildQuestions('q-role', role, 10);
+  buildQuestions('q-culture',    'culture',    4);
+  buildQuestions('q-problem',    'problem',    7);
+  buildQuestions('q-role',       role,         10);
   updateSummary();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -741,9 +630,7 @@ function buildQuestions(containerId, key, startNum) {
 
 function setScore(qid, val) {
   scores[qid] = val;
-  document.querySelectorAll('#stars-' + qid + ' .star').forEach(s => {
-    s.classList.toggle('active', parseInt(s.dataset.val) <= val);
-  });
+  document.querySelectorAll('#stars-' + qid + ' .star').forEach(s => s.classList.toggle('active', parseInt(s.dataset.val) <= val));
   document.getElementById('lbl-' + qid).textContent = val + ' — ' + SCORE_LABELS[val];
   updateSummary();
 }
@@ -753,8 +640,8 @@ function calcGroup(key) {
 }
 
 function setBar(id, val, max) {
-  document.getElementById('val-' + id).textContent = val + ' / ' + max;
-  document.getElementById('bar-' + id).style.width = (val / max * 100) + '%';
+  document.getElementById('val-' + id).textContent   = val + ' / ' + max;
+  document.getElementById('bar-' + id).style.width   = (val / max * 100) + '%';
 }
 
 function updateSummary() {
@@ -763,31 +650,24 @@ function updateSummary() {
   const ps      = calcGroup('problem');
   const role    = currentRole ? calcGroup(currentRole) : 0;
   const roleMax = currentRole ? ROLE_MAX[currentRole] : 0;
-  setBar('hc', hc, 15);
-  setBar('cf', cf, 15);
-  setBar('ps', ps, 15);
-  document.getElementById('val-role').textContent  = role + ' / ' + (roleMax || '—');
-  document.getElementById('bar-role').style.width  = roleMax ? (role / roleMax * 100) + '%' : '0%';
+  setBar('hc', hc, 15); setBar('cf', cf, 15); setBar('ps', ps, 15);
+  document.getElementById('val-role').textContent    = role + ' / ' + (roleMax || '—');
+  document.getElementById('bar-role').style.width    = roleMax ? (role / roleMax * 100) + '%' : '0%';
   document.getElementById('total-label').textContent = 'Total Score — ' + (currentRole ? ROLE_LABELS[currentRole] : '');
   document.getElementById('val-total').textContent   = (hc + cf + ps + role) + ' / ' + (45 + roleMax);
   updateGrade(hc + cf + ps + role, 45 + roleMax);
 }
 
-function selectRec(btn, cls) {
-  document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('selected','strong','hire','hold','no'));
-  btn.classList.add('selected', cls);
-}
-
+/* ══════════════════════════════
+   SUBMIT
+══════════════════════════════ */
 async function submitToAirtable() {
   const rec = document.querySelector('.rec-btn.selected');
   if (!rec) { alert('Please select a hiring recommendation before submitting.'); return; }
-
   const btn    = document.getElementById('submit-btn');
   const status = document.getElementById('submit-status');
-  btn.disabled = true;
-  btn.textContent = 'Submitting…';
-  status.className = 'submit-status';
-  status.style.display = 'none';
+  btn.disabled = true; btn.textContent = 'Submitting…';
+  status.className = 'submit-status'; status.style.display = 'none';
 
   const hc      = calcGroup('healthcare');
   const cf      = calcGroup('culture');
@@ -795,26 +675,19 @@ async function submitToAirtable() {
   const role    = currentRole ? calcGroup(currentRole) : 0;
   const roleMax = currentRole ? ROLE_MAX[currentRole] : 0;
   const recLabel = rec.textContent.replace(/[★✓✕⏸—]/g,'').trim();
-
-  const rawId      = document.getElementById('candidate-id').value;
-  const candidateId = (rawId && typeof rawId === 'string') ? rawId.trim() : '';
-  const candidateName = document.getElementById('candidate-search').value.split(' — ')[0].trim() || '';
-
-  console.log('Submitting — candidateId:', candidateId, '| type:', typeof candidateId);
+  const rawId    = document.getElementById('candidate-id').value.trim();
+  const candName = document.getElementById('candidate-search').value.split(' — ')[0].trim();
 
   const noteLines = [];
   ['healthcare','culture','problem',...(currentRole ? [currentRole] : [])].forEach(key => {
-    QUESTIONS[key].forEach((q, i) => {
-      noteLines.push('Q: ' + q + '\nScore: ' + (scores[key+'_'+i]||0) + '/5');
-    });
+    QUESTIONS[key].forEach((q, i) => noteLines.push('Q: ' + q + '\nScore: ' + (scores[key+'_'+i]||0) + '/5'));
   });
 
   const fields = {
-    'fldgb9SAVdugVTr8e': candidateName,
+    'fldgb9SAVdugVTr8e': candName,
     'fld2lyB8FKV4YsVVZ': ROLE_LABELS[currentRole] || '',
     'fldERB8IHrUogEmt3': document.getElementById('interviewer-value').value.trim(),
     'fldlYwbOLHhWkuJGk': document.getElementById('intdate').value || new Date().toISOString().split('T')[0],
-    'fldRFAG02JoL2tIk7': selectedLocations,
     'fldy3bhltMDygqrDr': hc,
     'fldofAoeRk9dWgCaT': cf,
     'fldgjTXyEqABlWpxo': ps,
@@ -827,13 +700,7 @@ async function submitToAirtable() {
     'fldg7D6tJ84rl2RRv': 15,
     'fldOWdtHByMbAcfyL': roleMax
   };
-
-  if (candidateId && candidateId.startsWith('rec') && candidateId.length >= 14) {
-    fields['fld3a0Q2lkMG4QtvS'] = [candidateId];
-    console.log('Linking candidate record:', candidateId);
-  } else if (candidateId) {
-    console.warn('Candidate ID invalid — skipping link. Value was:', candidateId);
-  }
+  if (rawId && rawId.startsWith('rec')) fields['fld3a0Q2lkMG4QtvS'] = [rawId];
 
   try {
     const res  = await fetch('https://api.airtable.com/v0/' + AT_BASE + '/' + AT_TABLE, {
@@ -842,52 +709,47 @@ async function submitToAirtable() {
       body: JSON.stringify({ records: [{ fields }] })
     });
     const data = await res.json();
-    console.log('Airtable response:', data);
     if (res.ok) {
-      status.className = 'submit-status success';
-      status.textContent = '✓ Saved to Airtable successfully';
-      status.style.display = 'flex';
+      status.className = 'submit-status success'; status.textContent = '✓ Saved to Airtable successfully'; status.style.display = 'flex';
       btn.textContent = '✓ Submitted';
     } else {
-      throw new Error(data.error?.message || JSON.stringify(data.error) || 'Submission failed');
+      throw new Error(data.error?.message || 'Submission failed');
     }
   } catch(e) {
-    console.error('Submit error:', e);
-    status.className = 'submit-status error';
-    status.textContent = '✕ ' + e.message;
-    status.style.display = 'flex';
-    btn.disabled = false;
-    btn.textContent = 'Submit to Airtable';
+    status.className = 'submit-status error'; status.textContent = '✕ ' + e.message; status.style.display = 'flex';
+    btn.disabled = false; btn.textContent = 'Submit to Airtable';
   }
 }
 
+/* ══════════════════════════════
+   RESET
+══════════════════════════════ */
 function resetAll() {
   if (!confirm('Reset the entire scorecard?')) return;
   Object.keys(scores).forEach(k => scores[k] = 0);
   document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.score-label').forEach(l => l.textContent = 'Not scored');
   document.querySelectorAll('textarea').forEach(t => t.value = '');
-  document.getElementById('candidate-search').value = '';
-  document.getElementById('candidate-id').value = '';
+  document.getElementById('candidate-search').value  = '';
+  document.getElementById('candidate-id').value      = '';
   document.getElementById('interviewer-search').value = '';
-  document.getElementById('interviewer-value').value = '';
+  document.getElementById('interviewer-value').value  = '';
+  document.getElementById('position').value = '';
+  document.getElementById('candidate-load-status').textContent = allCandidates.length + ' candidates loaded';
   selectedLocations = [];
-  document.querySelectorAll('.loc-option').forEach(o => {
-    o.classList.remove('selected');
-    if (o.querySelector('.loc-check')) o.querySelector('.loc-check').textContent = '';
-  });
+  document.querySelectorAll('.loc-option').forEach(o => { o.classList.remove('selected'); if(o.querySelector('.loc-check')) o.querySelector('.loc-check').textContent = ''; });
   renderLocationTags();
   updateSelectAllState();
-  document.getElementById('location').value = '';
-  document.getElementById('candidate-load-status').textContent = allCandidates.length + ' candidates loaded';
   document.getElementById('scorecard-body').style.display = 'none';
-  document.getElementById('start-prompt').style.display = 'block';
+  document.getElementById('start-prompt').style.display   = 'block';
   document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('selected','strong','hire','hold','no'));
-  const card = document.getElementById('grade-card');
-  card.classList.remove('grade-card-strong','grade-card-hire','grade-card-hold','grade-card-no');
+  document.getElementById('grade-card').classList.remove('grade-card-strong','grade-card-hire','grade-card-hold','grade-card-no');
   currentRole = null;
 }
 
+/* ══════════════════════════════
+   INIT
+══════════════════════════════ */
 document.getElementById('intdate').valueAsDate = new Date();
 loadCandidates();
 loadInterviewers();
