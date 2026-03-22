@@ -180,10 +180,6 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
               <div id="loc-all-check" class="loc-check"></div>
               Select All
             </div>
-            <div class="loc-option" data-val="Tempe">Tempe</div>
-            <div class="loc-option" data-val="Gilbert">Gilbert</div>
-            <div class="loc-option" data-val="Phoenix">Phoenix</div>
-            <div class="loc-option" data-val="Queen Creek">Queen Creek</div>
           </div>
         </div>
         <div class="info-field"><label>Position Applied For</label>
@@ -878,9 +874,10 @@ function resetAll() {
   selectedLocations = [];
   document.querySelectorAll('.loc-option').forEach(o => {
     o.classList.remove('selected');
-    o.querySelector('.loc-check').textContent = '';
+    if (o.querySelector('.loc-check')) o.querySelector('.loc-check').textContent = '';
   });
   renderLocationTags();
+  updateSelectAllState();
   document.getElementById('location').value = '';
   document.getElementById('candidate-load-status').textContent = allCandidates.length + ' candidates loaded';
   document.getElementById('scorecard-body').style.display = 'none';
@@ -894,6 +891,7 @@ function resetAll() {
 document.getElementById('intdate').valueAsDate = new Date();
 loadCandidates();
 loadInterviewers();
+loadClinics();
 </script>
 </body>
 </html>
