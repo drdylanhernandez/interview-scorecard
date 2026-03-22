@@ -24,9 +24,12 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 .card-label { font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--gold-dark); margin-bottom: 18px; }
 .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .info-field label { display: block; font-weight: 700; font-size: 10px; color: var(--dark-grey); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+.req-star { color: #a32d2d; margin-left: 2px; }
 .info-field input, .info-field select { width: 100%; border: 1.5px solid var(--light-grey); border-radius: 3px; padding: 10px 12px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 400; color: var(--black); background: var(--white); transition: border-color 0.2s; }
 .info-field input:focus, .info-field select:focus { outline: none; border-color: var(--gold); }
 .info-field.full { grid-column: 1 / -1; }
+.field-error { border-color: #a32d2d !important; }
+.field-error-msg { font-size: 10px; color: #a32d2d; font-weight: 700; margin-top: 4px; display: none; }
 .start-prompt { background: var(--white); border-radius: 4px; padding: 48px 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 24px; border: 1.5px dashed var(--light-grey); }
 .start-prompt h2 { font-weight: 800; font-size: 17px; color: var(--black); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
 .start-prompt p { font-weight: 400; font-size: 13px; color: var(--dark-grey); }
@@ -69,36 +72,28 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 /* Grade card themes */
 .grade-card-strong { background: var(--black) !important; border-top-color: var(--gold) !important; }
 .grade-card-strong h3 { color: var(--gold) !important; border-bottom-color: #333 !important; }
-.grade-card-strong .grade-letter, .grade-card-strong .grade-pct, .grade-card-strong .grade-desc { color: var(--gold) !important; }
+.grade-card-strong .grade-letter,.grade-card-strong .grade-pct,.grade-card-strong .grade-desc { color: var(--gold) !important; }
 .grade-card-hire { background: var(--gold) !important; border-top-color: var(--gold-dark) !important; }
 .grade-card-hire h3 { color: var(--black) !important; border-bottom-color: var(--gold-dark) !important; }
-.grade-card-hire .grade-letter, .grade-card-hire .grade-pct, .grade-card-hire .grade-desc { color: var(--black) !important; }
+.grade-card-hire .grade-letter,.grade-card-hire .grade-pct,.grade-card-hire .grade-desc { color: var(--black) !important; }
 .grade-card-hold { background: var(--dark-grey) !important; border-top-color: #555 !important; }
 .grade-card-hold h3 { color: var(--white) !important; border-bottom-color: #888 !important; }
-.grade-card-hold .grade-letter, .grade-card-hold .grade-pct, .grade-card-hold .grade-desc { color: var(--white) !important; }
+.grade-card-hold .grade-letter,.grade-card-hold .grade-pct,.grade-card-hold .grade-desc { color: var(--white) !important; }
 .grade-card-no { background: #a32d2d !important; border-top-color: #7a1f1f !important; }
 .grade-card-no h3 { color: var(--white) !important; border-bottom-color: #7a1f1f !important; }
-.grade-card-no .grade-letter, .grade-card-no .grade-pct, .grade-card-no .grade-desc { color: var(--white) !important; }
-/* Dropdown shared styles */
+.grade-card-no .grade-letter,.grade-card-no .grade-pct,.grade-card-no .grade-desc { color: var(--white) !important; }
+/* Dropdowns */
 .dropdown-box { display:none; position:absolute; top:100%; left:0; right:0; background:#fff; border:2px solid var(--gold); border-top:none; border-radius:0 0 3px 3px; max-height:240px; overflow-y:auto; z-index:9999; box-shadow:0 8px 24px rgba(0,0,0,0.15); }
 .dropdown-item { padding:12px 16px; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:400; cursor:pointer; border-bottom:1px solid var(--bg); color:var(--black); background:#fff; }
 .dropdown-item:last-child { border-bottom:none; }
 .dropdown-item:hover { background:#fffbf0; }
-/* Location multi-select */
+/* Location */
 .loc-option { padding:11px 16px; font-family:'Montserrat',sans-serif; font-size:13px; font-weight:400; cursor:pointer; border-bottom:1px solid var(--bg); color:var(--black); display:flex; align-items:center; gap:10px; }
 .loc-option:last-child { border-bottom:none; }
 .loc-option:hover { background:#fffbf0; }
 .loc-check { width:16px; height:16px; border:2px solid var(--light-grey); border-radius:2px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; }
 .loc-option.selected .loc-check { background:var(--gold); border-color:var(--gold); color:var(--black); }
 .loc-tag { background:var(--black); color:var(--gold); font-family:'Montserrat',sans-serif; font-size:11px; font-weight:800; padding:3px 10px; border-radius:2px; white-space:nowrap; }
-/* Rec buttons */
-.rec-title { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-bottom: 14px; }
-.rec-options { display: flex; gap: 10px; flex-wrap: wrap; }
-.rec-btn { padding:11px 22px; border-radius:3px; border:2px solid var(--light-grey); background:var(--white); cursor:default; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:800; color:var(--dark-grey); text-transform:uppercase; letter-spacing:0.3px; }
-.rec-btn.selected.strong { background:var(--black); border-color:var(--black); color:var(--gold); }
-.rec-btn.selected.hire { background:var(--gold); border-color:var(--gold); color:var(--black); }
-.rec-btn.selected.hold { background:var(--dark-grey); border-color:var(--dark-grey); color:var(--white); }
-.rec-btn.selected.no { background:#a32d2d; border-color:#a32d2d; color:var(--white); }
 /* Print bar */
 .print-bar { position:fixed; bottom:0; left:0; right:0; background:var(--white); border-top:3px solid var(--gold); padding:14px 28px; display:flex; justify-content:flex-end; gap:10px; box-shadow:0 -4px 20px rgba(0,0,0,0.1); z-index:100; }
 .btn-primary { background:var(--black); color:var(--gold); border:none; padding:12px 30px; border-radius:3px; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:800; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; }
@@ -109,12 +104,32 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 .submit-status { font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; padding:12px 16px; border-radius:3px; display:none; align-items:center; gap:8px; }
 .submit-status.success { display:flex; background:#e6f4ea; color:#1a7a3a; border:1.5px solid #a8d5b5; }
 .submit-status.error { display:flex; background:#fdecea; color:#a32d2d; border:1.5px solid #f0a0a0; }
+/* Dialog */
+.dialog-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center; }
+.dialog-overlay.active { display:flex; }
+.dialog-box { background:var(--white); border-radius:4px; padding:32px; max-width:420px; width:90%; border-top:4px solid var(--gold); box-shadow:0 8px 40px rgba(0,0,0,0.3); }
+.dialog-box h4 { font-weight: 800; font-size:14px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px; }
+.dialog-box p { font-size:13px; font-weight:400; color:var(--dark-grey); line-height:1.6; margin-bottom:24px; }
+.dialog-btns { display:flex; gap:10px; justify-content:flex-end; }
 #scorecard-body { display:none; }
 @media (max-width:600px) { .info-grid { grid-template-columns:1fr; } }
-@media print { body{background:white} .print-bar{display:none} .content{padding:0;max-width:100%} .category-block,.summary-card,.info-card{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid} }
+@media print { body{background:white} .print-bar{display:none} .dialog-overlay{display:none} .content{padding:0;max-width:100%} .category-block,.summary-card,.info-card{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid} }
 </style>
 </head>
 <body>
+
+<!-- Incomplete answers dialog -->
+<div class="dialog-overlay" id="incomplete-dialog">
+  <div class="dialog-box">
+    <h4>⚠ Incomplete Scorecard</h4>
+    <p>Not all questions have been answered. Are you sure you want to submit without completing the scorecard?</p>
+    <div class="dialog-btns">
+      <button class="btn-secondary" onclick="closeDialog()">← Go Back</button>
+      <button class="btn-primary" onclick="confirmSubmit()">Submit Anyway</button>
+    </div>
+  </div>
+</div>
+
 <div class="header">
   <div class="header-inner">
     <div class="header-gold-bar"></div>
@@ -144,28 +159,34 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 
         <!-- Candidate -->
         <div class="info-field full" id="candidate-wrapper" style="position:relative;">
-          <label>Select Candidate <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0;">(Must be added to Candidates Pipeline in Airtable)</span></label>
+          <label>Select Candidate <span class="req-star">*</span></label>
           <input type="text" id="candidate-search" placeholder="Click or type to search candidates..." autocomplete="off" style="width:100%;" oninput="filterCandidates()" onclick="showDropdown('candidate')"/>
           <div id="candidate-dropdown" class="dropdown-box"></div>
           <input type="hidden" id="candidate-id"/>
           <div id="candidate-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;"></div>
+          <div class="field-error-msg" id="err-candidate">Please select a candidate</div>
         </div>
 
-        <!-- Date -->
-        <div class="info-field"><label>Date</label><input type="date" id="intdate"></div>
+        <!-- Date of Interview -->
+        <div class="info-field">
+          <label>Date of Interview <span class="req-star">*</span></label>
+          <input type="date" id="intdate">
+          <div class="field-error-msg" id="err-date">Please select a date</div>
+        </div>
 
         <!-- Interviewer -->
         <div class="info-field" id="interviewer-wrapper" style="position:relative;">
-          <label>Interviewer</label>
+          <label>Interviewer <span class="req-star">*</span></label>
           <input type="text" id="interviewer-search" placeholder="Click or type to search interviewers..." autocomplete="off" style="width:100%;" oninput="filterInterviewers()" onclick="showDropdown('interviewer')"/>
           <div id="interviewer-dropdown" class="dropdown-box"></div>
           <input type="hidden" id="interviewer-value"/>
           <div id="interviewer-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;"></div>
+          <div class="field-error-msg" id="err-interviewer">Please select an interviewer</div>
         </div>
 
         <!-- Clinic Location -->
         <div class="info-field" id="location-wrapper" style="position:relative;">
-          <label>Clinic Location <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0;">(Select all that apply)</span></label>
+          <label>Clinic Location <span class="req-star">*</span> <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0;font-size:9px;">(Select all that apply)</span></label>
           <div id="location-display" onclick="toggleLocationDropdown()" style="width:100%;border:1.5px solid var(--light-grey);border-radius:3px;padding:10px 12px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:400;color:var(--dark-grey);background:var(--white);cursor:pointer;min-height:42px;display:flex;align-items:center;flex-wrap:wrap;gap:6px;transition:border-color 0.2s;">
             <span id="location-placeholder">Select location(s)...</span>
           </div>
@@ -174,11 +195,12 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
               <div id="loc-all-check" class="loc-check"></div>Select All
             </div>
           </div>
+          <div class="field-error-msg" id="err-location">Please select at least one location</div>
         </div>
 
         <!-- Position -->
-        <div class="info-field" style="position:relative;">
-          <label>Position Applied For</label>
+        <div class="info-field">
+          <label>Position Applied For <span class="req-star">*</span></label>
           <select id="position" onchange="onPositionChange()">
             <option value="">Select a position to load scorecard...</option>
             <option value="frontdesk">Front Desk</option>
@@ -187,6 +209,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
             <option value="manager">General Manager</option>
             <option value="chiro">Chiropractor</option>
           </select>
+          <div class="field-error-msg" id="err-position">Please select a position</div>
         </div>
 
       </div>
@@ -223,6 +246,13 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
       <div class="category-title"><span class="role-badge" id="role-badge">Role-Specific</span><span class="category-title-text" id="role-title">Questions</span></div>
       <div id="q-role"></div>
     </div>
+
+    <!-- General Interview Notes -->
+    <div class="category-block">
+      <div class="category-title"><span class="cat-badge" style="background:var(--dark-grey);">Notes</span><span class="category-title-text">General Interview Notes</span></div>
+      <textarea id="general-notes" placeholder="Add any general observations, impressions, or notes about the candidate that aren't captured in the questions above…" style="width:100%;border:1.5px solid var(--light-grey);border-radius:3px;padding:12px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:400;resize:vertical;min-height:120px;transition:border-color 0.2s;background:#fafafa;"></textarea>
+    </div>
+
     <div class="summary-card">
       <h3>Scoring Summary</h3>
       <div class="score-row"><span class="label">Healthcare Competency <small>(/ 15)</small></span><div class="bar"><div class="bar-fill" id="bar-hc" style="width:0%"></div></div><span class="value" id="val-hc">0 / 15</span></div>
@@ -231,6 +261,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
       <div class="score-row"><span class="label" id="role-score-label">Role-Specific</span><div class="bar"><div class="bar-fill" id="bar-role" style="width:0%"></div></div><span class="value" id="val-role">0 / —</span></div>
       <div class="total-row"><span class="label" id="total-label">Total Score</span><span class="value" id="val-total">0 / —</span></div>
     </div>
+
     <div class="summary-card" id="grade-card">
       <h3>Candidate Grade</h3>
       <div style="display:flex;align-items:center;justify-content:center;gap:24px;margin-top:8px;text-align:center;">
@@ -241,7 +272,6 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -249,7 +279,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   <div class="submit-status" id="submit-status"></div>
   <button class="btn-secondary" onclick="resetAll()">↺ Reset</button>
   <button class="btn-primary" onclick="window.print()">Print / Save PDF</button>
-  <button class="btn-primary" id="submit-btn" onclick="submitToAirtable()">Submit to Airtable</button>
+  <button class="btn-primary" id="submit-btn" onclick="handleSubmitClick()">Submit to Airtable</button>
 </div>
 
 <script>
@@ -325,6 +355,7 @@ const ROLE_MAX     = { frontdesk:30, ca:30, massage:30, manager:25, chiro:55 };
 const SCORE_LABELS = ['','Poor','Below Expectations','Meets Expectations','Strong','Exceptional'];
 const scores = {};
 let currentRole     = null;
+let currentRec      = null; // stores current grade rec for submission
 let allCandidates   = [];
 let allInterviewers = [];
 let allClinics      = [];
@@ -334,19 +365,19 @@ let selectedLocations = [];
    GRADE LOGIC
 ══════════════════════════════ */
 function getGrade(pct) {
-  if (pct >= 97) return { letter:'A+', desc:'Strong Hire',      rec:'strong' };
-  if (pct >= 93) return { letter:'A',  desc:'Strong Hire',      rec:'strong' };
-  if (pct >= 90) return { letter:'A−', desc:'Strong Hire',      rec:'strong' };
-  if (pct >= 87) return { letter:'B+', desc:'Hire / Trainable', rec:'hire'   };
-  if (pct >= 83) return { letter:'B',  desc:'Hire / Trainable', rec:'hire'   };
-  if (pct >= 80) return { letter:'B−', desc:'Hire / Trainable', rec:'hire'   };
-  if (pct >= 77) return { letter:'C+', desc:'Hold',             rec:'hold'   };
-  if (pct >= 73) return { letter:'C',  desc:'Hold',             rec:'hold'   };
-  if (pct >= 70) return { letter:'C−', desc:'Hold',             rec:'hold'   };
-  if (pct >= 67) return { letter:'D+', desc:'Do Not Hire',      rec:'no'     };
-  if (pct >= 63) return { letter:'D',  desc:'Do Not Hire',      rec:'no'     };
-  if (pct >= 60) return { letter:'D−', desc:'Do Not Hire',      rec:'no'     };
-  return           { letter:'F',  desc:'Do Not Hire',      rec:'no'     };
+  if (pct >= 97) return { letter:'A+', desc:'Strong Hire',      rec:'strong', label:'Strong Hire'      };
+  if (pct >= 93) return { letter:'A',  desc:'Strong Hire',      rec:'strong', label:'Strong Hire'      };
+  if (pct >= 90) return { letter:'A−', desc:'Strong Hire',      rec:'strong', label:'Strong Hire'      };
+  if (pct >= 87) return { letter:'B+', desc:'Hire / Trainable', rec:'hire',   label:'Hire / Trainable' };
+  if (pct >= 83) return { letter:'B',  desc:'Hire / Trainable', rec:'hire',   label:'Hire / Trainable' };
+  if (pct >= 80) return { letter:'B−', desc:'Hire / Trainable', rec:'hire',   label:'Hire / Trainable' };
+  if (pct >= 77) return { letter:'C+', desc:'Hold',             rec:'hold',   label:'Hold'             };
+  if (pct >= 73) return { letter:'C',  desc:'Hold',             rec:'hold',   label:'Hold'             };
+  if (pct >= 70) return { letter:'C−', desc:'Hold',             rec:'hold',   label:'Hold'             };
+  if (pct >= 67) return { letter:'D+', desc:'Do Not Hire',      rec:'no',     label:'Do Not Hire'      };
+  if (pct >= 63) return { letter:'D',  desc:'Do Not Hire',      rec:'no',     label:'Do Not Hire'      };
+  if (pct >= 60) return { letter:'D−', desc:'Do Not Hire',      rec:'no',     label:'Do Not Hire'      };
+  return           { letter:'F',  desc:'Do Not Hire',      rec:'no',     label:'Do Not Hire'      };
 }
 
 function updateGrade(totalScore, totalMax) {
@@ -357,7 +388,7 @@ function updateGrade(totalScore, totalMax) {
   card.classList.remove('grade-card-strong','grade-card-hire','grade-card-hold','grade-card-no');
   if (!totalMax) {
     letterEl.textContent = '—'; pctEl.textContent = '— %'; descEl.textContent = 'Score a position to see grade';
-    return;
+    currentRec = null; return;
   }
   const pct = Math.round((totalScore / totalMax) * 100);
   const g   = getGrade(pct);
@@ -365,11 +396,79 @@ function updateGrade(totalScore, totalMax) {
   pctEl.textContent    = pct + '%';
   descEl.textContent   = g.desc;
   card.classList.add('grade-card-' + g.rec);
-
+  currentRec = g.label;
 }
 
 /* ══════════════════════════════
-   GENERIC DROPDOWN HELPERS
+   REQUIRED FIELD VALIDATION
+══════════════════════════════ */
+function validateRequiredFields() {
+  let valid = true;
+
+  const candidate = document.getElementById('candidate-id').value.trim();
+  const errC = document.getElementById('err-candidate');
+  const csEl = document.getElementById('candidate-search');
+  if (!candidate) { csEl.classList.add('field-error'); errC.style.display = 'block'; valid = false; }
+  else { csEl.classList.remove('field-error'); errC.style.display = 'none'; }
+
+  const date = document.getElementById('intdate').value;
+  const errD = document.getElementById('err-date');
+  const dtEl = document.getElementById('intdate');
+  if (!date) { dtEl.classList.add('field-error'); errD.style.display = 'block'; valid = false; }
+  else { dtEl.classList.remove('field-error'); errD.style.display = 'none'; }
+
+  const interviewer = document.getElementById('interviewer-value').value.trim();
+  const errI = document.getElementById('err-interviewer');
+  const isEl = document.getElementById('interviewer-search');
+  if (!interviewer) { isEl.classList.add('field-error'); errI.style.display = 'block'; valid = false; }
+  else { isEl.classList.remove('field-error'); errI.style.display = 'none'; }
+
+  const errL = document.getElementById('err-location');
+  const ldEl = document.getElementById('location-display');
+  if (selectedLocations.length === 0) { ldEl.style.borderColor = '#a32d2d'; errL.style.display = 'block'; valid = false; }
+  else { ldEl.style.borderColor = 'var(--gold)'; errL.style.display = 'none'; }
+
+  const position = document.getElementById('position').value;
+  const errP = document.getElementById('err-position');
+  const psEl = document.getElementById('position');
+  if (!position) { psEl.classList.add('field-error'); errP.style.display = 'block'; valid = false; }
+  else { psEl.classList.remove('field-error'); errP.style.display = 'none'; }
+
+  return valid;
+}
+
+function allQuestionsAnswered() {
+  if (!currentRole) return false;
+  const keys = ['healthcare','culture','problem', currentRole];
+  return keys.every(key => QUESTIONS[key].every((_, i) => (scores[key + '_' + i] || 0) > 0));
+}
+
+/* ══════════════════════════════
+   DIALOG
+══════════════════════════════ */
+function handleSubmitClick() {
+  if (!validateRequiredFields()) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+  if (!allQuestionsAnswered()) {
+    document.getElementById('incomplete-dialog').classList.add('active');
+  } else {
+    doSubmit();
+  }
+}
+
+function closeDialog() {
+  document.getElementById('incomplete-dialog').classList.remove('active');
+}
+
+function confirmSubmit() {
+  closeDialog();
+  doSubmit();
+}
+
+/* ══════════════════════════════
+   DROPDOWN HELPERS
 ══════════════════════════════ */
 function buildDropdownItems(ddId, items, onSelect) {
   const dd = document.getElementById(ddId);
@@ -389,27 +488,22 @@ function buildDropdownItems(ddId, items, onSelect) {
 }
 
 function showDropdown(type) {
-  if (type === 'candidate') {
-    if (allCandidates.length > 0) buildDropdownItems('candidate-dropdown', allCandidates, selectCandidate);
-    else { document.getElementById('candidate-dropdown').innerHTML = '<div class="dropdown-item" style="color:#767b7f;">Loading...</div>'; document.getElementById('candidate-dropdown').style.display = 'block'; }
-  } else {
-    if (allInterviewers.length > 0) buildDropdownItems('interviewer-dropdown', allInterviewers, selectInterviewer);
-    else { document.getElementById('interviewer-dropdown').innerHTML = '<div class="dropdown-item" style="color:#767b7f;">Loading...</div>'; document.getElementById('interviewer-dropdown').style.display = 'block'; }
-  }
+  const list = type === 'candidate' ? allCandidates : allInterviewers;
+  const ddId = type + '-dropdown';
+  if (list.length > 0) buildDropdownItems(ddId, list, type === 'candidate' ? selectCandidate : selectInterviewer);
+  else { document.getElementById(ddId).innerHTML = '<div class="dropdown-item" style="color:#767b7f;">Loading...</div>'; document.getElementById(ddId).style.display = 'block'; }
 }
 
 function filterCandidates() {
   document.getElementById('candidate-id').value = '';
   const q = document.getElementById('candidate-search').value.toLowerCase();
-  const filtered = q ? allCandidates.filter(c => c.label.toLowerCase().includes(q)) : allCandidates;
-  buildDropdownItems('candidate-dropdown', filtered, selectCandidate);
+  buildDropdownItems('candidate-dropdown', q ? allCandidates.filter(c => c.label.toLowerCase().includes(q)) : allCandidates, selectCandidate);
 }
 
 function filterInterviewers() {
   document.getElementById('interviewer-value').value = '';
   const q = document.getElementById('interviewer-search').value.toLowerCase();
-  const filtered = q ? allInterviewers.filter(p => p.label.toLowerCase().includes(q)) : allInterviewers;
-  buildDropdownItems('interviewer-dropdown', filtered, selectInterviewer);
+  buildDropdownItems('interviewer-dropdown', q ? allInterviewers.filter(p => p.label.toLowerCase().includes(q)) : allInterviewers, selectInterviewer);
 }
 
 function selectCandidate(item) {
@@ -417,23 +511,27 @@ function selectCandidate(item) {
   document.getElementById('candidate-search').value = item.label;
   document.getElementById('candidate-dropdown').style.display = 'none';
   document.getElementById('candidate-load-status').textContent = '✓ Candidate selected';
+  document.getElementById('candidate-search').classList.remove('field-error');
+  document.getElementById('err-candidate').style.display = 'none';
 }
 
 function selectInterviewer(item) {
   document.getElementById('interviewer-value').value = item.label;
   document.getElementById('interviewer-search').value = item.label;
   document.getElementById('interviewer-dropdown').style.display = 'none';
+  document.getElementById('interviewer-search').classList.remove('field-error');
+  document.getElementById('err-interviewer').style.display = 'none';
 }
 
 document.addEventListener('click', e => {
   ['candidate','interviewer'].forEach(type => {
-    const wrapper = document.getElementById(type + '-wrapper');
-    const dd      = document.getElementById(type + '-dropdown');
-    if (wrapper && dd && !wrapper.contains(e.target)) dd.style.display = 'none';
+    const w = document.getElementById(type + '-wrapper');
+    const d = document.getElementById(type + '-dropdown');
+    if (w && d && !w.contains(e.target)) d.style.display = 'none';
   });
-  const locWrapper = document.getElementById('location-wrapper');
-  const locDd      = document.getElementById('location-dropdown');
-  if (locWrapper && locDd && !locWrapper.contains(e.target)) locDd.style.display = 'none';
+  const lw = document.getElementById('location-wrapper');
+  const ld = document.getElementById('location-dropdown');
+  if (lw && ld && !lw.contains(e.target)) ld.style.display = 'none';
 });
 
 /* ══════════════════════════════
@@ -445,11 +543,8 @@ function toggleLocationDropdown() {
 }
 
 function buildLocationOptions() {
-  const dd          = document.getElementById('location-dropdown');
-  const selectAllRow = document.getElementById('loc-select-all');
-  // Remove any existing options (keep Select All row)
+  const dd = document.getElementById('location-dropdown');
   dd.querySelectorAll('.loc-option').forEach(o => o.remove());
-
   allClinics.forEach(clinic => {
     const opt   = document.createElement('div');
     opt.className   = 'loc-option';
@@ -462,21 +557,18 @@ function buildLocationOptions() {
       e.preventDefault();
       if (selectedLocations.includes(clinic)) {
         selectedLocations = selectedLocations.filter(l => l !== clinic);
-        opt.classList.remove('selected');
-        check.textContent = '';
+        opt.classList.remove('selected'); check.textContent = '';
       } else {
         selectedLocations.push(clinic);
-        opt.classList.add('selected');
-        check.textContent = '✓';
+        opt.classList.add('selected'); check.textContent = '✓';
       }
-      renderLocationTags();
-      updateSelectAllState();
+      renderLocationTags(); updateSelectAllState();
+      document.getElementById('location-display').style.borderColor = selectedLocations.length > 0 ? 'var(--gold)' : 'var(--light-grey)';
+      document.getElementById('err-location').style.display = selectedLocations.length > 0 ? 'none' : 'block';
     });
     dd.appendChild(opt);
   });
-
-  // Wire up Select All
-  selectAllRow.onmousedown = e => {
+  document.getElementById('loc-select-all').onmousedown = e => {
     e.preventDefault();
     const allSel = allClinics.every(v => selectedLocations.includes(v));
     if (allSel) {
@@ -486,36 +578,32 @@ function buildLocationOptions() {
       selectedLocations = [...allClinics];
       dd.querySelectorAll('.loc-option').forEach(o => { o.classList.add('selected'); o.querySelector('.loc-check').textContent = '✓'; });
     }
-    renderLocationTags();
-    updateSelectAllState();
+    renderLocationTags(); updateSelectAllState();
   };
 }
 
 function renderLocationTags() {
-  const display     = document.getElementById('location-display');
-  const placeholder = document.getElementById('location-placeholder');
+  const display = document.getElementById('location-display');
   display.querySelectorAll('.loc-tag').forEach(t => t.remove());
+  const placeholder = document.getElementById('location-placeholder');
   if (selectedLocations.length === 0) {
     placeholder.style.display = '';
-    display.style.borderColor = 'var(--light-grey)';
   } else {
     placeholder.style.display = 'none';
     selectedLocations.forEach(loc => {
       const tag = document.createElement('span');
-      tag.className   = 'loc-tag';
-      tag.textContent = loc;
+      tag.className = 'loc-tag'; tag.textContent = loc;
       display.appendChild(tag);
     });
-    display.style.borderColor = 'var(--gold)';
   }
 }
 
 function updateSelectAllState() {
-  const allCheck  = document.getElementById('loc-all-check');
-  const allSel    = allClinics.length > 0 && allClinics.every(v => selectedLocations.includes(v));
-  allCheck.textContent        = allSel ? '✓' : '';
-  allCheck.style.background   = allSel ? 'var(--gold)' : '';
-  allCheck.style.borderColor  = allSel ? 'var(--gold)' : '';
+  const allCheck = document.getElementById('loc-all-check');
+  const allSel   = allClinics.length > 0 && allClinics.every(v => selectedLocations.includes(v));
+  allCheck.textContent      = allSel ? '✓' : '';
+  allCheck.style.background = allSel ? 'var(--gold)' : '';
+  allCheck.style.borderColor = allSel ? 'var(--gold)' : '';
 }
 
 /* ══════════════════════════════
@@ -536,17 +624,13 @@ async function loadCandidates() {
         if (Array.isArray(f['Location Applied For'])) {
           loc = f['Location Applied For'].map(l => typeof l === 'object' ? (l.name || l.value || '') : l).join(', ');
         } else if (f['Location Applied For']) {
-          loc = typeof f['Location Applied For'] === 'object' ? (f['Location Applied For'].name || '') : f['Location Applied For'];
+          loc = typeof f['Location Applied For'] === 'object' ? (f['Location Applied For'].name || '') : String(f['Location Applied For']);
         }
         return { id, label: [name, pos, loc].filter(Boolean).join(' — ') };
       });
       status.textContent = allCandidates.length + ' candidates loaded';
-    } else {
-      status.textContent = 'No candidates found.';
-    }
-  } catch(e) {
-    status.textContent = 'Could not load candidates: ' + e.message;
-  }
+    } else { status.textContent = 'No candidates found.'; }
+  } catch(e) { status.textContent = 'Could not load candidates: ' + e.message; }
 }
 
 async function loadInterviewers() {
@@ -555,13 +639,10 @@ async function loadInterviewers() {
     const data = await res.json();
     if (data.records && data.records.length > 0) {
       allInterviewers = data.records.map(r => ({
-        id: r.id,
-        label: r.fields['Employee Full Name'] || 'Unnamed'
+        id: r.id, label: r.fields['Employee Full Name'] || 'Unnamed'
       })).sort((a, b) => a.label.localeCompare(b.label));
     }
-  } catch(e) {
-    document.getElementById('interviewer-load-status').textContent = 'Could not load interviewers.';
-  }
+  } catch(e) { console.error('loadInterviewers error:', e); }
 }
 
 async function loadClinics() {
@@ -569,15 +650,10 @@ async function loadClinics() {
     const res  = await fetch(WORKER_URL + '/clinics');
     const data = await res.json();
     if (data.records && data.records.length > 0) {
-      allClinics = data.records
-        .map(r => r.fields['Clinic'] || '')
-        .filter(Boolean)
-        .sort();
+      allClinics = data.records.map(r => r.fields['Clinic'] || '').filter(Boolean).sort();
       buildLocationOptions();
     }
-  } catch(e) {
-    console.error('loadClinics error:', e);
-  }
+  } catch(e) { console.error('loadClinics error:', e); }
 }
 
 /* ══════════════════════════════
@@ -596,6 +672,8 @@ function onPositionChange() {
   document.getElementById('role-badge').textContent       = ROLE_LABELS[role];
   document.getElementById('role-title').textContent       = ROLE_LABELS[role] + ' Questions';
   document.getElementById('role-score-label').textContent = ROLE_LABELS[role] + ' Score';
+  document.getElementById('position').classList.remove('field-error');
+  document.getElementById('err-position').style.display = 'none';
   buildQuestions('q-healthcare', 'healthcare', 1);
   buildQuestions('q-culture',    'culture',    4);
   buildQuestions('q-problem',    'problem',    7);
@@ -634,8 +712,8 @@ function calcGroup(key) {
 }
 
 function setBar(id, val, max) {
-  document.getElementById('val-' + id).textContent   = val + ' / ' + max;
-  document.getElementById('bar-' + id).style.width   = (val / max * 100) + '%';
+  document.getElementById('val-' + id).textContent = val + ' / ' + max;
+  document.getElementById('bar-' + id).style.width = (val / max * 100) + '%';
 }
 
 function updateSummary() {
@@ -655,9 +733,7 @@ function updateSummary() {
 /* ══════════════════════════════
    SUBMIT
 ══════════════════════════════ */
-async function submitToAirtable() {
-  const rec = document.querySelector('.rec-btn.selected');
-  if (!rec) { alert('Please select a hiring recommendation before submitting.'); return; }
+async function doSubmit() {
   const btn    = document.getElementById('submit-btn');
   const status = document.getElementById('submit-status');
   btn.disabled = true; btn.textContent = 'Submitting…';
@@ -668,8 +744,7 @@ async function submitToAirtable() {
   const ps      = calcGroup('problem');
   const role    = currentRole ? calcGroup(currentRole) : 0;
   const roleMax = currentRole ? ROLE_MAX[currentRole] : 0;
-  const recLabel = rec.textContent.replace(/[★✓✕⏸—]/g,'').trim();
-  const rawId    = document.getElementById('candidate-id').value.trim();
+  const rawId   = document.getElementById('candidate-id').value.trim();
   const candName = document.getElementById('candidate-search').value.split(' — ')[0].trim();
 
   const noteLines = [];
@@ -677,17 +752,20 @@ async function submitToAirtable() {
     QUESTIONS[key].forEach((q, i) => noteLines.push('Q: ' + q + '\nScore: ' + (scores[key+'_'+i]||0) + '/5'));
   });
 
+  const generalNotes = document.getElementById('general-notes').value.trim();
+  if (generalNotes) noteLines.push('\n--- General Interview Notes ---\n' + generalNotes);
+
   const fields = {
     'fldgb9SAVdugVTr8e': candName,
     'fld2lyB8FKV4YsVVZ': ROLE_LABELS[currentRole] || '',
     'fldERB8IHrUogEmt3': document.getElementById('interviewer-value').value.trim(),
-    'fldlYwbOLHhWkuJGk': document.getElementById('intdate').value || new Date().toISOString().split('T')[0],
+    'fldlYwbOLHhWkuJGk': document.getElementById('intdate').value,
     'fldy3bhltMDygqrDr': hc,
     'fldofAoeRk9dWgCaT': cf,
     'fldgjTXyEqABlWpxo': ps,
     'fldcFcnnPSVPLyOpP': role,
     'fld3wRBfOibYJRX8M': hc + cf + ps + role,
-    'fldhelFqQJKJtbWNI': recLabel,
+    'fldhelFqQJKJtbWNI': currentRec || '',
     'fldacUrKfLdit3bnk': noteLines.join('\n\n'),
     'fldeHN58HEphs32mF': 15,
     'fldr4V4kNktPqfgt2': 15,
@@ -724,20 +802,23 @@ function resetAll() {
   document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.score-label').forEach(l => l.textContent = 'Not scored');
   document.querySelectorAll('textarea').forEach(t => t.value = '');
-  document.getElementById('candidate-search').value  = '';
-  document.getElementById('candidate-id').value      = '';
+  document.getElementById('candidate-search').value   = '';
+  document.getElementById('candidate-id').value       = '';
   document.getElementById('interviewer-search').value = '';
   document.getElementById('interviewer-value').value  = '';
-  document.getElementById('position').value = '';
+  document.getElementById('position').value           = '';
+  document.getElementById('general-notes').value      = '';
   document.getElementById('candidate-load-status').textContent = allCandidates.length + ' candidates loaded';
   selectedLocations = [];
   document.querySelectorAll('.loc-option').forEach(o => { o.classList.remove('selected'); if(o.querySelector('.loc-check')) o.querySelector('.loc-check').textContent = ''; });
-  renderLocationTags();
-  updateSelectAllState();
+  renderLocationTags(); updateSelectAllState();
+  document.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+  document.querySelectorAll('.field-error-msg').forEach(el => el.style.display = 'none');
+  document.getElementById('location-display').style.borderColor = 'var(--light-grey)';
   document.getElementById('scorecard-body').style.display = 'none';
   document.getElementById('start-prompt').style.display   = 'block';
   document.getElementById('grade-card').classList.remove('grade-card-strong','grade-card-hire','grade-card-hold','grade-card-no');
-  currentRole = null;
+  currentRole = null; currentRec = null;
 }
 
 /* ══════════════════════════════
