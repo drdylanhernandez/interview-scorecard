@@ -241,16 +241,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
         </div>
       </div>
     </div>
-    <div class="summary-card">
-      <h3>Hiring Recommendation</h3>
-      <div class="rec-title">Auto-selected based on candidate grade</div>
-      <div class="rec-options">
-        <button class="rec-btn strong" disabled>★ Strong Hire</button>
-        <button class="rec-btn hire" disabled>✓ Hire / Trainable</button>
-        <button class="rec-btn hold" disabled>— Hold</button>
-        <button class="rec-btn no" disabled>✕ Do Not Hire</button>
-      </div>
-    </div>
+
   </div>
 </div>
 
@@ -374,9 +365,7 @@ function updateGrade(totalScore, totalMax) {
   pctEl.textContent    = pct + '%';
   descEl.textContent   = g.desc;
   card.classList.add('grade-card-' + g.rec);
-  document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('selected','strong','hire','hold','no'));
-  const target = document.querySelector('.rec-btn.' + g.rec);
-  if (target) target.classList.add('selected', g.rec);
+
 }
 
 /* ══════════════════════════════
@@ -539,11 +528,17 @@ async function loadCandidates() {
     const data = await res.json();
     if (data.records && data.records.length > 0) {
       allCandidates = data.records.map(r => {
-        const f   = r.fields;
-        const id  = String(r.id);
+        const f    = r.fields;
+        const id   = String(r.id);
         const name = f['Candidate Name'] || 'Unnamed';
         const pos  = f['Position Applied For'] || '';
-        const loc  = Array.isArray(f['Clinic Location']) ? f['Clinic Location'].join(', ') : (f['Clinic Location'] || '');
+        // Clinic Location is now a linked record — names come back as an array of strings
+        let loc = '';
+        if (Array.isArray(f['Clinic Location'])) {
+          loc = f['Clinic Location'].map(l => typeof l === 'object' ? (l.name || l.value || '') : l).join(', ');
+        } else if (f['Clinic Location']) {
+          loc = typeof f['Clinic Location'] === 'object' ? (f['Clinic Location'].name || '') : f['Clinic Location'];
+        }
         return { id, label: [name, pos, loc].filter(Boolean).join(' — ') };
       });
       status.textContent = allCandidates.length + ' candidates loaded';
@@ -742,7 +737,6 @@ function resetAll() {
   updateSelectAllState();
   document.getElementById('scorecard-body').style.display = 'none';
   document.getElementById('start-prompt').style.display   = 'block';
-  document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('selected','strong','hire','hold','no'));
   document.getElementById('grade-card').classList.remove('grade-card-strong','grade-card-hire','grade-card-hold','grade-card-no');
   currentRole = null;
 }
