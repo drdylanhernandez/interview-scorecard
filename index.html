@@ -533,10 +533,10 @@ async function loadCandidates() {
         const name = f['Candidate Name'] || 'Unnamed';
         const pos  = f['Position Applied For'] || '';
         let loc = '';
-        if (Array.isArray(f['Location(s) Applied For'])) {
-          loc = f['Location(s) Applied For'].map(l => typeof l === 'object' ? (l.name || l.value || '') : l).join(', ');
-        } else if (f['Location(s) Applied For']) {
-          loc = typeof f['Location(s) Applied For'] === 'object' ? (f['Location(s) Applied For'].name || '') : f['Location(s) Applied For'];
+        if (Array.isArray(f['Location Applied For'])) {
+          loc = f['Location Applied For'].map(l => typeof l === 'object' ? (l.name || l.value || '') : l).join(', ');
+        } else if (f['Location Applied For']) {
+          loc = typeof f['Location Applied For'] === 'object' ? (f['Location Applied For'].name || '') : f['Location Applied For'];
         }
         return { id, label: [name, pos, loc].filter(Boolean).join(' — ') };
       });
