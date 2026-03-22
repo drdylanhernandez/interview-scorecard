@@ -716,7 +716,8 @@ function buildQuestions(containerId, key, startNum) {
       '<div class="star-row"><div class="stars" id="stars-' + qid + '">' +
       [1,2,3,4,5].map(n => '<div class="star" data-val="' + n + '" onclick="setScore(\'' + qid + '\',' + n + ')">★</div>').join('') +
       '</div><span class="score-label" id="lbl-' + qid + '">Not scored</span></div>' +
-      '<div class="notes-field"><textarea placeholder="Notes (optional)…" rows="2"></textarea></div>';
+      '<div class="notes-field"><textarea placeholder="Notes (optional)…" rows="2"></textarea></div>' +
+      '<div class="unanswered-label">⚠ This question has not been answered</div>';
     el.appendChild(row);
   });
 }
