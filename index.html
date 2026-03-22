@@ -554,7 +554,6 @@ async function loadCandidates() {
   try {
     const res  = await fetch(WORKER_URL);
     const data = await res.json();
-    console.log('Worker response:', JSON.stringify(data).slice(0, 500));
     if (data.records && data.records.length > 0) {
       allCandidates = data.records.map(r => {
         const f   = r.fields;
@@ -875,9 +874,9 @@ function resetAll() {
 }
 
 document.getElementById('intdate').valueAsDate = new Date();
-loadCandidates();
-loadInterviewers();
-autoLoadFromUrl();
+Promise.all([loadCandidates(), loadInterviewers()]).then(() => {
+  autoLoadFromUrl();
+});
 </script>
 </body>
 </html>
