@@ -86,7 +86,13 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 .grade-card-no h3 { color: var(--white) !important; border-bottom-color: #7a1f1f !important; }
 .grade-card-no .grade-letter, .grade-card-no .grade-pct, .grade-card-no .grade-desc { color: var(--white) !important; }
 
-.rec-title { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-bottom: 14px; }
+.loc-option { padding: 11px 16px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 400; cursor: pointer; border-bottom: 1px solid var(--bg); color: var(--black); display: flex; align-items: center; gap: 10px; }
+.loc-option:last-child { border-bottom: none; }
+.loc-option:hover { background: #fffbf0; }
+.loc-option.selected { background: #fffbf0; }
+.loc-option .loc-check { width: 16px; height: 16px; border: 2px solid var(--light-grey); border-radius: 2px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; }
+.loc-option.selected .loc-check { background: var(--gold); border-color: var(--gold); color: var(--black); }
+.loc-tag { background: var(--black); color: var(--gold); font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 2px; white-space: nowrap; } font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-bottom: 14px; }
 .rec-options { display: flex; gap: 10px; flex-wrap: wrap; }
 .rec-btn { padding: 11px 22px; border-radius: 3px; border: 2px solid var(--light-grey); background: var(--white); cursor: default; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; color: var(--dark-grey); text-transform: uppercase; letter-spacing: 0.3px; }
 .rec-btn.selected.strong { background: var(--black); border-color: var(--black); color: var(--gold); }
@@ -164,11 +170,21 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
           <input type="hidden" id="interviewer-value" />
           <div id="interviewer-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;font-family:'Montserrat',sans-serif;font-weight:400;"></div>
         </div>
-        <div class="info-field"><label>Clinic Location</label>
-          <select id="location">
-            <option value="">Select location...</option>
-            <option>Tempe</option><option>Gilbert</option><option>Phoenix</option><option>Queen Creek</option>
-          </select>
+        <div class="info-field" id="location-wrapper" style="position:relative;">
+          <label>Clinic Location <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0;">(Select all that apply)</span></label>
+          <div id="location-display" onclick="toggleLocationDropdown()" style="width:100%;border:1.5px solid var(--light-grey);border-radius:3px;padding:10px 12px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:400;color:var(--dark-grey);background:var(--white);cursor:pointer;min-height:42px;display:flex;align-items:center;flex-wrap:wrap;gap:6px;transition:border-color 0.2s;">
+            <span id="location-placeholder">Select location(s)...</span>
+          </div>
+          <div id="location-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border:2px solid var(--gold);border-top:none;border-radius:0 0 3px 3px;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,0.15);">
+            <div id="loc-select-all" style="padding:11px 16px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;cursor:pointer;border-bottom:2px solid var(--bg);color:var(--gold-dark);display:flex;align-items:center;gap:10px;" onmousedown="toggleSelectAll(event)">
+              <div id="loc-all-check" class="loc-check"></div>
+              Select All
+            </div>
+            <div class="loc-option" data-val="Tempe">Tempe</div>
+            <div class="loc-option" data-val="Gilbert">Gilbert</div>
+            <div class="loc-option" data-val="Phoenix">Phoenix</div>
+            <div class="loc-option" data-val="Queen Creek">Queen Creek</div>
+          </div>
         </div>
         <div class="info-field"><label>Position Applied For</label>
           <select id="position" onchange="onPositionChange()">
@@ -332,7 +348,64 @@ let currentRole = null;
 let allCandidates = [];
 let allInterviewers = [];
 
-/* ── Grade Logic ── */
+const POSITION_MAP = {
+  'Chiropractor': 'chiro',
+  'Chiropractic Assistant': 'ca',
+  'Front Desk': 'frontdesk',
+  'Massage Therapist': 'massage',
+  'General Manager': 'manager'
+};
+
+/* ── Auto-load from URL ?id= ── */
+async function autoLoadFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  if (!id) return;
+
+  document.getElementById('candidate-load-status').textContent = 'Loading candidate from Airtable...';
+
+  try {
+    const res  = await fetch(WORKER_URL + '?id=' + id);
+    const data = await res.json();
+    console.log('Auto-load response:', data);
+
+    if (!data.fields) throw new Error('Candidate not found');
+
+    const f    = data.fields;
+    const name = f['Candidate Name'] || '';
+    const pos  = f['Position Applied For'] || '';
+    const locs = Array.isArray(f['Clinic Location']) ? f['Clinic Location'] : (f['Clinic Location'] ? [f['Clinic Location']] : []);
+
+    // Set candidate
+    document.getElementById('candidate-id').value = id;
+    document.getElementById('candidate-search').value = name;
+    document.getElementById('candidate-load-status').textContent = '✓ Candidate auto-loaded';
+
+    // Set locations
+    if (locs.length > 0) {
+      selectedLocations = [...locs];
+      document.querySelectorAll('.loc-option').forEach(o => {
+        if (locs.includes(o.dataset.val)) {
+          o.classList.add('selected');
+          o.querySelector('.loc-check').textContent = '✓';
+        }
+      });
+      renderLocationTags();
+      updateSelectAllState();
+    }
+
+    // Set position and trigger scorecard load
+    if (pos && POSITION_MAP[pos]) {
+      const posSelect = document.getElementById('position');
+      posSelect.value = POSITION_MAP[pos];
+      onPositionChange();
+    }
+
+  } catch(e) {
+    console.error('Auto-load error:', e);
+    document.getElementById('candidate-load-status').textContent = 'Could not auto-load candidate: ' + e.message;
+  }
+}
 function getGrade(pct) {
   if (pct >= 97) return { letter:'A+', desc:'Strong Hire',      rec:'strong' };
   if (pct >= 93) return { letter:'A',  desc:'Strong Hire',      rec:'strong' };
@@ -378,7 +451,104 @@ function updateGrade(totalScore, totalMax) {
   if (target) target.classList.add('selected', g.rec);
 }
 
-/* ── Candidate Dropdown ── */
+/* ── Location Multi-Select ── */
+let selectedLocations = [];
+
+// Add checkboxes to options on init
+document.querySelectorAll('.loc-option').forEach(opt => {
+  const check = document.createElement('div');
+  check.className = 'loc-check';
+  opt.insertBefore(check, opt.firstChild);
+  opt.addEventListener('mousedown', e => {
+    e.preventDefault();
+    const val = opt.dataset.val;
+    if (selectedLocations.includes(val)) {
+      selectedLocations = selectedLocations.filter(l => l !== val);
+      opt.classList.remove('selected');
+      opt.querySelector('.loc-check').textContent = '';
+    } else {
+      selectedLocations.push(val);
+      opt.classList.add('selected');
+      opt.querySelector('.loc-check').textContent = '✓';
+    }
+    renderLocationTags();
+    updateSelectAllState();
+
+function toggleSelectAll(e) {
+  e.preventDefault();
+  const allVals = ['Tempe','Gilbert','Phoenix','Queen Creek'];
+  const allSelected = allVals.every(v => selectedLocations.includes(v));
+  if (allSelected) {
+    // Deselect all
+    selectedLocations = [];
+    document.querySelectorAll('.loc-option').forEach(o => {
+      o.classList.remove('selected');
+      o.querySelector('.loc-check').textContent = '';
+    });
+    document.getElementById('loc-all-check').textContent = '';
+    document.getElementById('loc-select-all').style.color = 'var(--gold-dark)';
+  } else {
+    // Select all
+    selectedLocations = [...allVals];
+    document.querySelectorAll('.loc-option').forEach(o => {
+      o.classList.add('selected');
+      o.querySelector('.loc-check').textContent = '✓';
+    });
+    document.getElementById('loc-all-check').textContent = '✓';
+    document.getElementById('loc-all-check').style.background = 'var(--gold)';
+    document.getElementById('loc-all-check').style.borderColor = 'var(--gold)';
+    document.getElementById('loc-select-all').style.color = 'var(--black)';
+  }
+  renderLocationTags();
+}
+
+function updateSelectAllState() {
+  const allVals = ['Tempe','Gilbert','Phoenix','Queen Creek'];
+  const allSelected = allVals.every(v => selectedLocations.includes(v));
+  const allCheck = document.getElementById('loc-all-check');
+  if (allSelected) {
+    allCheck.textContent = '✓';
+    allCheck.style.background = 'var(--gold)';
+    allCheck.style.borderColor = 'var(--gold)';
+  } else {
+    allCheck.textContent = '';
+    allCheck.style.background = '';
+    allCheck.style.borderColor = '';
+  }
+}
+  const display = document.getElementById('location-display');
+  const placeholder = document.getElementById('location-placeholder');
+  display.querySelectorAll('.loc-tag').forEach(t => t.remove());
+  if (selectedLocations.length === 0) {
+    placeholder.style.display = '';
+  } else {
+    placeholder.style.display = 'none';
+    selectedLocations.forEach(loc => {
+      const tag = document.createElement('span');
+      tag.className = 'loc-tag';
+      tag.textContent = loc;
+      display.appendChild(tag);
+    });
+  }
+  const border = selectedLocations.length > 0 ? 'var(--gold)' : 'var(--light-grey)';
+  document.getElementById('location-display').style.borderColor = border;
+}
+
+function toggleLocationDropdown() {
+  const dd = document.getElementById('location-dropdown');
+  dd.style.display = dd.style.display === 'none' ? 'block' : 'none';
+  if (dd.style.display === 'block') {
+    document.getElementById('location-display').style.borderColor = 'var(--gold)';
+  }
+}
+
+document.addEventListener('click', e => {
+  const wrapper = document.getElementById('location-wrapper');
+  if (wrapper && !wrapper.contains(e.target)) {
+    document.getElementById('location-dropdown').style.display = 'none';
+    renderLocationTags();
+  }
+});
 async function loadCandidates() {
   const status = document.getElementById('candidate-load-status');
   try {
@@ -631,6 +801,7 @@ async function submitToAirtable() {
     'fld2lyB8FKV4YsVVZ': ROLE_LABELS[currentRole] || '',
     'fldERB8IHrUogEmt3': document.getElementById('interviewer-value').value.trim(),
     'fldlYwbOLHhWkuJGk': document.getElementById('intdate').value || new Date().toISOString().split('T')[0],
+    'fldRFAG02JoL2tIk7': selectedLocations,
     'fldy3bhltMDygqrDr': hc,
     'fldofAoeRk9dWgCaT': cf,
     'fldgjTXyEqABlWpxo': ps,
@@ -687,7 +858,12 @@ function resetAll() {
   document.getElementById('candidate-id').value = '';
   document.getElementById('interviewer-search').value = '';
   document.getElementById('interviewer-value').value = '';
-  document.getElementById('position').value = '';
+  selectedLocations = [];
+  document.querySelectorAll('.loc-option').forEach(o => {
+    o.classList.remove('selected');
+    o.querySelector('.loc-check').textContent = '';
+  });
+  renderLocationTags();
   document.getElementById('location').value = '';
   document.getElementById('candidate-load-status').textContent = allCandidates.length + ' candidates loaded';
   document.getElementById('scorecard-body').style.display = 'none';
@@ -701,6 +877,7 @@ function resetAll() {
 document.getElementById('intdate').valueAsDate = new Date();
 loadCandidates();
 loadInterviewers();
+autoLoadFromUrl();
 </script>
 </body>
 </html>
