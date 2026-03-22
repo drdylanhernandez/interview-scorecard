@@ -563,7 +563,6 @@ async function loadCandidates() {
         const loc  = Array.isArray(f['Clinic Location']) ? f['Clinic Location'].join(', ') : (f['Clinic Location'] || '');
         return { id, label: [name, pos, loc].filter(Boolean).join(' — ') };
       });
-      if (allCandidates.length > 0) console.log('First candidate:', allCandidates[0]);
       status.textContent = allCandidates.length + ' candidates loaded';
     } else {
       status.textContent = 'No candidates found.';
@@ -571,6 +570,25 @@ async function loadCandidates() {
   } catch(e) {
     console.error('loadCandidates error:', e);
     status.textContent = 'Could not load candidates: ' + e.message;
+  }
+}
+
+async function loadInterviewers() {
+  const status = document.getElementById('interviewer-load-status');
+  try {
+    const res  = await fetch(WORKER_URL + '/interviewers');
+    const data = await res.json();
+    if (data.records && data.records.length > 0) {
+      allInterviewers = data.records.map(r => {
+        const name = r.fields['Employee Full Name'] || 'Unnamed';
+        return { id: r.id, label: typeof name === 'string' ? name : String(name) };
+      }).sort((a, b) => a.label.localeCompare(b.label));
+    } else {
+      status.textContent = 'No eligible interviewers found.';
+    }
+  } catch(e) {
+    console.error('loadInterviewers error:', e);
+    status.textContent = 'Could not load interviewers.';
   }
 }
 
@@ -874,8 +892,10 @@ function resetAll() {
 }
 
 document.getElementById('intdate').valueAsDate = new Date();
-Promise.all([loadCandidates(), loadInterviewers()]).then(() => {
-  autoLoadFromUrl();
+loadCandidates().then(() => {
+  loadInterviewers().then(() => {
+    autoLoadFromUrl();
+  });
 });
 </script>
 </body>
