@@ -181,12 +181,27 @@
     <div class="info-card">
       <div class="card-label">Candidate Information</div>
       <div class="info-grid">
-        <div class="info-field full" style="position:relative;">
+        <div class="info-field full" id="candidate-wrapper" style="position:relative;">
           <label>Select Candidate <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0">(Must be added to Candidates Pipeline in Airtable)</span></label>
           <input type="text" id="candidate-search" placeholder="Click or type to search candidates..."
-            autocomplete="off" oninput="filterCandidates()" onclick="showCandidateDropdown()"
-            style="width:100%;" />
-          <div id="candidate-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;border:1.5px solid #e5be5e;border-top:none;border-radius:0 0 3px 3px;max-height:220px;overflow-y:auto;background:#fff;z-index:200;box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
+            autocomplete="off" style="width:100%;"
+            oninput="filterCandidates()"
+            onclick="showCandidateDropdown()"
+            onkeydown="handleCandidateKey(event)" />
+          <div id="candidate-dropdown" style="
+            display:none;
+            position:absolute;
+            top:calc(100% - 4px);
+            left:0;right:0;
+            background:#fff;
+            border:2px solid #e5be5e;
+            border-top:none;
+            border-radius:0 0 3px 3px;
+            max-height:240px;
+            overflow-y:auto;
+            z-index:9999;
+            box-shadow:0 8px 24px rgba(0,0,0,0.12);
+          "></div>
           <input type="hidden" id="candidate-id" />
           <div id="candidate-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;font-family:'Montserrat',sans-serif;font-weight:400;"></div>
         </div>
