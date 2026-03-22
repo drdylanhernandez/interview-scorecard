@@ -663,9 +663,9 @@ async function loadCandidates() {
       allCandidates = data.records.map(r => {
         const f     = r.fields;
         const id    = String(r.id);
-        const first = f['Candidate First Name'] || '';
-        const last  = f['Candidate Last Name'] || '';
-        const name  = (first + ' ' + last).trim() || 'Unnamed';
+        const first = (f['Candidate First Name'] || '').trim();
+        const last  = (f['Candidate Last Name'] || '').trim();
+        const name  = [first, last].filter(Boolean).join(' ') || 'Unnamed';
         const pos   = f['Position Applied For'] || '';
         let loc = '';
         if (Array.isArray(f['Location Applied For'])) {
