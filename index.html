@@ -6,140 +6,87 @@
 <title>Axis Spine and Sport – Master Interview Scorecard</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold: #e5be5e;
-    --gold-dark: #c9a440;
-    --dark-grey: #767b7f;
-    --light-grey: #c3cace;
-    --black: #000000;
-    --white: #ffffff;
-    --bg: #f2f4f5;
-    --navy: #1a1a1a;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--black); }
-
-  /* HEADER */
-  .header { background: var(--black); padding: 0; }
-  .header-inner { display: flex; align-items: stretch; }
-  .header-gold-bar { width: 8px; background: var(--gold); flex-shrink: 0; }
-  .header-content { padding: 24px 32px; flex: 1; }
-  .header-top { display: flex; align-items: center; gap: 16px; }
-  .logo-mark { width: 48px; height: 60px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .header-text h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; color: var(--white); letter-spacing: 0.5px; text-transform: uppercase; }
-  .header-text p { font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 12px; color: var(--light-grey); margin-top: 2px; letter-spacing: 0.3px; }
-  .header-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 16px 0 0; }
-
-  /* CONTENT */
-  .content { max-width: 860px; margin: 0 auto; padding: 32px 20px 100px; }
-
-  /* INFO CARD */
-  .info-card { background: var(--white); border-radius: 4px; padding: 28px; margin-bottom: 24px; border-top: 4px solid var(--gold); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
-  .card-label { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--gold-dark); margin-bottom: 18px; }
-  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .info-field label { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 10px; color: var(--dark-grey); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
-  .info-field input, .info-field select {
-    width: 100%; border: 1.5px solid var(--light-grey); border-radius: 3px;
-    padding: 10px 12px; font-family: 'Montserrat', sans-serif; font-size: 13px;
-    font-weight: 400; color: var(--black); background: var(--white); transition: border-color 0.2s;
-  }
-  .info-field input:focus, .info-field select:focus { outline: none; border-color: var(--gold); }
-  .info-field.full { grid-column: 1 / -1; }
-
-  /* START PROMPT */
-  .start-prompt { background: var(--white); border-radius: 4px; padding: 48px 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 24px; border: 1.5px dashed var(--light-grey); }
-  .start-prompt h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 17px; color: var(--black); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .start-prompt p { font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 13px; color: var(--dark-grey); }
-  .start-gold-line { width: 40px; height: 3px; background: var(--gold); margin: 0 auto 16px; border-radius: 2px; }
-
-  /* LEGEND */
-  .legend { background: var(--white); border-radius: 4px; padding: 12px 18px; margin-bottom: 24px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
-  .legend-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-right: 8px; }
-  .legend-item { display: flex; align-items: center; gap: 5px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--dark-grey); margin-left: 8px; }
-  .legend-pip { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 11px; color: var(--white); }
-  .p1{background:#767b7f}.p2{background:#c3cace;color:#1a1a1a}.p3{background:#c9a440}.p4{background:#e5be5e;color:#1a1a1a}.p5{background:#000000}
-
-  /* CATEGORY BLOCK */
-  .category-block { background: var(--white); border-radius: 4px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
-  .category-title { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 2px solid var(--bg); }
-  .category-title-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; color: var(--black); text-transform: uppercase; letter-spacing: 0.5px; }
-  .cat-badge { background: var(--black); color: var(--gold); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
-  .role-badge { background: var(--gold); color: var(--black); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
-
-  /* QUESTIONS */
-  .q-row { padding: 16px 0; border-bottom: 1px solid var(--bg); }
-  .q-row:last-child { border-bottom: none; padding-bottom: 0; }
-  .q-text { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 400; color: var(--black); line-height: 1.6; margin-bottom: 12px; }
-  .q-num { display: inline-block; background: var(--gold); color: var(--black); font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10px; padding: 3px 8px; border-radius: 2px; margin-right: 8px; letter-spacing: 0.3px; }
-  .star-row { display: flex; align-items: center; gap: 10px; }
-  .stars { display: flex; gap: 5px; }
-  .star {
-    width: 32px; height: 32px; border-radius: 3px; border: 2px solid var(--light-grey);
-    background: var(--white); cursor: pointer; font-size: 16px; display: flex;
-    align-items: center; justify-content: center; transition: all 0.15s; color: var(--light-grey);
-  }
-  .star:hover { border-color: var(--gold); color: var(--gold); background: #fffbf0; }
-  .star.active { background: var(--gold); color: var(--black); border-color: var(--gold); }
-  .score-label { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--dark-grey); min-width: 120px; }
-  .notes-field { margin-top: 10px; }
-  .notes-field textarea {
-    width: 100%; border: 1.5px solid var(--light-grey); border-radius: 3px;
-    padding: 9px 12px; font-family: 'Montserrat', sans-serif; font-size: 12px;
-    font-weight: 400; color: var(--black); resize: vertical; min-height: 54px;
-    transition: border-color 0.2s; background: #fafafa;
-  }
-  .notes-field textarea:focus { outline: none; border-color: var(--gold); background: var(--white); }
-  .notes-field textarea::placeholder { color: var(--light-grey); }
-
-  /* SUMMARY */
-  .summary-card { background: var(--white); border-radius: 4px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); border-top: 4px solid var(--black); }
-  .summary-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px; color: var(--black); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid var(--bg); }
-  .score-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--bg); }
-  .score-row:last-child { border-bottom: none; }
-  .score-row .label { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: var(--black); min-width: 180px; }
-  .score-row .label small { font-weight: 400; color: var(--dark-grey); }
-  .score-row .bar { flex: 1; margin: 0 16px; height: 6px; background: var(--bg); border-radius: 2px; overflow: hidden; }
-  .score-row .bar-fill { height: 100%; background: linear-gradient(90deg, var(--black), var(--gold)); border-radius: 2px; transition: width 0.4s; }
-  .score-row .value { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 800; color: var(--black); min-width: 70px; text-align: right; }
-  .total-row { background: var(--black); border-radius: 3px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
-  .total-row .label { font-family: 'Montserrat', sans-serif; color: var(--light-grey); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-  .total-row .value { font-family: 'Montserrat', sans-serif; color: var(--gold); font-size: 24px; font-weight: 900; }
-
-  /* RECOMMENDATION */
-  .rec-title { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-bottom: 14px; }
-  .rec-options { display: flex; gap: 10px; flex-wrap: wrap; }
-  .rec-btn {
-    padding: 11px 22px; border-radius: 3px; border: 2px solid var(--light-grey);
-    background: var(--white); cursor: pointer; font-family: 'Montserrat', sans-serif;
-    font-size: 12px; font-weight: 800; color: var(--dark-grey); transition: all 0.2s;
-    text-transform: uppercase; letter-spacing: 0.3px;
-  }
-  .rec-btn:hover { border-color: var(--black); color: var(--black); }
-  .rec-btn.selected.strong { background: var(--black); border-color: var(--black); color: var(--gold); }
-  .rec-btn.selected.hire { background: var(--gold); border-color: var(--gold); color: var(--black); }
-  .rec-btn.selected.hold { background: var(--dark-grey); border-color: var(--dark-grey); color: var(--white); }
-  .rec-btn.selected.no { background: #767b7f; border-color: #767b7f; color: var(--white); }
-
-  /* BOTTOM BAR */
-  .print-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 3px solid var(--gold); padding: 14px 28px; display: flex; justify-content: flex-end; gap: 10px; box-shadow: 0 -4px 20px rgba(0,0,0,0.1); z-index: 100; }
-  .btn-primary { background: var(--black); color: var(--gold); border: none; padding: 12px 30px; border-radius: 3px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.2s; }
-  .btn-primary:hover { background: #2a2a2a; }
-  .btn-primary:disabled { background: var(--dark-grey); color: var(--light-grey); cursor: not-allowed; }
-  .btn-secondary { background: var(--white); color: var(--dark-grey); border: 2px solid var(--light-grey); padding: 12px 24px; border-radius: 3px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
-  .btn-secondary:hover { border-color: var(--black); color: var(--black); }
-  .submit-status { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; padding: 12px 16px; border-radius: 3px; display: none; align-items: center; gap: 8px; }
-  .submit-status.success { display: flex; background: #e6f4ea; color: #1a7a3a; border: 1.5px solid #a8d5b5; }
-  .submit-status.error { display: flex; background: #fdecea; color: #a32d2d; border: 1.5px solid #f0a0a0; }
-
-  #scorecard-body { display: none; }
-
-  @media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } }
-  @media print {
-    body { background: white; }
-    .print-bar { display: none; }
-    .content { padding: 0; max-width: 100%; }
-    .category-block, .summary-card, .info-card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
-  }
+:root {
+  --gold: #e5be5e; --gold-dark: #c9a440; --dark-grey: #767b7f;
+  --light-grey: #c3cace; --black: #000000; --white: #ffffff; --bg: #f2f4f5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--black); }
+.header { background: var(--black); padding: 0; }
+.header-inner { display: flex; align-items: stretch; }
+.header-gold-bar { width: 8px; background: var(--gold); flex-shrink: 0; }
+.header-content { padding: 24px 32px; flex: 1; }
+.header-top { display: flex; align-items: center; gap: 16px; }
+.logo-mark { width: 48px; height: 60px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.header-text h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; color: var(--white); letter-spacing: 0.5px; text-transform: uppercase; }
+.header-text p { font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 12px; color: var(--light-grey); margin-top: 2px; }
+.content { max-width: 860px; margin: 0 auto; padding: 32px 20px 100px; }
+.info-card { background: var(--white); border-radius: 4px; padding: 28px; margin-bottom: 24px; border-top: 4px solid var(--gold); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+.card-label { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--gold-dark); margin-bottom: 18px; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.info-field label { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 10px; color: var(--dark-grey); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+.info-field input, .info-field select { width: 100%; border: 1.5px solid var(--light-grey); border-radius: 3px; padding: 10px 12px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 400; color: var(--black); background: var(--white); transition: border-color 0.2s; }
+.info-field input:focus, .info-field select:focus { outline: none; border-color: var(--gold); }
+.info-field.full { grid-column: 1 / -1; }
+.start-prompt { background: var(--white); border-radius: 4px; padding: 48px 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 24px; border: 1.5px dashed var(--light-grey); }
+.start-prompt h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 17px; color: var(--black); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.start-prompt p { font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 13px; color: var(--dark-grey); }
+.start-gold-line { width: 40px; height: 3px; background: var(--gold); margin: 0 auto 16px; border-radius: 2px; }
+.legend { background: var(--white); border-radius: 4px; padding: 12px 18px; margin-bottom: 24px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+.legend-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-right: 8px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--dark-grey); margin-left: 8px; }
+.legend-pip { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 11px; color: var(--white); }
+.p1{background:#767b7f}.p2{background:#c3cace;color:#1a1a1a}.p3{background:#c9a440}.p4{background:#e5be5e;color:#1a1a1a}.p5{background:#000000}
+.category-block { background: var(--white); border-radius: 4px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+.category-title { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 2px solid var(--bg); }
+.category-title-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; color: var(--black); text-transform: uppercase; letter-spacing: 0.5px; }
+.cat-badge { background: var(--black); color: var(--gold); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+.role-badge { background: var(--gold); color: var(--black); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+.q-row { padding: 16px 0; border-bottom: 1px solid var(--bg); }
+.q-row:last-child { border-bottom: none; padding-bottom: 0; }
+.q-text { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 400; color: var(--black); line-height: 1.6; margin-bottom: 12px; }
+.q-num { display: inline-block; background: var(--gold); color: var(--black); font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10px; padding: 3px 8px; border-radius: 2px; margin-right: 8px; }
+.star-row { display: flex; align-items: center; gap: 10px; }
+.stars { display: flex; gap: 5px; }
+.star { width: 32px; height: 32px; border-radius: 3px; border: 2px solid var(--light-grey); background: var(--white); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; color: var(--light-grey); }
+.star:hover { border-color: var(--gold); color: var(--gold); background: #fffbf0; }
+.star.active { background: var(--gold); color: var(--black); border-color: var(--gold); }
+.score-label { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--dark-grey); min-width: 120px; }
+.notes-field { margin-top: 10px; }
+.notes-field textarea { width: 100%; border: 1.5px solid var(--light-grey); border-radius: 3px; padding: 9px 12px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 400; color: var(--black); resize: vertical; min-height: 54px; transition: border-color 0.2s; background: #fafafa; }
+.notes-field textarea:focus { outline: none; border-color: var(--gold); background: var(--white); }
+.summary-card { background: var(--white); border-radius: 4px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); border-top: 4px solid var(--black); }
+.summary-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px; color: var(--black); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid var(--bg); }
+.score-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--bg); }
+.score-row:last-child { border-bottom: none; }
+.score-row .label { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: var(--black); min-width: 180px; }
+.score-row .label small { font-weight: 400; color: var(--dark-grey); }
+.score-row .bar { flex: 1; margin: 0 16px; height: 6px; background: var(--bg); border-radius: 2px; overflow: hidden; }
+.score-row .bar-fill { height: 100%; background: linear-gradient(90deg, var(--black), var(--gold)); border-radius: 2px; transition: width 0.4s; }
+.score-row .value { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 800; color: var(--black); min-width: 70px; text-align: right; }
+.total-row { background: var(--black); border-radius: 3px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
+.total-row .label { font-family: 'Montserrat', sans-serif; color: var(--light-grey); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.total-row .value { font-family: 'Montserrat', sans-serif; color: var(--gold); font-size: 24px; font-weight: 900; }
+.rec-title { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-grey); margin-bottom: 14px; }
+.rec-options { display: flex; gap: 10px; flex-wrap: wrap; }
+.rec-btn { padding: 11px 22px; border-radius: 3px; border: 2px solid var(--light-grey); background: var(--white); cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; color: var(--dark-grey); transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.3px; }
+.rec-btn:hover { border-color: var(--black); color: var(--black); }
+.rec-btn.selected.strong { background: var(--black); border-color: var(--black); color: var(--gold); }
+.rec-btn.selected.hire { background: var(--gold); border-color: var(--gold); color: var(--black); }
+.rec-btn.selected.hold { background: var(--dark-grey); border-color: var(--dark-grey); color: var(--white); }
+.rec-btn.selected.no { background: #767b7f; border-color: #767b7f; color: var(--white); }
+.print-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 3px solid var(--gold); padding: 14px 28px; display: flex; justify-content: flex-end; gap: 10px; box-shadow: 0 -4px 20px rgba(0,0,0,0.1); z-index: 100; }
+.btn-primary { background: var(--black); color: var(--gold); border: none; padding: 12px 30px; border-radius: 3px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.2s; }
+.btn-primary:hover { background: #2a2a2a; }
+.btn-primary:disabled { background: var(--dark-grey); color: var(--light-grey); cursor: not-allowed; }
+.btn-secondary { background: var(--white); color: var(--dark-grey); border: 2px solid var(--light-grey); padding: 12px 24px; border-radius: 3px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
+.btn-secondary:hover { border-color: var(--black); color: var(--black); }
+.submit-status { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; padding: 12px 16px; border-radius: 3px; display: none; align-items: center; gap: 8px; }
+.submit-status.success { display: flex; background: #e6f4ea; color: #1a7a3a; border: 1.5px solid #a8d5b5; }
+.submit-status.error { display: flex; background: #fdecea; color: #a32d2d; border: 1.5px solid #f0a0a0; }
+#scorecard-body { display: none; }
+@media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } }
+@media print { body{background:white} .print-bar{display:none} .content{padding:0;max-width:100%} .category-block,.summary-card,.info-card{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid} }
 </style>
 </head>
 <body>
@@ -150,7 +97,7 @@
     <div class="header-content">
       <div class="header-top">
         <div class="logo-mark">
-          <svg width="48" height="62" viewBox="0 0 48 62" xmlns="http://www.w3.org/2000/svg">
+          <svg width="48" height="58" viewBox="0 0 48 62" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" style="stop-color:#f5e090"/>
@@ -158,11 +105,8 @@
                 <stop offset="100%" style="stop-color:#c9a440"/>
               </linearGradient>
             </defs>
-            <!-- Triangle 1: top — points DOWN -->
             <polygon points="0,0 48,0 24,18" fill="url(#tg)"/>
-            <!-- Triangle 2: middle — points DOWN -->
             <polygon points="0,22 48,22 24,40" fill="url(#tg)"/>
-            <!-- Triangle 3: bottom — points DOWN -->
             <polygon points="0,44 48,44 24,62" fill="url(#tg)"/>
           </svg>
         </div>
@@ -176,31 +120,21 @@
 </div>
 
 <div class="content">
-
   <div id="info-step">
     <div class="info-card">
       <div class="card-label">Candidate Information</div>
       <div class="info-grid">
         <div class="info-field full" id="candidate-wrapper" style="position:relative;">
-          <label>Select Candidate <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0">(Must be added to Candidates Pipeline in Airtable)</span></label>
+          <label>Select Candidate <span style="font-weight:400;color:#c3cace;text-transform:none;letter-spacing:0;">(Must be added to Candidates Pipeline in Airtable)</span></label>
           <input type="text" id="candidate-search" placeholder="Click or type to search candidates..."
             autocomplete="off" style="width:100%;"
             oninput="filterCandidates()"
-            onclick="showCandidateDropdown()"
-            onkeydown="handleCandidateKey(event)" />
+            onclick="showCandidateDropdown()" />
           <div id="candidate-dropdown" style="
-            display:none;
-            position:absolute;
-            top:calc(100% - 4px);
-            left:0;right:0;
-            background:#fff;
-            border:2px solid #e5be5e;
-            border-top:none;
-            border-radius:0 0 3px 3px;
-            max-height:240px;
-            overflow-y:auto;
-            z-index:9999;
-            box-shadow:0 8px 24px rgba(0,0,0,0.12);
+            display:none;position:absolute;top:100%;left:0;right:0;
+            background:#fff;border:2px solid #e5be5e;border-top:none;
+            border-radius:0 0 3px 3px;max-height:240px;overflow-y:auto;
+            z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,0.15);
           "></div>
           <input type="hidden" id="candidate-id" />
           <div id="candidate-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;font-family:'Montserrat',sans-serif;font-weight:400;"></div>
@@ -228,7 +162,6 @@
         </div>
       </div>
     </div>
-
     <div class="start-prompt" id="start-prompt">
       <div class="start-gold-line"></div>
       <h2>Select a Position to Begin</h2>
@@ -245,7 +178,6 @@
       <div class="legend-item"><div class="legend-pip p4">4</div> Strong</div>
       <div class="legend-item"><div class="legend-pip p5">5</div> Exceptional</div>
     </div>
-
     <div class="category-block">
       <div class="category-title"><span class="cat-badge">Core 1 of 3</span><span class="category-title-text">Healthcare Competency</span></div>
       <div id="q-healthcare"></div>
@@ -262,35 +194,14 @@
       <div class="category-title"><span class="role-badge" id="role-badge">Role-Specific</span><span class="category-title-text" id="role-title">Questions</span></div>
       <div id="q-role"></div>
     </div>
-
     <div class="summary-card">
       <h3>Scoring Summary</h3>
-      <div class="score-row">
-        <span class="label">Healthcare Competency <small>(/ 15)</small></span>
-        <div class="bar"><div class="bar-fill" id="bar-hc" style="width:0%"></div></div>
-        <span class="value" id="val-hc">0 / 15</span>
-      </div>
-      <div class="score-row">
-        <span class="label">Culture Fit <small>(/ 15)</small></span>
-        <div class="bar"><div class="bar-fill" id="bar-cf" style="width:0%"></div></div>
-        <span class="value" id="val-cf">0 / 15</span>
-      </div>
-      <div class="score-row">
-        <span class="label">Problem-Solving <small>(/ 15)</small></span>
-        <div class="bar"><div class="bar-fill" id="bar-ps" style="width:0%"></div></div>
-        <span class="value" id="val-ps">0 / 15</span>
-      </div>
-      <div class="score-row">
-        <span class="label" id="role-score-label">Role-Specific</span>
-        <div class="bar"><div class="bar-fill" id="bar-role" style="width:0%"></div></div>
-        <span class="value" id="val-role">0 / —</span>
-      </div>
-      <div class="total-row">
-        <span class="label" id="total-label">Total Score</span>
-        <span class="value" id="val-total">0 / —</span>
-      </div>
+      <div class="score-row"><span class="label">Healthcare Competency <small>(/ 15)</small></span><div class="bar"><div class="bar-fill" id="bar-hc" style="width:0%"></div></div><span class="value" id="val-hc">0 / 15</span></div>
+      <div class="score-row"><span class="label">Culture Fit <small>(/ 15)</small></span><div class="bar"><div class="bar-fill" id="bar-cf" style="width:0%"></div></div><span class="value" id="val-cf">0 / 15</span></div>
+      <div class="score-row"><span class="label">Problem-Solving <small>(/ 15)</small></span><div class="bar"><div class="bar-fill" id="bar-ps" style="width:0%"></div></div><span class="value" id="val-ps">0 / 15</span></div>
+      <div class="score-row"><span class="label" id="role-score-label">Role-Specific</span><div class="bar"><div class="bar-fill" id="bar-role" style="width:0%"></div></div><span class="value" id="val-role">0 / —</span></div>
+      <div class="total-row"><span class="label" id="total-label">Total Score</span><span class="value" id="val-total">0 / —</span></div>
     </div>
-
     <div class="summary-card">
       <h3>Hiring Recommendation</h3>
       <div class="rec-title">Select recommendation</div>
@@ -302,7 +213,6 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <div class="print-bar">
@@ -313,6 +223,11 @@
 </div>
 
 <script>
+const AT_TOKEN = 'patgPvROHCBbeyim7.92fc0b01be3b35fea2d18d5164e51f06c2666ad0526157eef9b6e6984708c21e';
+const AT_BASE  = 'appbrqCxWYmOjiWDk';
+const AT_TABLE = 'tblJg8Jr9HpIaQgIC';
+const WORKER_URL = 'https://airtable-candidates.drdylan.workers.dev';
+
 const QUESTIONS = {
   healthcare: [
     "In your opinion, what makes a patient feel genuinely well cared for when they walk into a healthcare office?",
@@ -380,7 +295,89 @@ const ROLE_MAX = { frontdesk:30, ca:30, massage:30, manager:25, chiro:55 };
 const SCORE_LABELS = ['','Poor','Below Expectations','Meets Expectations','Strong','Exceptional'];
 const scores = {};
 let currentRole = null;
+let allCandidates = [];
 
+/* ── Candidate Dropdown ── */
+async function loadCandidates() {
+  const status = document.getElementById('candidate-load-status');
+  try {
+    const res = await fetch(WORKER_URL);
+    const data = await res.json();
+    if (data.records && data.records.length > 0) {
+      allCandidates = data.records
+        .filter(r => {
+          const s = r.fields['flddwYzASFewHHq5h'];
+          return !s || (typeof s === 'object' ? s.name !== 'Rejected' : s !== 'Rejected');
+        })
+        .map(r => {
+          const f = r.fields;
+          const name = f['fldUqQPp5XvVunRwH'] || 'Unnamed';
+          const pos  = typeof f['fld8r56UwOseaB2bx'] === 'object' ? f['fld8r56UwOseaB2bx'].name : (f['fld8r56UwOseaB2bx'] || '');
+          const loc  = Array.isArray(f['fldRFAG02JoL2tIk7'])
+            ? f['fldRFAG02JoL2tIk7'].map(l => typeof l === 'object' ? l.name : l).join(', ')
+            : (f['fldRFAG02JoL2tIk7'] || '');
+          return { id: r.id, label: [name, pos, loc].filter(Boolean).join(' — ') };
+        });
+      status.textContent = allCandidates.length + ' candidates loaded';
+    } else {
+      status.textContent = 'No candidates found. Add candidates in Airtable first.';
+    }
+  } catch(e) {
+    status.textContent = 'Could not load candidates: ' + e.message;
+  }
+}
+
+function renderDropdown(candidates) {
+  const dd = document.getElementById('candidate-dropdown');
+  dd.innerHTML = '';
+  if (candidates.length === 0) {
+    dd.innerHTML = '<div style="padding:12px 16px;font-size:13px;color:#767b7f;font-family:Montserrat,sans-serif;">No candidates found</div>';
+  } else {
+    candidates.forEach(c => {
+      const item = document.createElement('div');
+      item.textContent = c.label;
+      item.style.cssText = 'padding:12px 16px;font-size:13px;font-family:Montserrat,sans-serif;font-weight:400;cursor:pointer;border-bottom:1px solid #f2f4f5;color:#000;background:#fff;';
+      item.onmouseenter = () => item.style.background = '#fffbf0';
+      item.onmouseleave = () => item.style.background = '#fff';
+      item.onmousedown = e => { e.preventDefault(); selectCandidate(c.id, c.label); };
+      dd.appendChild(item);
+    });
+  }
+  dd.style.display = 'block';
+}
+
+function showCandidateDropdown() {
+  if (allCandidates.length > 0) {
+    renderDropdown(allCandidates);
+  } else {
+    const dd = document.getElementById('candidate-dropdown');
+    dd.innerHTML = '<div style="padding:12px 16px;font-size:13px;color:#767b7f;font-family:Montserrat,sans-serif;">Loading candidates...</div>';
+    dd.style.display = 'block';
+  }
+}
+
+function filterCandidates() {
+  document.getElementById('candidate-id').value = '';
+  const q = document.getElementById('candidate-search').value.toLowerCase();
+  const filtered = q ? allCandidates.filter(c => c.label.toLowerCase().includes(q)) : allCandidates;
+  renderDropdown(filtered);
+}
+
+function selectCandidate(id, label) {
+  document.getElementById('candidate-id').value = id;
+  document.getElementById('candidate-search').value = label;
+  document.getElementById('candidate-dropdown').style.display = 'none';
+  document.getElementById('candidate-load-status').textContent = '✓ Candidate selected';
+}
+
+document.addEventListener('click', e => {
+  const wrapper = document.getElementById('candidate-wrapper');
+  if (wrapper && !wrapper.contains(e.target)) {
+    document.getElementById('candidate-dropdown').style.display = 'none';
+  }
+});
+
+/* ── Scorecard ── */
 function onPositionChange() {
   const role = document.getElementById('position').value;
   if (!role) {
@@ -458,66 +455,6 @@ function selectRec(btn, cls) {
   btn.classList.add('selected', cls);
 }
 
-function resetAll() {
-  if (!confirm('Reset the entire scorecard?')) return;
-  Object.keys(scores).forEach(k => scores[k] = 0);
-  document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.score-label').forEach(l => l.textContent = 'Not scored');
-  document.querySelectorAll('textarea').forEach(t => t.value = '');
-  document.querySelectorAll('input[type=text]').forEach(i => i.value = '');
-  document.getElementById('position').value = '';
-  document.getElementById('location').value = '';
-  document.getElementById('scorecard-body').style.display = 'none';
-  document.getElementById('start-prompt').style.display = 'block';
-  document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('selected','strong','hire','hold','no'));
-  currentRole = null;
-}
-
-document.getElementById('intdate').valueAsDate = new Date();
-loadCandidates();
-
-const AT_TOKEN = 'patgPvROHCBbeyim7.92fc0b01be3b35fea2d18d5164e51f06c2666ad0526157eef9b6e6984708c21e';
-const AT_BASE  = 'appbrqCxWYmOjiWDk';
-const AT_TABLE = 'tblJg8Jr9HpIaQgIC';
-const WORKER_URL = 'https://airtable-candidates.drdylan.workers.dev';
-
-async function loadCandidates() {
-  const sel = document.getElementById('candidate-select');
-  const status = document.getElementById('candidate-load-status');
-  try {
-    const res = await fetch(
-      `https://api.airtable.com/v0/${AT_BASE}/${AT_PIPELINE_TABLE}?fields%5B%5D=fldUqQPp5XvVunRwH&fields%5B%5D=fld8r56UwOseaB2bx&fields%5B%5D=fldRFAG02JoL2tIk7&sort%5B0%5D%5Bfield%5D=fldUqQPp5XvVunRwH`,
-      { headers: { 'Authorization': 'Bearer ' + AT_TOKEN } }
-    );
-    const data = await res.json();
-    sel.innerHTML = '<option value="">— Select candidate —</option>';
-    if (data.records && data.records.length > 0) {
-      data.records.forEach(r => {
-        const f = r.fields;
-        const name = f['fldUqQPp5XvVunRwH'] || 'Unnamed';
-        const pos  = f['fld8r56UwOseaB2bx'] || '';
-        const loc  = Array.isArray(f['fldRFAG02JoL2tIk7']) ? f['fldRFAG02JoL2tIk7'].join(', ') : (f['fldRFAG02JoL2tIk7'] || '');
-        const label = [name, pos, loc].filter(Boolean).join(' — ');
-        const opt = document.createElement('option');
-        opt.value = r.id;
-        opt.textContent = label;
-        sel.appendChild(opt);
-      });
-      status.textContent = data.records.length + ' candidates loaded';
-    } else {
-      sel.innerHTML = '<option value="">No candidates found in pipeline</option>';
-      status.textContent = 'Add candidates to the Candidates Pipeline in Airtable first.';
-    }
-  } catch(e) {
-    sel.innerHTML = '<option value="">Failed to load candidates</option>';
-    status.textContent = 'Could not connect to Airtable: ' + e.message;
-  }
-}
-
-'patgPvROHCBbeyim7.92fc0b01be3b35fea2d18d5164e51f06c2666ad0526157eef9b6e6984708c21e';
-const AT_BASE  = 'appbrqCxWYmOjiWDk';
-const AT_TABLE = 'tblJg8Jr9HpIaQgIC';
-
 async function submitToAirtable() {
   const rec = document.querySelector('.rec-btn.selected');
   if (!rec) { alert('Please select a hiring recommendation before submitting.'); return; }
@@ -532,6 +469,8 @@ async function submitToAirtable() {
   const ps = calcGroup('problem');
   const role = currentRole ? calcGroup(currentRole) : 0;
   const recLabel = rec.textContent.replace(/[★✓✕⏸—]/g,'').trim();
+  const candidateId = document.getElementById('candidate-id').value;
+  const candidateName = document.getElementById('candidate-search').value.split(' — ')[0] || '';
 
   const noteLines = [];
   ['healthcare','culture','problem',...(currentRole?[currentRole]:[])].forEach(key => {
@@ -539,9 +478,6 @@ async function submitToAirtable() {
       noteLines.push('Q: ' + q + '\nScore: ' + (scores[key+'_'+i]||0) + '/5');
     });
   });
-
-  const candidateId = document.getElementById('candidate-id').value;
-  const candidateName = document.getElementById('candidate-search').value.split(' — ')[0] || '';
 
   const fields = {
     'fldgb9SAVdugVTr8e': candidateName,
@@ -557,7 +493,6 @@ async function submitToAirtable() {
     'fldacUrKfLdit3bnk': noteLines.join('\n\n')
   };
 
-  const candidateId = document.getElementById('candidate-select').value;
   if (candidateId) fields['fld3a0Q2lkMG4QtvS'] = [{ id: candidateId }];
 
   try {
@@ -569,7 +504,7 @@ async function submitToAirtable() {
     const data = await res.json();
     if (res.ok) {
       status.className = 'submit-status success';
-      status.textContent = '✓ Saved to Airtable';
+      status.textContent = '✓ Saved to Airtable successfully';
       btn.textContent = '✓ Submitted';
     } else {
       throw new Error(data.error?.message || 'Submission failed');
@@ -581,6 +516,26 @@ async function submitToAirtable() {
     btn.textContent = 'Submit to Airtable';
   }
 }
+
+function resetAll() {
+  if (!confirm('Reset the entire scorecard?')) return;
+  Object.keys(scores).forEach(k => scores[k] = 0);
+  document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.score-label').forEach(l => l.textContent = 'Not scored');
+  document.querySelectorAll('textarea').forEach(t => t.value = '');
+  document.querySelectorAll('input[type=text]').forEach(i => i.value = '');
+  document.getElementById('position').value = '';
+  document.getElementById('location').value = '';
+  document.getElementById('candidate-id').value = '';
+  document.getElementById('candidate-load-status').textContent = allCandidates.length + ' candidates loaded';
+  document.getElementById('scorecard-body').style.display = 'none';
+  document.getElementById('start-prompt').style.display = 'block';
+  document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('selected','strong','hire','hold','no'));
+  currentRole = null;
+}
+
+document.getElementById('intdate').valueAsDate = new Date();
+loadCandidates();
 </script>
 </body>
 </html>
