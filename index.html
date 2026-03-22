@@ -140,7 +140,21 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
           <div id="candidate-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;font-family:'Montserrat',sans-serif;font-weight:400;"></div>
         </div>
         <div class="info-field"><label>Date</label><input type="date" id="intdate"></div>
-        <div class="info-field"><label>Interviewer</label><input type="text" id="interviewer" placeholder="Your name"></div>
+        <div class="info-field" id="interviewer-wrapper" style="position:relative;">
+          <label>Interviewer</label>
+          <input type="text" id="interviewer-search" placeholder="Click or type to search interviewers..."
+            autocomplete="off" style="width:100%;"
+            oninput="filterInterviewers()"
+            onclick="showInterviewerDropdown()" />
+          <div id="interviewer-dropdown" style="
+            display:none;position:absolute;top:100%;left:0;right:0;
+            background:#fff;border:2px solid #e5be5e;border-top:none;
+            border-radius:0 0 3px 3px;max-height:200px;overflow-y:auto;
+            z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,0.15);
+          "></div>
+          <input type="hidden" id="interviewer-value" />
+          <div id="interviewer-load-status" style="font-size:11px;color:#767b7f;margin-top:4px;font-family:'Montserrat',sans-serif;font-weight:400;"></div>
+        </div>
         <div class="info-field"><label>Clinic Location</label>
           <select id="location">
             <option value="">Select location...</option>
@@ -296,6 +310,7 @@ const SCORE_LABELS = ['','Poor','Below Expectations','Meets Expectations','Stron
 const scores = {};
 let currentRole = null;
 let allCandidates = [];
+let allInterviewers = [];
 
 /* ── Candidate Dropdown ── */
 async function loadCandidates() {
@@ -311,7 +326,9 @@ async function loadCandidates() {
       allCandidates = data.records
         .filter(r => {
           const s = r.fields['flddwYzASFewHHq5h'];
-          return !s || (typeof s === 'object' ? s.name !== 'Rejected' : s !== 'Rejected');
+          if (!s) return false; // hide candidates with no status set
+          const statusName = typeof s === 'object' ? s.name : s;
+          return statusName === 'New Candidate' || statusName === 'Scheduled Interview';
         })
         .map(r => {
           const f = r.fields;
@@ -371,6 +388,8 @@ function showCandidateDropdown() {
 
 function filterCandidates() {
   document.getElementById('candidate-id').value = '';
+  document.getElementById('interviewer-search').value = '';
+  document.getElementById('interviewer-value').value = '';
   const q = document.getElementById('candidate-search').value.toLowerCase();
   const filtered = q ? allCandidates.filter(c => c.label.toLowerCase().includes(q)) : allCandidates;
   renderDropdown(filtered);
@@ -391,7 +410,76 @@ document.addEventListener('click', e => {
   }
 });
 
-/* ── Scorecard ── */
+/* ── Interviewer Dropdown ── */
+async function loadInterviewers() {
+  const status = document.getElementById('interviewer-load-status');
+  const filter = encodeURIComponent(`AND({fldaitfj1bsHXIlwY}="Active",OR({fldq7Mf1HqWhhZCYS}="General Manager",{fldq7Mf1HqWhhZCYS}="Owner"))`);
+  try {
+    const res = await fetch(
+      `https://api.airtable.com/v0/${AT_BASE}/tblUnF5Y2bjKnLy1D?fields[]=fldK4JCgsQbsfuUtU&filterByFormula=${filter}`,
+      { headers: { 'Authorization': 'Bearer ' + AT_TOKEN } }
+    );
+    const data = await res.json();
+    if (data.records && data.records.length > 0) {
+      allInterviewers = data.records.map(r => {
+        const name = r.fields['fldK4JCgsQbsfuUtU'] || 'Unnamed';
+        return { id: r.id, label: typeof name === 'string' ? name : String(name) };
+      }).sort((a, b) => a.label.localeCompare(b.label));
+      status.textContent = '';
+    } else {
+      status.textContent = 'No eligible interviewers found.';
+    }
+  } catch(e) {
+    console.error('loadInterviewers error:', e);
+    status.textContent = 'Could not load interviewers.';
+  }
+}
+
+function renderInterviewerDropdown(list) {
+  const dd = document.getElementById('interviewer-dropdown');
+  dd.innerHTML = '';
+  if (list.length === 0) {
+    dd.innerHTML = '<div style="padding:12px 16px;font-size:13px;color:#767b7f;font-family:Montserrat,sans-serif;">No matches found</div>';
+  } else {
+    list.forEach(p => {
+      const item = document.createElement('div');
+      item.textContent = p.label;
+      item.style.cssText = 'padding:12px 16px;font-size:13px;font-family:Montserrat,sans-serif;font-weight:400;cursor:pointer;border-bottom:1px solid #f2f4f5;color:#000;background:#fff;';
+      item.onmouseenter = () => item.style.background = '#fffbf0';
+      item.onmouseleave = () => item.style.background = '#fff';
+      item.onmousedown = e => { e.preventDefault(); selectInterviewer(p.label); };
+      dd.appendChild(item);
+    });
+  }
+  dd.style.display = 'block';
+}
+
+function showInterviewerDropdown() {
+  if (allInterviewers.length > 0) renderInterviewerDropdown(allInterviewers);
+  else {
+    const dd = document.getElementById('interviewer-dropdown');
+    dd.innerHTML = '<div style="padding:12px 16px;font-size:13px;color:#767b7f;font-family:Montserrat,sans-serif;">Loading...</div>';
+    dd.style.display = 'block';
+  }
+}
+
+function filterInterviewers() {
+  document.getElementById('interviewer-value').value = '';
+  const q = document.getElementById('interviewer-search').value.toLowerCase();
+  const filtered = q ? allInterviewers.filter(p => p.label.toLowerCase().includes(q)) : allInterviewers;
+  renderInterviewerDropdown(filtered);
+}
+
+function selectInterviewer(label) {
+  document.getElementById('interviewer-value').value = label;
+  document.getElementById('interviewer-search').value = label;
+  document.getElementById('interviewer-dropdown').style.display = 'none';
+}
+
+document.addEventListener('click', e => {
+  const iw = document.getElementById('interviewer-wrapper');
+  if (iw && !iw.contains(e.target)) document.getElementById('interviewer-dropdown').style.display = 'none';
+});
 function onPositionChange() {
   const role = document.getElementById('position').value;
   if (!role) {
@@ -504,7 +592,7 @@ async function submitToAirtable() {
   const fields = {
     'fldgb9SAVdugVTr8e': candidateName,
     'fld2lyB8FKV4YsVVZ': ROLE_LABELS[currentRole] || '',
-    'fldERB8IHrUogEmt3': document.getElementById('interviewer').value.trim(),
+    'fldERB8IHrUogEmt3': document.getElementById('interviewer-value').value.trim(),
     'fldlYwbOLHhWkuJGk': document.getElementById('intdate').value || new Date().toISOString().split('T')[0],
     'fldy3bhltMDygqrDr': hc,
     'fldofAoeRk9dWgCaT': cf,
@@ -574,6 +662,7 @@ function resetAll() {
 
 document.getElementById('intdate').valueAsDate = new Date();
 loadCandidates();
+loadInterviewers();
 </script>
 </body>
 </html>
