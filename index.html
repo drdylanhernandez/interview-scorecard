@@ -460,6 +460,36 @@ function handleSubmitClick() {
 
 function closeDialog() {
   document.getElementById('incomplete-dialog').classList.remove('active');
+  highlightUnanswered();
+}
+
+function highlightUnanswered() {
+  if (!currentRole) return;
+  const keys = ['healthcare', 'culture', 'problem', currentRole];
+  let firstUnanswered = null;
+  keys.forEach(key => {
+    QUESTIONS[key].forEach((_, i) => {
+      const qid = key + '_' + i;
+      const row = document.querySelector('#stars-' + qid)?.closest('.q-row');
+      if (!row) return;
+      if (!scores[qid] || scores[qid] === 0) {
+        row.classList.add('unanswered');
+        // Add "Required" tag if not already there
+        if (!row.querySelector('.unanswered-tag')) {
+          const tag = document.createElement('span');
+          tag.className = 'unanswered-tag';
+          tag.textContent = '— Not Answered';
+          row.querySelector('.score-label').after(tag);
+        }
+        if (!firstUnanswered) firstUnanswered = row;
+      } else {
+        row.classList.remove('unanswered');
+        const tag = row.querySelector('.unanswered-tag');
+        if (tag) tag.remove();
+      }
+    });
+  });
+  if (firstUnanswered) firstUnanswered.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function confirmSubmit() {
@@ -704,6 +734,13 @@ function setScore(qid, val) {
   scores[qid] = val;
   document.querySelectorAll('#stars-' + qid + ' .star').forEach(s => s.classList.toggle('active', parseInt(s.dataset.val) <= val));
   document.getElementById('lbl-' + qid).textContent = val + ' — ' + SCORE_LABELS[val];
+  // Clear unanswered highlight when scored
+  const row = document.querySelector('#stars-' + qid)?.closest('.q-row');
+  if (row) {
+    row.classList.remove('unanswered');
+    const tag = row.querySelector('.unanswered-tag');
+    if (tag) tag.remove();
+  }
   updateSummary();
 }
 
