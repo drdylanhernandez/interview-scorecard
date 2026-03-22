@@ -474,18 +474,9 @@ function highlightUnanswered() {
       if (!row) return;
       if (!scores[qid] || scores[qid] === 0) {
         row.classList.add('unanswered');
-        // Add "Required" tag if not already there
-        if (!row.querySelector('.unanswered-tag')) {
-          const tag = document.createElement('span');
-          tag.className = 'unanswered-tag';
-          tag.textContent = '— Not Answered';
-          row.querySelector('.score-label').after(tag);
-        }
         if (!firstUnanswered) firstUnanswered = row;
       } else {
         row.classList.remove('unanswered');
-        const tag = row.querySelector('.unanswered-tag');
-        if (tag) tag.remove();
       }
     });
   });
