@@ -311,7 +311,7 @@ async function loadCandidates() {
         })
         .map(r => {
           const f = r.fields;
-          const name = f['fldUqQPp5XvVunRwH'] || 'Unnamed';
+          const name = f['Candidate Name'] || f['fldUqQPp5XvVunRwH'] || 'Unnamed';
           const pos  = typeof f['fld8r56UwOseaB2bx'] === 'object' ? f['fld8r56UwOseaB2bx'].name : (f['fld8r56UwOseaB2bx'] || '');
           const loc  = Array.isArray(f['fldRFAG02JoL2tIk7'])
             ? f['fldRFAG02JoL2tIk7'].map(l => typeof l === 'object' ? l.name : l).join(', ')
