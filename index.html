@@ -577,6 +577,8 @@ async function submitToAirtable() {
     });
   });
 
+  const roleMax = currentRole ? ROLE_MAX[currentRole] : 0;
+
   const fields = {
     'fldgb9SAVdugVTr8e': candidateName,
     'fld2lyB8FKV4YsVVZ': ROLE_LABELS[currentRole] || '',
@@ -588,7 +590,11 @@ async function submitToAirtable() {
     'fldcFcnnPSVPLyOpP': role,
     'fld3wRBfOibYJRX8M': hc + cf + ps + role,
     'fldhelFqQJKJtbWNI': recLabel,
-    'fldacUrKfLdit3bnk': noteLines.join('\n\n')
+    'fldacUrKfLdit3bnk': noteLines.join('\n\n'),
+    'fldeHN58HEphs32mF': 15,
+    'fldr4V4kNktPqfgt2': 15,
+    'fldg7D6tJ84rl2RRv': 15,
+    'fldOWdtHByMbAcfyL': roleMax
   };
 
   // Only add the linked record field if we have a valid-looking Airtable record ID
