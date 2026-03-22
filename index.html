@@ -835,6 +835,10 @@ function showSuccessPage() {
   launchConfetti();
 }
 async function doSubmit() {
+  if (!allQuestionsAnswered()) {
+    highlightUnanswered();
+    return;
+  }
   const btn    = document.getElementById('submit-btn');
   const status = document.getElementById('submit-status');
   btn.disabled = true; btn.textContent = 'Submitting…';
