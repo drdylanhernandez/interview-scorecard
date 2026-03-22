@@ -661,10 +661,12 @@ async function loadCandidates() {
     const data = await res.json();
     if (data.records && data.records.length > 0) {
       allCandidates = data.records.map(r => {
-        const f    = r.fields;
-        const id   = String(r.id);
-        const name = f['Candidate Name'] || 'Unnamed';
-        const pos  = f['Position Applied For'] || '';
+        const f     = r.fields;
+        const id    = String(r.id);
+        const first = f['Candidate First Name'] || '';
+        const last  = f['Candidate Last Name'] || '';
+        const name  = (first + ' ' + last).trim() || 'Unnamed';
+        const pos   = f['Position Applied For'] || '';
         let loc = '';
         if (Array.isArray(f['Location Applied For'])) {
           loc = f['Location Applied For'].map(l => typeof l === 'object' ? (l.name || l.value || '') : l).join(', ');
@@ -849,8 +851,11 @@ async function doSubmit() {
   const ps      = calcGroup('problem');
   const role    = currentRole ? calcGroup(currentRole) : 0;
   const roleMax = currentRole ? ROLE_MAX[currentRole] : 0;
-  const rawId   = document.getElementById('candidate-id').value.trim();
-  const candName = document.getElementById('candidate-search').value.split(' — ')[0].trim();
+  const rawId    = document.getElementById('candidate-id').value.trim();
+  const candFull = document.getElementById('candidate-search').value.split(' — ')[0].trim();
+  const nameParts = candFull.split(' ');
+  const candFirst = nameParts[0] || '';
+  const candLast  = nameParts.slice(1).join(' ') || '';
 
   const noteLines = [];
   ['healthcare','culture','problem',...(currentRole ? [currentRole] : [])].forEach(key => {
@@ -861,7 +866,7 @@ async function doSubmit() {
   if (generalNotes) noteLines.push('\n--- General Interview Notes ---\n' + generalNotes);
 
   const fields = {
-    'fldgb9SAVdugVTr8e': candName,
+    'fldgb9SAVdugVTr8e': candFull,
     'fld2lyB8FKV4YsVVZ': ROLE_LABELS[currentRole] || '',
     'fldERB8IHrUogEmt3': document.getElementById('interviewer-value').value.trim(),
     'fldlYwbOLHhWkuJGk': document.getElementById('intdate').value,
