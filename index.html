@@ -864,7 +864,17 @@ async function doSubmit() {
 
   const noteLines = [];
   ['healthcare','culture','problem',...(currentRole ? [currentRole] : [])].forEach(key => {
-    QUESTIONS[key].forEach((q, i) => noteLines.push('Q: ' + q + '\nScore: ' + (scores[key+'_'+i]||0) + '/5'));
+    QUESTIONS[key].forEach((q, i) => {
+      const qid = key + '_' + i;
+      const scoreVal = scores[qid] || 0;
+      // Get the note textarea for this question
+      const starsEl = document.getElementById('stars-' + qid);
+      const row = starsEl ? starsEl.closest('.q-row') : null;
+      const noteText = row ? (row.querySelector('textarea').value.trim()) : '';
+      let line = 'Q: ' + q + '\nScore: ' + scoreVal + '/5';
+      if (noteText) line += '\nNotes: ' + noteText;
+      noteLines.push(line);
+    });
   });
 
   const generalNotes = document.getElementById('general-notes').value.trim();
