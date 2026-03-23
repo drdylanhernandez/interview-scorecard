@@ -494,6 +494,12 @@ function highlightUnanswered() {
         row.style.background = '#fff8f8';
         row.style.borderRadius = '4px';
         row.style.padding = '14px';
+        if (!row.querySelector('.unanswered-label')) {
+          const tag = document.createElement('div');
+          tag.className = 'unanswered-label';
+          tag.textContent = '⚠ This question has not been answered';
+          row.appendChild(tag);
+        }
         if (!firstUnanswered) firstUnanswered = row;
       } else {
         row.classList.remove('unanswered');
@@ -742,8 +748,7 @@ function buildQuestions(containerId, key, startNum) {
       '<div class="star-row"><div class="stars" id="stars-' + qid + '">' +
       [1,2,3,4,5].map(n => '<div class="star" data-val="' + n + '" onclick="setScore(\'' + qid + '\',' + n + ')">★</div>').join('') +
       '</div><span class="score-label" id="lbl-' + qid + '">Not scored</span></div>' +
-      '<div class="notes-field"><textarea placeholder="Notes (optional)…" rows="2"></textarea></div>' +
-      '<div class="unanswered-label">⚠ This question has not been answered</div>';
+      '<div class="notes-field"><textarea placeholder="Notes (optional)…" rows="2"></textarea></div>';
     el.appendChild(row);
   });
 }
